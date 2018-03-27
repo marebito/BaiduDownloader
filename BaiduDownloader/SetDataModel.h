@@ -8,9 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ListModel : NSObject
-@property (nonatomic, copy) NSString *app_id;
+@interface Thumb : NSObject
+@property (nonatomic, copy) NSString *icon;
+@property (nonatomic, copy) NSString *url1;
+@property (nonatomic, copy) NSString *url2;
+@property (nonatomic, copy) NSString *url3;
+@end
+
+@interface FileModel : NSObject
 @property (nonatomic, copy) NSString *category;
+@property (nonatomic, copy) NSString *fs_id;
+@property (nonatomic, copy) NSString *isdir;
+@property (nonatomic, copy) NSString *local_ctime;
+@property (nonatomic, copy) NSString *local_mtime;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy) NSString *server_ctime;
+@property (nonatomic, copy) NSString *server_filename;
+@property (nonatomic, copy) NSString *server_mtime;
+@property (nonatomic, copy) NSString *size;
+@property (nonatomic, strong) Thumb *thumbs;
+@end
+
+@interface ListModel : FileModel
+@property (nonatomic, copy) NSString *app_id;
 @property (nonatomic, copy) NSString *delete_fs_id;
 @property (nonatomic, copy) NSString *extent_int3;
 @property (nonatomic, copy) NSString *extent_tinyint1;
@@ -18,28 +38,21 @@
 @property (nonatomic, copy) NSString *extent_tinyint3;
 @property (nonatomic, copy) NSString *extent_tinyint4;
 @property (nonatomic, copy) NSString *file_key;
-@property (nonatomic, copy) NSString *fs_id;
 @property (nonatomic, copy) NSString *isdelete;
-@property (nonatomic, copy) NSString *isdir;
-@property (nonatomic, copy) NSString *local_ctime;
-@property (nonatomic, copy) NSString *local_mtime;
 @property (nonatomic, copy) NSString *md5;
 @property (nonatomic, copy) NSString *oper_id;
 @property (nonatomic, copy) NSString *parent_path;
-@property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *path_md5;
 @property (nonatomic, copy) NSString *root_ns;
-@property (nonatomic, copy) NSString *server_ctime;
-@property (nonatomic, copy) NSString *server_filename;
-@property (nonatomic, copy) NSString *server_mtime;
 @property (nonatomic, copy) NSString *share;
-@property (nonatomic, copy) NSString *size;
 @property (nonatomic, copy) NSString *status;
 @end
 
 @interface FileListModel : NSObject
 @property (nonatomic, copy) NSString *err;
 @property (nonatomic, strong) NSArray<ListModel *> *list;
+@property (nonatomic, copy) NSString *request_id;
+@property (nonatomic, copy) NSString *server_time;
 @end
 
 @interface SamplingModel : NSObject
@@ -96,7 +109,6 @@
 @property (nonatomic, copy) NSString *vip_end_time;
 @property (nonatomic, copy) NSString *visitor_avatar;
 @property (nonatomic, copy) NSString *visitor_uk;
-
 @end
 
 

@@ -56,6 +56,9 @@
 
 #define BAIDU_REDIRECT_URL __UDGET__(@"Location")
 
+/*百度内部错误码*/
+// http://openapi.baidu.com/wiki/index.php?title=%E7%99%BE%E5%BA%A6Open_API%E9%94%99%E8%AF%AF%E7%A0%81%E5%AE%9A%E4%B9%89
+
 #define TEST_URL @"https://pan.baidu.com/s/1VSthcUc3fnZGh1mlc43dxg" // 测试链接
 
 #define TEST_URL2 @"http://pan.baidu.com/s/1mighQo4" // otwx
@@ -73,7 +76,7 @@
 @property (nonatomic, copy) NSString *shareURL;    // 分享URL
 @property (nonatomic, copy) NSString *redirectURL; // 重定向URL
 
-@property (nonatomic, copy) SetDataModel *sdm;
+@property (nonatomic, strong) SetDataModel *sdm;
 
 - (IBAction)fetch:(id)sender;
 - (IBAction)fetchVCode:(id)sender;
@@ -391,8 +394,8 @@
         NSString *html = __RD__(responseObject);
         NSString *setData = [html matchWithRegex:@"setData.*?;"][0];
         setData = [setData substringWithRange:NSMakeRange(8, setData.length - 10)];
-        _sdm = [SetDataModel yy_modelWithJSON:setData];
-        if (!_sdm)
+        self.sdm = [SetDataModel yy_modelWithJSON:setData];
+        if (!self.sdm)
         {
             [self setStatus:@"文件列表异常!" isSuccess:NO];
             return;
@@ -414,11 +417,16 @@
         // 调用获取host列表接口模拟_getHostList的ajax请求
         [self setStatus:__TOSTR__(@"获取文件列表%@", error?@"失败":@"成功") isSuccess:!error];
         if (error) return;
-        [self getFileList:nil];
+        [self getFileList:self.sdm.file_list.list[0].path];
     }];
 }
 
-- (void)getFileList:(NSArray *)dirList
+- (double)randomTimestamp
+{
+    return ((arc4random()%100000000000000000)*1.0/100000000000000000);
+}
+
+- (void)getFileList:(NSString *)path
 {
     NSString *url = __TOSTR__(@"https://%@/share/list", BAIDU_PAN_HOST);
     NSDictionary *headers = @{@"Host":BAIDU_PAN_HOST,
@@ -430,7 +438,7 @@
                               @"Accept-Language":BAIDU_ACCEPT_LANGUAGE,
                               @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;%@;BDCLND=%@;%@;cflag=%@",__UDGET__(@"BAIDUID"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"HMVT")), __UDGET__ (@"BDCLND"), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"hm_lpvt")), __UDGET__(@"cflag")]
                               };
-    NSDictionary *queryParams = @{@"uk":__UDGET__(@"uk"), @"shareid":_sdm.shareid, @"order":@"other", @"desc":@"1", @"showempty":@"0", @"web":@"1", @"page":@"1", @"num":@"100", @"dir":self.sdm.file_list.list[0].path, @"t":@"", @"channel":@"chunlei", @"web":@"1", @"app_id":__UDGET__(@"app_id"), @"bdstoken":@"null", @"logid":__UDGET__(@"logid"), @"clienttype":@"0"};
+    NSDictionary *queryParams = @{@"uk":__UDGET__(@"uk"), @"shareid":_sdm.shareid, @"order":@"other", @"desc":@"1", @"showempty":@"0", @"web":@"1", @"page":@"1", @"num":@"100", @"dir":path, @"t":@"", @"channel":@"chunlei", @"web":@"1", @"app_id":__UDGET__(@"app_id"), @"bdstoken":@"null", @"logid":__UDGET__(@"logid"), @"clienttype":@"0"};
     /*
      {
      errno = 0;
@@ -600,6 +608,18 @@
     [HttpUtil request:url method:@"GET" headers:headers params:queryParams completion:^(NSURLResponse *response, id responseObject, NSError *error) {
         @StrongObj(self)
         NSString *jsonDic = __JSONDIC__(responseObject);
+        NSLog(@"jsonDic-->%@", jsonDic);
+        FileListModel *fileListModel = [FileListModel yy_modelWithJSON:responseObject];
+        [fileListModel.list enumerateObjectsUsingBlock:^(ListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.isdir integerValue] == 1)
+            {
+                [self getFileList:obj.path];
+            }
+            else
+            {
+                NSLog(@"不是目录%@", obj.path);
+            }
+        }];
         //        [self downloadFile:@"" vcode_str:@""];
     }];
 }

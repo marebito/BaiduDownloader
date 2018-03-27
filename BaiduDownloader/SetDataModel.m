@@ -8,11 +8,25 @@
 
 #import "SetDataModel.h"
 
-@implementation ListModel
+@implementation Thumb
 
 @end
 
+@implementation FileModel
+
+@end
+
+@implementation ListModel
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"thumbs" : [Thumb class]};
+}
+@end
+
 @implementation FileListModel
++ (NSArray *)modelPropertyBlacklist {
+    return @[@"request_id", @"server_time"];
+}
+
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"list" : [ListModel class]};
 }
