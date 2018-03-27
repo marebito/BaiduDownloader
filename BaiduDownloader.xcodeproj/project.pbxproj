@@ -13,6 +13,12 @@
 		54461D30205F8ABC00C2835B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54461D2E205F8ABC00C2835B /* Main.storyboard */; };
 		54461D33205F8ABC00C2835B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D32205F8ABC00C2835B /* main.m */; };
 		54461D3C205F8B6B00C2835B /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D3B205F8B6B00C2835B /* HttpUtil.m */; };
+		5465FAB4206A927D0054F573 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5465FAB3206A927D0054F573 /* background.jpg */; };
+		5465FAC0206A94690054F573 /* JMOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FABA206A94690054F573 /* JMOverlayView.m */; };
+		5465FAC1206A94690054F573 /* JMModalOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FABB206A94690054F573 /* JMModalOverlay.m */; };
+		5465FAC2206A94690054F573 /* JMModalOverlay-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5465FABC206A94690054F573 /* JMModalOverlay-Info.plist */; };
+		5465FAC5206A94E00054F573 /* FileListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FAC4206A94E00054F573 /* FileListVC.m */; };
+		5465FAC8206A9EBE0054F573 /* ColorTitleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FAC7206A9EBE0054F573 /* ColorTitleButtonCell.m */; };
 		546607442063291800370966 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 546607432063291800370966 /* StringUtil.m */; };
 		546607462063322A00370966 /* BaiduDisk.md in Resources */ = {isa = PBXBuildFile; fileRef = 546607452063322A00370966 /* BaiduDisk.md */; };
 		5467E4872064FD2900F39920 /* ClickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467E4862064FD2900F39920 /* ClickableImageView.m */; };
@@ -22,7 +28,6 @@
 		54BBF01820674E7600C27FF8 /* convert.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF01720674E7600C27FF8 /* convert.png */; };
 		54BBF01A20676C7100C27FF8 /* arrows.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF01920676C7100C27FF8 /* arrows.png */; };
 		54BBF01C20676D6300C27FF8 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF01B20676D6300C27FF8 /* download.png */; };
-		54BBF0242067729B00C27FF8 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF0232067729B00C27FF8 /* background.png */; };
 		54BBF0262067799C00C27FF8 /* checkcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF0252067799B00C27FF8 /* checkcode.png */; };
 		54BBF04A206815D100C27FF8 /* SetDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BBF049206815D100C27FF8 /* SetDataModel.m */; };
 		54CFC67D206378B8004F0C25 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CFC67C206378B7004F0C25 /* JavaScriptCore.framework */; };
@@ -43,6 +48,17 @@
 		54461D34205F8ABC00C2835B /* BaiduDownloader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BaiduDownloader.entitlements; sourceTree = "<group>"; };
 		54461D3A205F8B6B00C2835B /* HttpUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
 		54461D3B205F8B6B00C2835B /* HttpUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
+		5465FAB3206A927D0054F573 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
+		5465FAB8206A94690054F573 /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
+		5465FABA206A94690054F573 /* JMOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMOverlayView.m; sourceTree = "<group>"; };
+		5465FABB206A94690054F573 /* JMModalOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMModalOverlay.m; sourceTree = "<group>"; };
+		5465FABC206A94690054F573 /* JMModalOverlay-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JMModalOverlay-Info.plist"; sourceTree = "<group>"; };
+		5465FABD206A94690054F573 /* JMModalOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMModalOverlay.h; sourceTree = "<group>"; };
+		5465FABE206A94690054F573 /* JMOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMOverlayView.h; sourceTree = "<group>"; };
+		5465FAC3206A94E00054F573 /* FileListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileListVC.h; sourceTree = "<group>"; };
+		5465FAC4206A94E00054F573 /* FileListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileListVC.m; sourceTree = "<group>"; };
+		5465FAC6206A9EBE0054F573 /* ColorTitleButtonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorTitleButtonCell.h; sourceTree = "<group>"; };
+		5465FAC7206A9EBE0054F573 /* ColorTitleButtonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorTitleButtonCell.m; sourceTree = "<group>"; };
 		546607422063291800370966 /* StringUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
 		546607432063291800370966 /* StringUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		546607452063322A00370966 /* BaiduDisk.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = BaiduDisk.md; sourceTree = "<group>"; };
@@ -54,7 +70,6 @@
 		54BBF01720674E7600C27FF8 /* convert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = convert.png; sourceTree = "<group>"; };
 		54BBF01920676C7100C27FF8 /* arrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrows.png; sourceTree = "<group>"; };
 		54BBF01B20676D6300C27FF8 /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
-		54BBF0232067729B00C27FF8 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		54BBF0252067799B00C27FF8 /* checkcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkcode.png; sourceTree = "<group>"; };
 		54BBF0272068097600C27FF8 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		54BBF048206815D100C27FF8 /* SetDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetDataModel.h; sourceTree = "<group>"; };
@@ -109,18 +124,23 @@
 			isa = PBXGroup;
 			children = (
 				54BBF047206815B900C27FF8 /* Images */,
-				5467E4852064FD2900F39920 /* ClickableImageView.h */,
+				5465FAB5206A94690054F573 /* JMModalOverlay */,
 				5467E4862064FD2900F39920 /* ClickableImageView.m */,
+				5467E4852064FD2900F39920 /* ClickableImageView.h */,
 				54461D26205F8ABC00C2835B /* AppDelegate.h */,
 				54461D27205F8ABC00C2835B /* AppDelegate.m */,
 				54461D29205F8ABC00C2835B /* ViewController.h */,
 				54461D2A205F8ABC00C2835B /* ViewController.m */,
+				5465FAC3206A94E00054F573 /* FileListVC.h */,
+				5465FAC4206A94E00054F573 /* FileListVC.m */,
 				54461D3A205F8B6B00C2835B /* HttpUtil.h */,
 				54461D3B205F8B6B00C2835B /* HttpUtil.m */,
 				546607422063291800370966 /* StringUtil.h */,
 				546607432063291800370966 /* StringUtil.m */,
 				54BBF048206815D100C27FF8 /* SetDataModel.h */,
 				54BBF049206815D100C27FF8 /* SetDataModel.m */,
+				5465FAC6206A9EBE0054F573 /* ColorTitleButtonCell.h */,
+				5465FAC7206A9EBE0054F573 /* ColorTitleButtonCell.m */,
 				54461D2C205F8ABC00C2835B /* Assets.xcassets */,
 				54461D2E205F8ABC00C2835B /* Main.storyboard */,
 				54461D31205F8ABC00C2835B /* Info.plist */,
@@ -131,11 +151,24 @@
 			path = BaiduDownloader;
 			sourceTree = "<group>";
 		};
+		5465FAB5206A94690054F573 /* JMModalOverlay */ = {
+			isa = PBXGroup;
+			children = (
+				5465FAB8206A94690054F573 /* Version.h */,
+				5465FABD206A94690054F573 /* JMModalOverlay.h */,
+				5465FABB206A94690054F573 /* JMModalOverlay.m */,
+				5465FABC206A94690054F573 /* JMModalOverlay-Info.plist */,
+				5465FABE206A94690054F573 /* JMOverlayView.h */,
+				5465FABA206A94690054F573 /* JMOverlayView.m */,
+			);
+			path = JMModalOverlay;
+			sourceTree = "<group>";
+		};
 		54BBF047206815B900C27FF8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5465FAB3206A927D0054F573 /* background.jpg */,
 				54BBF0252067799B00C27FF8 /* checkcode.png */,
-				54BBF0232067729B00C27FF8 /* background.png */,
 				54BBF01B20676D6300C27FF8 /* download.png */,
 				54BBF01920676C7100C27FF8 /* arrows.png */,
 				54BBF01720674E7600C27FF8 /* convert.png */,
@@ -217,7 +250,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				54BBF01320674AB800C27FF8 /* folx.png in Resources */,
-				54BBF0242067729B00C27FF8 /* background.png in Resources */,
 				54BBF01420674AB800C27FF8 /* thunder.png in Resources */,
 				54461D2D205F8ABC00C2835B /* Assets.xcassets in Resources */,
 				54BBF01A20676C7100C27FF8 /* arrows.png in Resources */,
@@ -226,6 +258,8 @@
 				54BBF01C20676D6300C27FF8 /* download.png in Resources */,
 				54BBF01620674C5200C27FF8 /* copy_link.png in Resources */,
 				54BBF01820674E7600C27FF8 /* convert.png in Resources */,
+				5465FAB4206A927D0054F573 /* background.jpg in Resources */,
+				5465FAC2206A94690054F573 /* JMModalOverlay-Info.plist in Resources */,
 				54461D30205F8ABC00C2835B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,8 +326,12 @@
 				54461D2B205F8ABC00C2835B /* ViewController.m in Sources */,
 				54BBF04A206815D100C27FF8 /* SetDataModel.m in Sources */,
 				54461D33205F8ABC00C2835B /* main.m in Sources */,
+				5465FAC1206A94690054F573 /* JMModalOverlay.m in Sources */,
 				54461D28205F8ABC00C2835B /* AppDelegate.m in Sources */,
+				5465FAC8206A9EBE0054F573 /* ColorTitleButtonCell.m in Sources */,
 				54461D3C205F8B6B00C2835B /* HttpUtil.m in Sources */,
+				5465FAC0206A94690054F573 /* JMOverlayView.m in Sources */,
+				5465FAC5206A94E00054F573 /* FileListVC.m in Sources */,
 				5467E4872064FD2900F39920 /* ClickableImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

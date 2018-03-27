@@ -12,9 +12,9 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="BaiduDownloader" id="1Xt-HY-uBw">
+                            <menuItem title="百度云盘直链转换器" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="BaiduDownloader" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="百度云盘直链转换器" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
                                         <menuItem title="About BaiduDownloader" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -56,9 +56,9 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="File" id="dMs-cI-mzQ">
+                            <menuItem title="文件" id="dMs-cI-mzQ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="File" id="bib-Uj-vzu">
+                                <menu key="submenu" title="文件" id="bib-Uj-vzu">
                                     <items>
                                         <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
@@ -119,9 +119,9 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Edit" id="5QF-Oa-p0T">
+                            <menuItem title="编辑" id="5QF-Oa-p0T">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Edit" id="W48-6f-4Dl">
+                                <menu key="submenu" title="编辑" id="W48-6f-4Dl">
                                     <items>
                                         <menuItem title="Undo" keyEquivalent="z" id="dRJ-4n-Yzg">
                                             <connections>
@@ -338,13 +338,13 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Format" id="jxT-CU-nIS">
+                            <menuItem title="格式" id="jxT-CU-nIS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Format" id="GEO-Iw-cKr">
+                                <menu key="submenu" title="格式" id="GEO-Iw-cKr">
                                     <items>
-                                        <menuItem title="Font" id="Gi5-1S-RQB">
+                                        <menuItem title="字体" id="Gi5-1S-RQB">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Font" systemMenu="font" id="aXa-aM-Jaq">
+                                            <menu key="submenu" title="字体" systemMenu="font" id="aXa-aM-Jaq">
                                                 <items>
                                                     <menuItem title="Show Fonts" keyEquivalent="t" id="Q5e-8K-NDq">
                                                         <connections>
@@ -493,80 +493,80 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Text" id="Fal-I4-PZk">
+                                        <menuItem title="文本" id="Fal-I4-PZk">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Text" id="d9c-me-L2H">
+                                            <menu key="submenu" title="文本" id="d9c-me-L2H">
                                                 <items>
-                                                    <menuItem title="Align Left" keyEquivalent="{" id="ZM1-6Q-yy1">
+                                                    <menuItem title="居左对齐" keyEquivalent="{" id="ZM1-6Q-yy1">
                                                         <connections>
                                                             <action selector="alignLeft:" target="Ady-hI-5gd" id="zUv-R1-uAa"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Center" keyEquivalent="|" id="VIY-Ag-zcb">
+                                                    <menuItem title="居中对齐" keyEquivalent="|" id="VIY-Ag-zcb">
                                                         <connections>
                                                             <action selector="alignCenter:" target="Ady-hI-5gd" id="spX-mk-kcS"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Justify" id="J5U-5w-g23">
+                                                    <menuItem title="两端对齐" id="J5U-5w-g23">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="alignJustified:" target="Ady-hI-5gd" id="ljL-7U-jND"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Align Right" keyEquivalent="}" id="wb2-vD-lq4">
+                                                    <menuItem title="居右对齐" keyEquivalent="}" id="wb2-vD-lq4">
                                                         <connections>
                                                             <action selector="alignRight:" target="Ady-hI-5gd" id="r48-bG-YeY"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="4s2-GY-VfK"/>
-                                                    <menuItem title="Writing Direction" id="H1b-Si-o9J">
+                                                    <menuItem title="排版方向" id="H1b-Si-o9J">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <menu key="submenu" title="Writing Direction" id="8mr-sm-Yjd">
+                                                        <menu key="submenu" title="排版方向" id="8mr-sm-Yjd">
                                                             <items>
-                                                                <menuItem title="Paragraph" enabled="NO" id="ZvO-Gk-QUH">
+                                                                <menuItem title="段落" enabled="NO" id="ZvO-Gk-QUH">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                 </menuItem>
                                                                 <menuItem id="YGs-j5-SAR">
-                                                                    <string key="title">	Default</string>
+                                                                    <string key="title">	默认</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="makeBaseWritingDirectionNatural:" target="Ady-hI-5gd" id="qtV-5e-UBP"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem id="Lbh-J2-qVU">
-                                                                    <string key="title">	Left to Right</string>
+                                                                    <string key="title">	从左至右</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="makeBaseWritingDirectionLeftToRight:" target="Ady-hI-5gd" id="S0X-9S-QSf"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem id="jFq-tB-4Kx">
-                                                                    <string key="title">	Right to Left</string>
+                                                                    <string key="title">	从右至左</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="makeBaseWritingDirectionRightToLeft:" target="Ady-hI-5gd" id="5fk-qB-AqJ"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem isSeparatorItem="YES" id="swp-gr-a21"/>
-                                                                <menuItem title="Selection" enabled="NO" id="cqv-fj-IhA">
+                                                                <menuItem title="选中" enabled="NO" id="cqv-fj-IhA">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                 </menuItem>
                                                                 <menuItem id="Nop-cj-93Q">
-                                                                    <string key="title">	Default</string>
+                                                                    <string key="title">	默认</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="makeTextWritingDirectionNatural:" target="Ady-hI-5gd" id="lPI-Se-ZHp"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem id="BgM-ve-c93">
-                                                                    <string key="title">	Left to Right</string>
+                                                                    <string key="title">	从左至右</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="makeTextWritingDirectionLeftToRight:" target="Ady-hI-5gd" id="caW-Bv-w94"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem id="RB4-Sm-HuC">
-                                                                    <string key="title">	Right to Left</string>
+                                                                    <string key="title">	从右至左</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="makeTextWritingDirectionRightToLeft:" target="Ady-hI-5gd" id="EXD-6r-ZUu"/>
@@ -576,19 +576,19 @@
                                                         </menu>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="fKy-g9-1gm"/>
-                                                    <menuItem title="Show Ruler" id="vLm-3I-IUL">
+                                                    <menuItem title="显示标尺" id="vLm-3I-IUL">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="toggleRuler:" target="Ady-hI-5gd" id="FOx-HJ-KwY"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Copy Ruler" keyEquivalent="c" id="MkV-Pr-PK5">
+                                                    <menuItem title="拷贝标尺" keyEquivalent="c" id="MkV-Pr-PK5">
                                                         <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="copyRuler:" target="Ady-hI-5gd" id="71i-fW-3W2"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Paste Ruler" keyEquivalent="v" id="LVM-kO-fVI">
+                                                    <menuItem title="粘贴标尺" keyEquivalent="v" id="LVM-kO-fVI">
                                                         <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="pasteRuler:" target="Ady-hI-5gd" id="cSh-wd-qM2"/>
@@ -600,30 +600,30 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="View" id="H8h-7b-M4v">
+                            <menuItem title="视图" id="H8h-7b-M4v">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="View" id="HyV-fh-RgO">
+                                <menu key="submenu" title="视图" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
+                                        <menuItem title="显示工具栏" keyEquivalent="t" id="snW-S8-Cw5">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="BXY-wc-z0C"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Customize Toolbar…" id="1UK-8n-QPP">
+                                        <menuItem title="自定义工具栏…" id="1UK-8n-QPP">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="pQI-g3-MTW"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="hB3-LF-h0Y"/>
-                                        <menuItem title="Show Sidebar" keyEquivalent="s" id="kIP-vf-haE">
+                                        <menuItem title="显示侧边栏" keyEquivalent="s" id="kIP-vf-haE">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="toggleSourceList:" target="Ady-hI-5gd" id="iwa-gc-5KM"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
+                                        <menuItem title="全屏" keyEquivalent="f" id="4J7-dP-txa">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="dU3-MA-1Rq"/>
@@ -632,23 +632,23 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Window" id="aUF-d1-5bR">
+                            <menuItem title="窗口" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
+                                <menu key="submenu" title="窗口" systemMenu="window" id="Td7-aD-5lo">
                                     <items>
-                                        <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
+                                        <menuItem title="最小化" keyEquivalent="m" id="OY7-WF-poV">
                                             <connections>
                                                 <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Zoom" id="R4o-n2-Eq4">
+                                        <menuItem title="缩放" id="R4o-n2-Eq4">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="DIl-cC-cCs"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
-                                        <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
+                                        <menuItem title="窗口置顶" id="LE2-aR-0XJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="arrangeInFront:" target="Ady-hI-5gd" id="DRN-fu-gQh"/>
@@ -657,11 +657,11 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Help" id="wpr-3q-Mcd">
+                            <menuItem title="帮助" id="wpr-3q-Mcd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
+                                <menu key="submenu" title="帮助" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="BaiduDownloader Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="直链转换帮助文档" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -685,10 +685,10 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="百度云盘直链转换器" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" title="百度云盘直链转换器" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="512" height="400"/>
+                        <rect key="contentRect" x="196" y="240" width="512" height="320"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
@@ -707,70 +707,79 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="512" height="400"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <rect key="frame" x="0.0" y="0.0" width="512" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j18-xA-k3U">
-                                <rect key="frame" x="0.0" y="0.0" width="512" height="400"/>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BXu-mb-LNh">
+                                <rect key="frame" x="0.0" y="0.0" width="512" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="background" id="yZe-WZ-xtb"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="background" id="iLN-Wj-xMU"/>
                             </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VA7-25-T1L">
+                                <rect key="frame" x="32" y="273" width="84" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="百度云盘链接" id="vTY-DV-Bx9">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rn9-a3-pQP">
+                                <rect key="frame" x="156" y="269" width="313" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" drawsBackground="YES" id="l14-K9-4C2">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdz-CW-RAQ">
-                                <rect key="frame" x="66" y="276" width="85" height="17"/>
+                                <rect key="frame" x="32" y="196" width="85" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="justified" title="验     证    码" id="gce-ja-Dhn">
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3nZ-wg-DjI">
-                                <rect key="frame" x="156" y="354" width="285" height="22"/>
+                                <rect key="frame" x="156" y="273" width="313" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="https://pan.baidu.com/s/1eQrwbKY" bezelStyle="round" id="0yZ-9P-1mS">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="https://pan.baidu.com/s/1eQrwbKY" drawsBackground="YES" id="0yZ-9P-1mS">
+                                    <font key="font" metaFont="system" size="12"/>
+                                    <color key="textColor" red="0.96862745100000003" green="0.93333333330000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B1f-Vp-xDM">
-                                <rect key="frame" x="66" y="236" width="85" height="17"/>
+                                <rect key="frame" x="32" y="156" width="85" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="justified" title="真  实  地  址" id="MlH-dz-Y2G">
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L4c-Dx-xXp">
-                                <rect key="frame" x="66" y="359" width="84" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="百度云盘链接" id="5ub-Yj-MG6">
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xkq-op-ZyY">
-                                <rect key="frame" x="300" y="274" width="141" height="22"/>
+                                <rect key="frame" x="343" y="187" width="128" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="请输入图片中验证码" bezelStyle="round" id="A7J-WL-22x">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="请输入图片中验证码" id="A7J-WL-22x">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" red="0.96862745100000003" green="0.93333333330000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xv8-ls-m4b">
-                                <rect key="frame" x="66" y="318" width="85" height="17"/>
+                                <rect key="frame" x="32" y="238" width="85" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="链  接  密  码" id="9cL-n1-6Gw">
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FG0-P7-wPI">
-                                <rect key="frame" x="68" y="20" width="401" height="17"/>
+                                <rect key="frame" x="0.0" y="20" width="401" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" drawsBackground="YES" id="8s6-5G-fld">
                                     <font key="font" metaFont="cellTitle"/>
@@ -779,7 +788,7 @@
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Amb-RX-hs3" customClass="ClickableImageView">
-                                <rect key="frame" x="156" y="265" width="120" height="40"/>
+                                <rect key="frame" x="156" y="185" width="120" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="checkcode" id="6Ya-Ed-w4F"/>
                                 <connections>
@@ -787,41 +796,30 @@
                                 </connections>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chM-ML-RGh">
-                                <rect key="frame" x="66" y="119" width="390" height="109"/>
+                                <rect key="frame" x="32" y="77" width="439" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="dRy-8n-67E">
                                     <font key="font" size="12" name=".PingFangSC-Regular"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" red="0.96862745100000003" green="0.93333333330000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wp8-yZ-0ie">
-                                <rect key="frame" x="65" y="87" width="58" height="24"/>
+                                <rect key="frame" x="34" y="45" width="68" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="迅 雷" bezelStyle="shadowlessSquare" image="thunder" imagePosition="left" alignment="center" alternateImage="thunder" imageScaling="proportionallyUpOrDown" inset="2" id="y5v-b9-I41">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <buttonCell key="cell" type="square" title="迅 雷" bezelStyle="shadowlessSquare" image="thunder" imagePosition="left" alignment="center" alternateImage="thunder" imageScaling="proportionallyUpOrDown" inset="2" id="y5v-b9-I41" customClass="ColorTitleButtonCell">
+                                    <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="downloadWithThunder:" target="XfG-lQ-9wD" id="C2b-iP-ChO"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64p-ls-qWo">
-                                <rect key="frame" x="257" y="87" width="85" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="拷贝链接" bezelStyle="shadowlessSquare" image="copy_link" imagePosition="left" alignment="center" alternateImage="copy_link" imageScaling="proportionallyUpOrDown" inset="2" id="bS7-oq-7sU">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="copyDirectLink:" target="XfG-lQ-9wD" id="JC8-Qk-aBH"/>
-                                </connections>
-                            </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bK6-YQ-DKJ">
-                                <rect key="frame" x="325" y="314" width="116" height="24"/>
+                                <rect key="frame" x="353" y="235" width="116" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="获取真实路径" bezelStyle="shadowlessSquare" image="arrows" imagePosition="left" alignment="center" alternateImage="arrows" imageScaling="proportionallyUpOrDown" inset="2" id="zlB-6A-Bcb">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <buttonCell key="cell" type="square" title="获取真实路径" bezelStyle="shadowlessSquare" image="arrows" imagePosition="left" alignment="center" alternateImage="arrows" imageScaling="proportionallyUpOrDown" inset="2" id="zlB-6A-Bcb" customClass="ColorTitleButtonCell">
+                                    <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
@@ -829,10 +827,10 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vM-a9-jQm">
-                                <rect key="frame" x="378" y="87" width="56" height="24"/>
+                                <rect key="frame" x="413" y="45" width="66" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="下 载" bezelStyle="shadowlessSquare" image="download" imagePosition="left" alignment="center" alternateImage="download" imageScaling="proportionallyUpOrDown" inset="2" id="W6K-d0-2u3">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <buttonCell key="cell" type="square" title="下 载" bezelStyle="shadowlessSquare" image="download" imagePosition="left" alignment="center" alternateImage="download" imageScaling="proportionallyUpOrDown" inset="2" id="W6K-d0-2u3" customClass="ColorTitleButtonCell">
+                                    <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
@@ -840,23 +838,52 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wKH-hT-div">
-                                <rect key="frame" x="156" y="315" width="119" height="22"/>
+                                <rect key="frame" x="154" y="240" width="108" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="请输入提取密码" bezelStyle="round" id="IvK-Ff-ttF">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="请输入提取密码" id="IvK-Ff-ttF">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Yc-gN-hFF">
-                                <rect key="frame" x="156" y="87" width="59" height="24"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NTY-VQ-Ue7">
+                                <rect key="frame" x="156" y="238" width="102" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="Folx" bezelStyle="shadowlessSquare" image="folx" imagePosition="left" alignment="center" alternateImage="folx" imageScaling="proportionallyUpOrDown" inset="2" id="4c1-Ih-34d">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" drawsBackground="YES" id="UVC-cD-qqs">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Yc-gN-hFF">
+                                <rect key="frame" x="156" y="45" width="59" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="Folx" bezelStyle="shadowlessSquare" image="folx" imagePosition="left" alignment="center" alternateImage="folx" imageScaling="proportionallyUpOrDown" inset="2" id="4c1-Ih-34d" customClass="ColorTitleButtonCell">
+                                    <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="downloadWithFolx:" target="XfG-lQ-9wD" id="ZdZ-cG-ih2"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eIz-Pf-6gk">
+                                <rect key="frame" x="345" y="185" width="124" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" drawsBackground="YES" id="273-In-Heb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64p-ls-qWo">
+                                <rect key="frame" x="278" y="45" width="85" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="拷贝链接" bezelStyle="shadowlessSquare" image="copy_link" imagePosition="left" alignment="center" alternateImage="copy_link" imageScaling="proportionallyUpOrDown" inset="2" id="bS7-oq-7sU" customClass="ColorTitleButtonCell">
+                                    <behavior key="behavior" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="copyDirectLink:" target="XfG-lQ-9wD" id="JC8-Qk-aBH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -872,12 +899,131 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="779"/>
+            <point key="canvasLocation" x="75" y="727"/>
+        </scene>
+        <!--File ListVC-->
+        <scene sceneID="bJ6-WE-j6D">
+            <objects>
+                <viewController storyboardIdentifier="FileListVC" id="Uts-09-Yad" customClass="FileListVC" sceneMemberID="viewController">
+                    <view key="view" id="4Z0-eB-KIE">
+                        <rect key="frame" x="0.0" y="0.0" width="512" height="320"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdM-hW-mjU">
+                                <rect key="frame" x="0.0" y="0.0" width="512" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <clipView key="contentView" ambiguous="YES" id="ya3-dc-RUQ">
+                                    <rect key="frame" x="0.0" y="23" width="512" height="297"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="iOA-dc-wz5" viewBased="YES" id="9RP-2y-3eI">
+                                            <rect key="frame" x="0.0" y="0.0" width="512" height="297"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn identifier="server_file_name" width="118" minWidth="40" maxWidth="1000" id="e7b-7i-DGi">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="文件名">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="JIb-Yu-Xau">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="gHQ-wM-HZg">
+                                                            <rect key="frame" x="1" y="1" width="118" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yZ7-I9-XHq">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="118" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="uUO-LK-lBC">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="yZ7-I9-XHq" id="O2R-h2-Q72"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                                <tableColumn identifier="" width="388" minWidth="40" maxWidth="1000" id="16U-VY-3o1">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="直链地址">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="R2N-bj-sIo">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView identifier="dlink" id="u34-UF-bwy">
+                                                            <rect key="frame" x="122" y="1" width="388" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JpX-hw-4WO">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="388" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="tYp-RC-1Mh">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="JpX-hw-4WO" id="kYU-aH-aBc"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="Uts-09-Yad" id="T2u-n4-Z8H"/>
+                                                <outlet property="delegate" destination="4Z0-eB-KIE" id="QEd-sa-bI3"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="f1u-iQ-dOo">
+                                    <rect key="frame" x="0.0" y="305" width="512" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="L3P-AZ-N3O">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <tableHeaderView key="headerView" id="iOA-dc-wz5">
+                                    <rect key="frame" x="0.0" y="0.0" width="512" height="23"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableHeaderView>
+                            </scrollView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="mTableView" destination="9RP-2y-3eI" id="a3G-ma-ofh"/>
+                    </connections>
+                </viewController>
+                <customObject id="USP-4n-B6w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="74" y="1149"/>
         </scene>
     </scenes>
     <resources>
         <image name="arrows" width="108" height="111"/>
-        <image name="background" width="589.823974609375" height="460.79998779296875"/>
+        <image name="background" width="1024" height="640"/>
         <image name="checkcode" width="240" height="80"/>
         <image name="copy_link" width="88" height="88"/>
         <image name="download" width="100" height="109"/>

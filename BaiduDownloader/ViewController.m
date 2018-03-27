@@ -13,6 +13,8 @@
 #import "HttpUtil.h"
 #import "StringUtil.h"
 #import "SetDataModel.h"
+#import "JMModalOverlay.h"
+#import "FileListVC.h"
 
 //https://pan.baidu.com/s/1VSthcUc3fnZGh1mlc43dxg 密码：kcyt
 
@@ -77,6 +79,10 @@
 @property (nonatomic, copy) NSString *redirectURL; // 重定向URL
 
 @property (nonatomic, strong) SetDataModel *sdm;
+
+@property (nonatomic, strong) NSMutableDictionary *fileListDic;
+@property (nonatomic, strong) NSMutableDictionary *fileDLinkDic;
+
 
 - (IBAction)fetch:(id)sender;
 - (IBAction)fetchVCode:(id)sender;
@@ -332,6 +338,14 @@
 
 - (void)requestBDCLND:(NSString *)pwd
 {
+    if (!_fileListDic)
+    {
+        _fileListDic = [[NSMutableDictionary alloc] init];
+    }
+    if (!_fileDLinkDic)
+    {
+        _fileDLinkDic = [[NSMutableDictionary alloc] init];
+    }
     _statusLbl.stringValue = @"正在获取BDCLND，请稍后...";
     NSString *url = @"https://pan.baidu.com/share/verify";
     NSDictionary *headers = @{
@@ -610,6 +624,7 @@
         NSString *jsonDic = __JSONDIC__(responseObject);
         NSLog(@"jsonDic-->%@", jsonDic);
         FileListModel *fileListModel = [FileListModel yy_modelWithJSON:responseObject];
+        _fileListDic[path] = fileListModel.list;
         [fileListModel.list enumerateObjectsUsingBlock:^(ListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj.isdir integerValue] == 1)
             {
@@ -617,10 +632,10 @@
             }
             else
             {
-                NSLog(@"不是目录%@", obj.path);
+                [self downloadFile:obj.fs_id code_input:@"" vcode_str:@""];
+                NSLog(@"文件名%@", obj.path);
             }
         }];
-        //        [self downloadFile:@"" vcode_str:@""];
     }];
 }
 
@@ -675,7 +690,7 @@
 }
 
 // vcode_input用户输入验证码 vcode_str服务器返回验证码
-- (void)downloadFile:(NSString *)vcode_input vcode_str:(NSString *)vcode_str
+- (void)downloadFile:(NSString *)fid code_input:(NSString *)vcode_input vcode_str:(NSString *)vcode_str
 {
     _statusLbl.stringValue = @"正在解析资源真实地址，请稍后...";
     NSString *url = @"https://pan.baidu.com/api/sharedownload";
@@ -693,9 +708,9 @@
                               };
     NSDictionary *queryParams = @{@"sign":__UDGET__(@"sign"), @"timestamp":__CTS__, @"channel":@"chunlei", @"web":@"1", @"app_id":__UDGET__(@"app_id"), @"bdstoken":@"null", @"logid":__UDGET__(@"logid"), @"clienttype":@"0"};
     url = [NSString stringWithFormat:@"%@?%@",url, [HttpUtil URLParamsString:queryParams]];
-    //    [[NSUserDefaults standardUserDefaults] objectForKey:@"fid_list"]
+    //    [[NSUserDefaults standardUserDefaults] objectForKey:@"fid_list"] [1071271139371590]"
     NSString *extra = [NSString stringWithFormat:@"{\"sekey\":\"%@\"}", [HttpUtil URLDecodedString:__UDGET__(@"BDCLND")]];
-    NSMutableDictionary *formData = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"0", @"encrypt", extra, @"extra", @"share", @"product", __UDGET__(@"uk"), @"uk", __UDGET__(@"share_id"), @"primaryid", @"[1071271139371590]", @"fid_list", @"", @"path_list", nil];
+    NSMutableDictionary *formData = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"0", @"encrypt", extra, @"extra", @"share", @"product", __UDGET__(@"uk"), @"uk", __UDGET__(@"share_id"), @"primaryid", __TOSTR__(@"[%@]", fid), @"fid_list", @"", @"path_list", nil];
     if (![_vcodeTF.stringValue isEqualToString:@""])
     {
         [formData setObject:[[_vcodeTF.stringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString] forKey:@"vcode_input"];
@@ -714,15 +729,34 @@
         }
         [self setStatus:__TOSTR__(@"解析资源真实地址%@", error?@"失败":@"成功") isSuccess:!error];
         if (error) return;
-        [self parseRealURL:__RD__(responseObject)];
+        NSString *dlink = [self parseRealURL:__RD__(responseObject)];
+        _fileDLinkDic[fid] = dlink;
     }];
 }
 
-- (void)parseRealURL:(NSString *)jsonStr
+- (NSString *)parseRealURL:(NSString *)jsonStr
 {
     NSString *dlink = __VREGEX__(jsonStr, @"\"dlink\":", @",");
     dlink = [dlink substringWithRange:NSMakeRange(1, dlink.length - 2)];
-    _realURL.stringValue = [dlink stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+    NSString *directLink = [dlink stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+    _realURL.stringValue = directLink;
+    return directLink;
+}
+
+- (void)showFIleList
+{
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    FileListVC *_fileListVC = [storyboard instantiateControllerWithIdentifier:@"FileListVC"];
+    
+    JMModalOverlay *modalOverlay = [[JMModalOverlay alloc] init];
+    modalOverlay.contentViewController = _fileListVC;
+    modalOverlay.animates = YES;
+    modalOverlay.animationDirection = JMModalOverlayDirectionBottom;
+    modalOverlay.shouldOverlayTitleBar = NO;
+    modalOverlay.shouldCloseWhenClickOnBackground = YES;
+    modalOverlay.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+    modalOverlay.backgroundColor = [NSColor colorWithRed:0.97 green:0.93 blue:0.84 alpha:1.00];
+    [modalOverlay showInWindow:[[NSApplication sharedApplication] mainWindow]];
 }
 
 - (void)getloginPublicKey
