@@ -15,8 +15,7 @@
 #import "SetDataModel.h"
 #import "JMModalOverlay.h"
 #import "FileListVC.h"
-
-//https://pan.baidu.com/s/1VSthcUc3fnZGh1mlc43dxg 密码：kcyt
+#import "OrderedDictionary.h"
 
 #define WeakObj(o) try{}@finally{} __weak typeof(o) o##Weak = o;
 #define StrongObj(o) autoreleasepool{} __strong typeof(o) o = o##Weak;
@@ -32,7 +31,9 @@
 
 #define BDCLND_ERROR_1 -62 // 获取BDCLND错误（原因是由于多次下载同一个资源造成的，一般三次后需要输入验证码）
 
-#define BDCLND_ERROR_2 -9 // 获取BDCLND错误（原因是由于多次下载同一个资源造成的，一般三次后需要输入验证码）
+#define EXTRACT_PSWD_EMPTY -12 // 未输入提取密码
+
+#define EXTRACT_PSWD_ERROR -9 // 提取密码出错
 
 #define DLINK_ERROR_1 113  // 获取文件失败
 
@@ -61,9 +62,13 @@
 /*百度内部错误码*/
 // http://openapi.baidu.com/wiki/index.php?title=%E7%99%BE%E5%BA%A6Open_API%E9%94%99%E8%AF%AF%E7%A0%81%E5%AE%9A%E4%B9%89
 
-#define TEST_URL @"https://pan.baidu.com/s/1VSthcUc3fnZGh1mlc43dxg" // 测试链接
+#define TEST_URL @"https://pan.baidu.com/s/1VSthcUc3fnZGh1mlc43dxg" // kcyt
 
 #define TEST_URL2 @"http://pan.baidu.com/s/1mighQo4" // otwx
+
+#define TEST_URL3 @"pan.baidu.com/s/1cs0LCM" // sngx
+
+#define TEST_URL4 @"https://pan.baidu.com/surl/init=oMrGKlFXGn0FEFCSQQAepQ"
 
 @interface ViewController ()
 
@@ -74,14 +79,11 @@
 @property (weak) IBOutlet NSImageView *vcodeIV;
 @property (weak) IBOutlet NSTextField *vcodeTF;
 @property (weak) IBOutlet NSTextField *statusLbl;
-
 @property (nonatomic, copy) NSString *shareURL;    // 分享URL
 @property (nonatomic, copy) NSString *redirectURL; // 重定向URL
-
 @property (nonatomic, strong) SetDataModel *sdm;
-
-@property (nonatomic, strong) NSMutableDictionary *fileListDic;
-@property (nonatomic, strong) NSMutableDictionary *fileDLinkDic;
+@property (nonatomic, strong) MutableOrderedDictionary *fileListDic;
+@property (nonatomic, strong) MutableOrderedDictionary *fileDLinkDic;
 
 
 - (IBAction)fetch:(id)sender;
@@ -111,7 +113,7 @@
     _statusLbl.stringValue = str;
     if (!isSuccess)
     {
-        _statusLbl.textColor = [NSColor redColor];
+        _statusLbl.textColor = [NSColor systemRedColor];
     }
     else
     {
@@ -122,7 +124,11 @@
 - (void)openURL:(NSString *)url
 {
     // 打开URL， 从中获取Cookie
-    if ([url hasPrefix:@"http"])
+    if ([url rangeOfString:@"://"].location == NSNotFound)
+    {
+        url = __TOSTR__(@"https//%@",url);
+    }
+    else if (![url hasPrefix:@"https"]&&[url hasPrefix:@"http"])
     {
         url = __TOSTR__(@"https:%@",[url substringFromIndex:5]);
     }
@@ -130,15 +136,35 @@
     self.redirectURL = [NSString stringWithFormat:@"%@?errno=0&errmsg=Auth%%20Login%%20Sucess&&bduss=&ssnerror=0&traceid=", self.shareURL];
     NSDictionary *headers = @{@"Host":BAIDU_PAN_HOST, @"Connection":BAIDU_CONN_KEEPALIVE, @"Upgrade-Insecure-Requests":@"1", @"User-Agent":WEB_USER_AGENT, @"Accept":BAIDU_ACCEPT_HTML, @"Accept-Encoding":BAIDU_ACCEPT_ENCODING, @"Accept-Language":BAIDU_ACCEPT_LANGUAGE};
     @WeakObj(self)
-    [HttpUtil request:url method:@"GET" headers:headers params:nil completion:^(NSURLResponse *response, id responseObject, NSError *error) {
+    [HttpUtil request:self.shareURL method:@"GET" headers:headers params:nil completion:^(NSURLResponse *response, id responseObject, NSError *error) {
         @StrongObj(self)
+        if (error.code == kCFURLErrorCannotConnectToHost)
+        {
+            [self setStatus:@"啊哦，你所访问的页面不存在了！" isSuccess:NO];
+            return;
+        }
+        NSString *html = __RD__(responseObject);
+        if (html)
+        {
+            NSString *share_page_type = __VREGEX__(html, @"share_page_type\":\"", @"\",");
+            if ([share_page_type isEqualToString:@"error"])
+            {
+                [self setStatus:@"此链接分享内容可能因为涉及侵权、色情、反动、低俗等信息，无法访问！" isSuccess:NO];
+                return;
+            }
+        }
+        if ([html rangeOfString:@"error-404"].location != NSNotFound)
+        {
+            [self setStatus:@"啊哦，你所访问的页面不存在了！" isSuccess:NO];
+            return;
+        }
         [self getPlantCookieEtt];
     }];
 }
 
 - (void)getPlantCookieEtt
 {
-    _statusLbl.stringValue = @"正在获取Ett，请稍后...";
+    [self setStatus:@"正在获取Ett，请稍后..." isSuccess:YES];
     NSString *url = @"https://pcs.baidu.com/rest/2.0/pcs/file";
     NSString *baiduID = __UDGET__(@"BAIDUID");
     if(!baiduID)
@@ -170,7 +196,7 @@
 
 - (void)requestPlantCookieStokenPCS
 {
-    _statusLbl.stringValue = @"正在获取StokenPCS，请稍后...";
+    [self setStatus:@"正在获取StokenPCS，请稍后..." isSuccess:YES];
     NSString *url = @"https://pcs.baidu.com/rest/2.0/pcs/file";
     NSDictionary *headers = @{@"Accept":BAIDU_ACCEPT_IMAGE,
                               @"Accept-Encoding":BAIDU_ACCEPT_ENCODING,
@@ -193,7 +219,7 @@
 
 - (void)requestPlantCookieStokenPCSData
 {
-    _statusLbl.stringValue = @"正在获取StokenPCSData，请稍后...";
+    [self setStatus:@"正在获取StokenPCSData，请稍后..." isSuccess:YES];
     NSString *url = @"https://pcsdata.baidu.com/rest/2.0/pcs/file";
     NSDictionary *headers = @{@"Accept":BAIDU_ACCEPT_IMAGE,
                               @"Accept-Encoding":BAIDU_ACCEPT_ENCODING,
@@ -217,7 +243,7 @@
 
 - (void)requestHMValue
 {
-    _statusLbl.stringValue = @"正在获取HMValue，请稍后...";
+    [self setStatus:@"正在获取HMValue，请稍后..." isSuccess:YES];
     NSString *url = @"https://pan.baidu.com/box-static/disk-share/js/baidu-tongji.js";
     NSDictionary *headers = @{@"Accept":BAIDU_ACCEPT_IMAGE,
                               @"Accept-Encoding":BAIDU_ACCEPT_ENCODING,
@@ -247,7 +273,7 @@
 
 - (void)requestHMVT
 {
-    _statusLbl.stringValue = @"正在获取HMVT，请稍后...";
+    [self setStatus:@"正在获取HMVT，请稍后..." isSuccess:YES];
     NSString *url = [NSString stringWithFormat:@"https://hm.baidu.com/h.js?%@", __UDGET__(@"hm_value")];
     NSDictionary *headers = @{@"Accept":@"*/*",
                               @"Accept-Encoding":BAIDU_ACCEPT_ENCODING,
@@ -274,7 +300,7 @@
 
 - (void)requestAppID
 {
-    _statusLbl.stringValue = @"正在获取AppID，请稍后...";
+    [self setStatus:@"正在获取AppID，请稍后..." isSuccess:YES];
     NSString *url = @"https://pan.baidu.com/box-static/disk-share/js/boot_4faf629.js";
     NSDictionary *headers = @{@"Accept":BAIDU_ACCEPT_IMAGE,
                               @"Accept-Encoding":BAIDU_ACCEPT_ENCODING,
@@ -300,7 +326,7 @@
 
 - (void)requestHostList
 {
-    _statusLbl.stringValue = @"正在获取服务器列表，请稍后...";
+    [self setStatus:@"正在获取服务器列表，请稍后..." isSuccess:YES];
     NSString *url = @"https://d.pcs.baidu.com/rest/2.0/pcs/manage?method=listhost";
     NSDictionary *headers = @{@"Host":@"d.pcs.baidu.com",
                               @"Connection":BAIDU_CONN_KEEPALIVE,
@@ -340,13 +366,13 @@
 {
     if (!_fileListDic)
     {
-        _fileListDic = [[NSMutableDictionary alloc] init];
+        _fileListDic = [[MutableOrderedDictionary alloc] init];
     }
     if (!_fileDLinkDic)
     {
-        _fileDLinkDic = [[NSMutableDictionary alloc] init];
+        _fileDLinkDic = [[MutableOrderedDictionary alloc] init];
     }
-    _statusLbl.stringValue = @"正在获取BDCLND，请稍后...";
+    [self setStatus:@"正在获取BDCLND，请稍后..." isSuccess:YES];
     NSString *url = @"https://pan.baidu.com/share/verify";
     NSDictionary *headers = @{
                               @"Host":BAIDU_PAN_HOST,
@@ -374,13 +400,21 @@
         if (BDCLND.length == 0)
         {
             NSDictionary *jsonDic = __JSONDIC__(responseObject);
-            if([jsonDic[@"errno"] intValue] == BDCLND_ERROR_1 || [jsonDic[@"errno"] intValue] == BDCLND_ERROR_2)
+            if([jsonDic[@"errno"] intValue] == BDCLND_ERROR_1)
             {
-                [self setStatus:__TOSTR__(@"获取BDCLND%@, 请输入图片中的验证码后，重新获取!", error?@"失败":@"成功") isSuccess:!error];
+                [self setStatus:@"请输入图片中的验证码后，重新获取!" isSuccess:!error];
                 self.vcodeIV.enabled = YES;
                 [self requestCaptcha];
+                return;
             }
-            return;
+            if([jsonDic[@"errno"] intValue] == EXTRACT_PSWD_ERROR)
+            {
+                [self setStatus:@"提取密码错误， 请输入正确的提取密码!" isSuccess:NO]; return;
+            }
+            if([jsonDic[@"errno"] intValue] == EXTRACT_PSWD_EMPTY)
+            {
+                [self setStatus:@"请输入提取密码！" isSuccess:NO]; return;
+            }
         }
         __UDSET__(@"BDCLND", BDCLND); __UDSYNC__;
         [self setStatus:__TOSTR__(@"获取BDCLND%@", error?@"失败":@"成功") isSuccess:!error];
@@ -391,7 +425,7 @@
 
 - (void)getUserBaiduDiskFileList
 {
-    _statusLbl.stringValue = @"正在获取文件列表，请稍后...";
+    [self setStatus:@"正在获取文件列表，请稍后..." isSuccess:YES];
     NSDictionary *headers = @{@"Host":BAIDU_PAN_HOST,
                               @"Connection":BAIDU_CONN_KEEPALIVE,
                               @"Upgrade-Insecure-Requests":@"1",
@@ -400,7 +434,7 @@
                               @"Referer":BAIDU_REDIRECT_URL,
                               @"Accept-Encoding":BAIDU_ACCEPT_ENCODING,
                               @"Accept-Language":BAIDU_ACCEPT_LANGUAGE,
-                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;BDCLND=%@;%@;%@",__UDGET__(@"BAIDUID"), __UDGET__(@"BDCLND"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __CTS__), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"HMVT"))],
+                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;BDCLND=%@;%@;%@",__UDGET__(@"BAIDUID"), __UDGET__(@"BDCLND"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"HMVT")), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"hm_lpvt"))],
                               };
     @WeakObj(self)
     [HttpUtil request:self.shareURL method:@"GET" headers:headers params:nil completion:^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -414,6 +448,7 @@
             [self setStatus:@"文件列表异常!" isSuccess:NO];
             return;
         }
+        NSString *timestamp = __VREGEX__(html, @"timestamp\":", @",");
         NSArray *ukarray = __MREGEX__(html, @"\\?uk=.*?&");
         NSString *uk = [ukarray[0] componentsSeparatedByString:@"="][1];
         uk = [uk substringToIndex:uk.length - 1];
@@ -424,6 +459,7 @@
         NSArray *signArray = __MREGEX__(html, @"\"sign\".*?,");
         NSString *sign = [[signArray[0] componentsSeparatedByString:@":"][1] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
         sign = [sign substringToIndex:sign.length - 1];
+        __UDSET__(@"timestamp", timestamp);
         __UDSET__(@"share_id", share_id);
         __UDSET__(@"sign", sign);
         __UDSET__(@"uk", uk); __UDSYNC__;
@@ -685,14 +721,14 @@
         // 此处返回验证码图片, 需要使用OpenCV自动填入验证码
         NSImage *image = [[NSImage alloc] initWithData:responseObject];
         _vcodeIV.image = image;
-        [self setStatus:@"请输入验证码!" isSuccess:YES];
+        [self setStatus:@"请输入验证码!" isSuccess:NO];
     }];
 }
 
 // vcode_input用户输入验证码 vcode_str服务器返回验证码
 - (void)downloadFile:(NSString *)fid code_input:(NSString *)vcode_input vcode_str:(NSString *)vcode_str
 {
-    _statusLbl.stringValue = @"正在解析资源真实地址，请稍后...";
+    [self setStatus:@"正在解析资源真实地址，请稍后..." isSuccess:YES];
     NSString *url = @"https://pan.baidu.com/api/sharedownload";
     NSDictionary *headers = @{@"Host":BAIDU_PAN_HOST,
                               @"Connection":BAIDU_CONN_KEEPALIVE,
@@ -704,13 +740,14 @@
                               @"Referer":self.shareURL,
                               @"Accept-Encoding":BAIDU_ACCEPT_ENCODING,
                               @"Accept-Language":BAIDU_ACCEPT_LANGUAGE,
-                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;BDCLND=%@;cflag=%@;%@;%@",__UDGET__(@"BAIDUID"), __UDGET__(@"BDCLND"), __UDGET__(@"cflag"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __CTS__), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"hm_lpvt"))]
+                              //                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;BDCLND=%@;cflag=%@;%@;%@",__UDGET__(@"BAIDUID"), __UDGET__(@"BDCLND"), __UDGET__(@"cflag"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __CTS__), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"hm_lpvt"))]
+                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;BDCLND=%@;cflag=%@",__UDGET__(@"BAIDUID"), __UDGET__(@"BDCLND"), __UDGET__(@"cflag")]
                               };
-    NSDictionary *queryParams = @{@"sign":__UDGET__(@"sign"), @"timestamp":__CTS__, @"channel":@"chunlei", @"web":@"1", @"app_id":__UDGET__(@"app_id"), @"bdstoken":@"null", @"logid":__UDGET__(@"logid"), @"clienttype":@"0"};
+    NSDictionary *queryParams = @{@"sign":__UDGET__(@"sign"), @"timestamp":__UDGET__(@"timestamp"), @"channel":@"chunlei", @"web":@"1", @"app_id":__UDGET__(@"app_id"), @"bdstoken":@"null", @"logid":__UDGET__(@"logid"), @"clienttype":@"0"};
     url = [NSString stringWithFormat:@"%@?%@",url, [HttpUtil URLParamsString:queryParams]];
-    //    [[NSUserDefaults standardUserDefaults] objectForKey:@"fid_list"] [1071271139371590]"
     NSString *extra = [NSString stringWithFormat:@"{\"sekey\":\"%@\"}", [HttpUtil URLDecodedString:__UDGET__(@"BDCLND")]];
     NSMutableDictionary *formData = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"0", @"encrypt", extra, @"extra", @"share", @"product", __UDGET__(@"uk"), @"uk", __UDGET__(@"share_id"), @"primaryid", __TOSTR__(@"[%@]", fid), @"fid_list", @"", @"path_list", nil];
+    
     if (![_vcodeTF.stringValue isEqualToString:@""])
     {
         [formData setObject:[[_vcodeTF.stringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString] forKey:@"vcode_input"];
@@ -724,7 +761,7 @@
         {
             self.vcodeIV.enabled = YES;
             [self requestCaptcha];
-            [self setStatus:@"获取数据出错, 稍后请重试!" isSuccess:NO];
+            [self setStatus:@"获取文件链接地址异常, 稍后请重试!" isSuccess:NO];
             return;
         }
         [self setStatus:__TOSTR__(@"解析资源真实地址%@", error?@"失败":@"成功") isSuccess:!error];
@@ -743,7 +780,7 @@
     return directLink;
 }
 
-- (void)showFIleList
+- (void)showFileList
 {
     NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     FileListVC *_fileListVC = [storyboard instantiateControllerWithIdentifier:@"FileListVC"];
@@ -781,21 +818,18 @@
 - (IBAction)fetch:(id)sender
 {
     _realURL.stringValue = @"";
-    if (![_fetchPwdTF.stringValue isEqualToString:@""])
+    NSString *url = _downloadURL.stringValue;
+    if ([url isEqualToString:@""])
     {
-        NSString *url = _downloadURL.stringValue;
-        if ([url isEqualToString:@""])
-        {
-            url = TEST_URL2;
-        }
-        if (![_vcodeTF.stringValue isEqualToString:@""])
-        {
-            [self requestBDCLND:_fetchPwdTF.stringValue];
-        }
-        else
-        {
-            [self openURL:url];
-        }
+        url = TEST_URL;
+    }
+    if (![_vcodeTF.stringValue isEqualToString:@""])
+    {
+        [self requestBDCLND:_fetchPwdTF.stringValue];
+    }
+    else
+    {
+        [self openURL:url];
     }
 }
 
@@ -843,3 +877,4 @@
 }
 
 @end
+

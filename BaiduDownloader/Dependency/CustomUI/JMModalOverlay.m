@@ -147,7 +147,7 @@ NSString * const JMModalOverlayDidCloseNotification = @"JMModalOverlayDidCloseNo
 #pragma mark window
 + (NSWindow *) _modalWindowForFrame:(NSRect)frame{
     NSWindow *modalWindow = [[NSWindow alloc] initWithContentRect:frame
-                                                        styleMask: NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:YES];
+                                                        styleMask: NSWindowStyleMaskBorderless backing:NSBackingStoreBuffered defer:YES];
     [modalWindow setBackgroundColor:[NSColor clearColor]];
     [modalWindow setOpaque:NO];
     [modalWindow setHasShadow:NO];

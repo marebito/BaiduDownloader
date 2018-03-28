@@ -14,13 +14,20 @@
 
 - (NSString *)URLEncodedString
 {
-    NSString *encodedString = (NSString *)
+    NSString *encodedUrl = nil;
+#if __MAC_OS_X_VERSION_MAX_ALLOWED < __MAC_10_11
+    (NSString *)
     CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                               (CFStringRef)self,
                                                               (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
                                                               NULL,
                                                               kCFStringEncodingUTF8));
-    return encodedString;
+#else
+    NSString *charactersToEscape = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\| ";
+    NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
+    encodedUrl = [self stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+#endif
+    return encodedUrl;
 }
 
 - (NSArray *)matchWithRegex:(NSString *)regex
