@@ -38,7 +38,7 @@
 
 - (void)doubleClick:(NSTableView *)sender
 {
-    NSLog(@"点击了第%d行", [sender ])
+    
 }
 
 - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row
