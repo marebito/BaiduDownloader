@@ -817,6 +817,8 @@
 
 - (IBAction)fetch:(id)sender
 {
+    [self showFileList];
+    return;
     _realURL.stringValue = @"";
     NSString *url = _downloadURL.stringValue;
     if ([url isEqualToString:@""])

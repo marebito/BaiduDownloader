@@ -14,6 +14,9 @@
 		54461D30205F8ABC00C2835B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54461D2E205F8ABC00C2835B /* Main.storyboard */; };
 		54461D33205F8ABC00C2835B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D32205F8ABC00C2835B /* main.m */; };
 		54461D3C205F8B6B00C2835B /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D3B205F8B6B00C2835B /* HttpUtil.m */; };
+		5455A9F8206C53940030D137 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 5455A9F7206C53940030D137 /* close.png */; };
+		5455A9FB206C69430030D137 /* CustomTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FA206C69430030D137 /* CustomTableRowView.m */; };
+		5455A9FE206C697B0030D137 /* CustomTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FD206C697B0030D137 /* CustomTableCellView.m */; };
 		5465FAB4206A927D0054F573 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5465FAB3206A927D0054F573 /* background.jpg */; };
 		5465FAC0206A94690054F573 /* JMOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FABA206A94690054F573 /* JMOverlayView.m */; };
 		5465FAC1206A94690054F573 /* JMModalOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FABB206A94690054F573 /* JMModalOverlay.m */; };
@@ -21,7 +24,6 @@
 		5465FAC5206A94E00054F573 /* FileListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FAC4206A94E00054F573 /* FileListVC.m */; };
 		5465FAC8206A9EBE0054F573 /* ColorTitleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FAC7206A9EBE0054F573 /* ColorTitleButtonCell.m */; };
 		546607442063291800370966 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 546607432063291800370966 /* StringUtil.m */; };
-		546607462063322A00370966 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 546607452063322A00370966 /* README.md */; };
 		5467E4872064FD2900F39920 /* ClickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467E4862064FD2900F39920 /* ClickableImageView.m */; };
 		549FFE00206C499F001C9D2B /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 549FFDFC206C499F001C9D2B /* NSString+Hash.m */; };
 		549FFE01206C499F001C9D2B /* DownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 549FFDFF206C499F001C9D2B /* DownLoadManager.m */; };
@@ -53,6 +55,11 @@
 		54461D34205F8ABC00C2835B /* BaiduDownloader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BaiduDownloader.entitlements; sourceTree = "<group>"; };
 		54461D3A205F8B6B00C2835B /* HttpUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
 		54461D3B205F8B6B00C2835B /* HttpUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
+		5455A9F7206C53940030D137 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		5455A9F9206C69430030D137 /* CustomTableRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableRowView.h; sourceTree = "<group>"; };
+		5455A9FA206C69430030D137 /* CustomTableRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableRowView.m; sourceTree = "<group>"; };
+		5455A9FC206C697B0030D137 /* CustomTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableCellView.h; sourceTree = "<group>"; };
+		5455A9FD206C697B0030D137 /* CustomTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableCellView.m; sourceTree = "<group>"; };
 		5465FAB3206A927D0054F573 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		5465FAB8206A94690054F573 /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
 		5465FABA206A94690054F573 /* JMOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMOverlayView.m; sourceTree = "<group>"; };
@@ -66,7 +73,6 @@
 		5465FAC7206A9EBE0054F573 /* ColorTitleButtonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorTitleButtonCell.m; sourceTree = "<group>"; };
 		546607422063291800370966 /* StringUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
 		546607432063291800370966 /* StringUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
-		546607452063322A00370966 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5467E4852064FD2900F39920 /* ClickableImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClickableImageView.h; sourceTree = "<group>"; };
 		5467E4862064FD2900F39920 /* ClickableImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClickableImageView.m; sourceTree = "<group>"; };
 		549FFDFC206C499F001C9D2B /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
@@ -144,9 +150,9 @@
 				54461D26205F8ABC00C2835B /* AppDelegate.h */,
 				54461D27205F8ABC00C2835B /* AppDelegate.m */,
 				54461D2C205F8ABC00C2835B /* Assets.xcassets */,
-				546607452063322A00370966 /* README.md */,
 				54461D34205F8ABC00C2835B /* BaiduDownloader.entitlements */,
 				5455A9F1206C4C490030D137 /* Dependency */,
+				54BBF047206815B900C27FF8 /* Images */,
 				54461D31205F8ABC00C2835B /* Info.plist */,
 				54461D32205F8ABC00C2835B /* main.m */,
 				54461D2E205F8ABC00C2835B /* Main.storyboard */,
@@ -161,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				5455A9F3206C4CB60030D137 /* Util */,
-				54BBF047206815B900C27FF8 /* Images */,
 				5465FAB5206A94690054F573 /* CustomUI */,
 				549FFDFB206C499F001C9D2B /* Network */,
 				54140225206BD45E00F8733E /* OrderedDictionary */,
@@ -209,6 +214,10 @@
 				5467E4862064FD2900F39920 /* ClickableImageView.m */,
 				5465FAC6206A9EBE0054F573 /* ColorTitleButtonCell.h */,
 				5465FAC7206A9EBE0054F573 /* ColorTitleButtonCell.m */,
+				5455A9F9206C69430030D137 /* CustomTableRowView.h */,
+				5455A9FA206C69430030D137 /* CustomTableRowView.m */,
+				5455A9FC206C697B0030D137 /* CustomTableCellView.h */,
+				5455A9FD206C697B0030D137 /* CustomTableCellView.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -238,6 +247,7 @@
 		54BBF047206815B900C27FF8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5455A9F7206C53940030D137 /* close.png */,
 				5465FAB3206A927D0054F573 /* background.jpg */,
 				54BBF0252067799B00C27FF8 /* checkcode.png */,
 				54BBF01B20676D6300C27FF8 /* download.png */,
@@ -325,8 +335,8 @@
 				54461D2D205F8ABC00C2835B /* Assets.xcassets in Resources */,
 				54BBF01A20676C7100C27FF8 /* arrows.png in Resources */,
 				54BBF0262067799C00C27FF8 /* checkcode.png in Resources */,
-				546607462063322A00370966 /* README.md in Resources */,
 				54BBF01C20676D6300C27FF8 /* download.png in Resources */,
+				5455A9F8206C53940030D137 /* close.png in Resources */,
 				54BBF01620674C5200C27FF8 /* copy_link.png in Resources */,
 				54BBF01820674E7600C27FF8 /* convert.png in Resources */,
 				5465FAB4206A927D0054F573 /* background.jpg in Resources */,
@@ -403,9 +413,11 @@
 				5465FAC8206A9EBE0054F573 /* ColorTitleButtonCell.m in Sources */,
 				549FFE00206C499F001C9D2B /* NSString+Hash.m in Sources */,
 				54461D3C205F8B6B00C2835B /* HttpUtil.m in Sources */,
+				5455A9FB206C69430030D137 /* CustomTableRowView.m in Sources */,
 				5465FAC0206A94690054F573 /* JMOverlayView.m in Sources */,
 				54140228206BD47100F8733E /* OrderedDictionary.m in Sources */,
 				5465FAC5206A94E00054F573 /* FileListVC.m in Sources */,
+				5455A9FE206C697B0030D137 /* CustomTableCellView.m in Sources */,
 				5467E4872064FD2900F39920 /* ClickableImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
