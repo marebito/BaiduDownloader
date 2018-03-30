@@ -475,11 +475,12 @@
         // 调用获取host列表接口模拟_getHostList的ajax请求
         [self setStatus:__TOSTR__(@"获取文件列表%@", error?@"失败":@"成功") isSuccess:!error];
         if (error) return;
-        if (self.sdm)
-        {
-            [self showFileOutlineView];
-        }
-//        [self getFileList:self.sdm.file_list.list[0].path];
+        [self getFileList:self.sdm.file_list.list[0].path completionBlock:^(FileListModel *model) {
+            if (self.sdm)
+            {
+                [self showFileOutlineView];
+            }
+        }];
     }];
 }
 
