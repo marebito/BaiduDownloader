@@ -10,4 +10,5 @@
 
 @interface FileListVC : NSViewController
 @property (weak) IBOutlet NSTableView *mTableView;
+@property (nonatomic, copy) void (^closeAction)(void);
 @end

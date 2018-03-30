@@ -27,6 +27,8 @@
 		5467E4872064FD2900F39920 /* ClickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467E4862064FD2900F39920 /* ClickableImageView.m */; };
 		549FFE00206C499F001C9D2B /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 549FFDFC206C499F001C9D2B /* NSString+Hash.m */; };
 		549FFE01206C499F001C9D2B /* DownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 549FFDFF206C499F001C9D2B /* DownLoadManager.m */; };
+		54A25BA7206CEB8F00D3061A /* FileOutlineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A25BA6206CEB8F00D3061A /* FileOutlineVC.m */; };
+		54A25BAA206CF9E000D3061A /* CustomOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A25BA9206CF9E000D3061A /* CustomOutlineView.m */; };
 		54BBF01320674AB800C27FF8 /* folx.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF01120674AB800C27FF8 /* folx.png */; };
 		54BBF01420674AB800C27FF8 /* thunder.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF01220674AB800C27FF8 /* thunder.png */; };
 		54BBF01620674C5200C27FF8 /* copy_link.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF01520674C5200C27FF8 /* copy_link.png */; };
@@ -36,6 +38,9 @@
 		54BBF0262067799C00C27FF8 /* checkcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF0252067799B00C27FF8 /* checkcode.png */; };
 		54BBF04A206815D100C27FF8 /* SetDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BBF049206815D100C27FF8 /* SetDataModel.m */; };
 		54CFC67D206378B8004F0C25 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CFC67C206378B7004F0C25 /* JavaScriptCore.framework */; };
+		54E48CAE206CCC400088B954 /* CustomOutlineRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */; };
+		54E48CBA206CD2FE0088B954 /* CustomWindowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E48CB9206CD2FE0088B954 /* CustomWindowVC.m */; };
+		54E48CBD206CDA520088B954 /* FileOutlineWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E48CBC206CDA520088B954 /* FileOutlineWindow.m */; };
 		DFFE5E1B7B532470504752E3 /* libPods-BaiduDownloader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8A756E57FDE5FE305028D4 /* libPods-BaiduDownloader.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +84,10 @@
 		549FFDFD206C499F001C9D2B /* DownLoadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadManager.h; sourceTree = "<group>"; };
 		549FFDFE206C499F001C9D2B /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		549FFDFF206C499F001C9D2B /* DownLoadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadManager.m; sourceTree = "<group>"; };
+		54A25BA5206CEB8F00D3061A /* FileOutlineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileOutlineVC.h; sourceTree = "<group>"; };
+		54A25BA6206CEB8F00D3061A /* FileOutlineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileOutlineVC.m; sourceTree = "<group>"; };
+		54A25BA8206CF9E000D3061A /* CustomOutlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomOutlineView.h; sourceTree = "<group>"; };
+		54A25BA9206CF9E000D3061A /* CustomOutlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomOutlineView.m; sourceTree = "<group>"; };
 		54BBF01120674AB800C27FF8 /* folx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folx.png; sourceTree = "<group>"; };
 		54BBF01220674AB800C27FF8 /* thunder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thunder.png; sourceTree = "<group>"; };
 		54BBF01520674C5200C27FF8 /* copy_link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copy_link.png; sourceTree = "<group>"; };
@@ -90,6 +99,12 @@
 		54BBF048206815D100C27FF8 /* SetDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetDataModel.h; sourceTree = "<group>"; };
 		54BBF049206815D100C27FF8 /* SetDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetDataModel.m; sourceTree = "<group>"; };
 		54CFC67C206378B7004F0C25 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		54E48CAC206CCC400088B954 /* CustomOutlineRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomOutlineRowView.h; sourceTree = "<group>"; };
+		54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomOutlineRowView.m; sourceTree = "<group>"; };
+		54E48CB8206CD2FE0088B954 /* CustomWindowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomWindowVC.h; sourceTree = "<group>"; };
+		54E48CB9206CD2FE0088B954 /* CustomWindowVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomWindowVC.m; sourceTree = "<group>"; };
+		54E48CBB206CDA520088B954 /* FileOutlineWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileOutlineWindow.h; sourceTree = "<group>"; };
+		54E48CBC206CDA520088B954 /* FileOutlineWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileOutlineWindow.m; sourceTree = "<group>"; };
 		65A55BF2B930BCDDBD217304 /* Pods-BaiduDownloader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaiduDownloader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaiduDownloader/Pods-BaiduDownloader.debug.xcconfig"; sourceTree = "<group>"; };
 		F67AB1C341AD46075E290D8D /* Pods-BaiduDownloader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaiduDownloader.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaiduDownloader/Pods-BaiduDownloader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,8 +216,14 @@
 			children = (
 				5465FAC3206A94E00054F573 /* FileListVC.h */,
 				5465FAC4206A94E00054F573 /* FileListVC.m */,
+				54E48CBB206CDA520088B954 /* FileOutlineWindow.h */,
+				54E48CBC206CDA520088B954 /* FileOutlineWindow.m */,
+				54A25BA5206CEB8F00D3061A /* FileOutlineVC.h */,
+				54A25BA6206CEB8F00D3061A /* FileOutlineVC.m */,
 				54461D29205F8ABC00C2835B /* ViewController.h */,
 				54461D2A205F8ABC00C2835B /* ViewController.m */,
+				54E48CB8206CD2FE0088B954 /* CustomWindowVC.h */,
+				54E48CB9206CD2FE0088B954 /* CustomWindowVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -218,6 +239,10 @@
 				5455A9FA206C69430030D137 /* CustomTableRowView.m */,
 				5455A9FC206C697B0030D137 /* CustomTableCellView.h */,
 				5455A9FD206C697B0030D137 /* CustomTableCellView.m */,
+				54E48CAC206CCC400088B954 /* CustomOutlineRowView.h */,
+				54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */,
+				54A25BA8206CF9E000D3061A /* CustomOutlineView.h */,
+				54A25BA9206CF9E000D3061A /* CustomOutlineView.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -404,16 +429,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				546607442063291800370966 /* StringUtil.m in Sources */,
+				54E48CBA206CD2FE0088B954 /* CustomWindowVC.m in Sources */,
 				54461D2B205F8ABC00C2835B /* ViewController.m in Sources */,
+				54E48CAE206CCC400088B954 /* CustomOutlineRowView.m in Sources */,
 				54BBF04A206815D100C27FF8 /* SetDataModel.m in Sources */,
 				549FFE01206C499F001C9D2B /* DownLoadManager.m in Sources */,
 				54461D33205F8ABC00C2835B /* main.m in Sources */,
+				54A25BAA206CF9E000D3061A /* CustomOutlineView.m in Sources */,
 				5465FAC1206A94690054F573 /* JMModalOverlay.m in Sources */,
 				54461D28205F8ABC00C2835B /* AppDelegate.m in Sources */,
 				5465FAC8206A9EBE0054F573 /* ColorTitleButtonCell.m in Sources */,
 				549FFE00206C499F001C9D2B /* NSString+Hash.m in Sources */,
 				54461D3C205F8B6B00C2835B /* HttpUtil.m in Sources */,
+				54E48CBD206CDA520088B954 /* FileOutlineWindow.m in Sources */,
 				5455A9FB206C69430030D137 /* CustomTableRowView.m in Sources */,
+				54A25BA7206CEB8F00D3061A /* FileOutlineVC.m in Sources */,
 				5465FAC0206A94690054F573 /* JMOverlayView.m in Sources */,
 				54140228206BD47100F8733E /* OrderedDictionary.m in Sources */,
 				5465FAC5206A94E00054F573 /* FileListVC.m in Sources */,

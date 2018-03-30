@@ -16,6 +16,8 @@
 #import "JMModalOverlay.h"
 #import "FileListVC.h"
 #import "OrderedDictionary.h"
+#import "FileOutlineWindow.h"
+#import "FileOutlineVC.h"
 
 #define WeakObj(o) try{}@finally{} __weak typeof(o) o##Weak = o;
 #define StrongObj(o) autoreleasepool{} __strong typeof(o) o = o##Weak;
@@ -29,15 +31,15 @@
 
 #define cflag_js @"w = function (n) {return String(escape(n));}"
 
-#define BDCLND_ERROR_1 -62 // 获取BDCLND错误（原因是由于多次下载同一个资源造成的，一般三次后需要输入验证码）
+#define BDCLND_MULTIDOWNLOAD_ERROR -62// 获取BDCLND错误（原因是由于多次下载同一个资源造成的，一般三次后需要输入验证码）
 
-#define EXTRACT_PSWD_EMPTY -12 // 未输入提取密码
+#define EXTRACT_PSWD_EMPTY -12        // 未输入提取密码
 
-#define EXTRACT_PSWD_ERROR -9 // 提取密码出错
+#define EXTRACT_PSWD_ERROR -9         // 提取密码出错
 
-#define DLINK_ERROR_1 113  // 获取文件失败
+#define DLINK_PARAM_ERROR 113         // 获取文件失败
 
-#define DLINK_ERROR_2 -20  // 获取文件失败
+#define DLINK_MULTIREQUEST_ERROR -20  // 多次请求导致失败，此时需要输入验证码
 
 #define BAIDU_PAN_HOST @"pan.baidu.com"
 
@@ -70,6 +72,8 @@
 
 #define TEST_URL4 @"https://pan.baidu.com/surl/init=oMrGKlFXGn0FEFCSQQAepQ"
 
+//链接: https://pan.baidu.com/s/1R7pANOEhmHSf17KeRM9BGw 密码: iiha
+
 @interface ViewController ()
 
 @property (nonatomic, strong) JSContext *context;
@@ -81,9 +85,11 @@
 @property (weak) IBOutlet NSTextField *statusLbl;
 @property (nonatomic, copy) NSString *shareURL;    // 分享URL
 @property (nonatomic, copy) NSString *redirectURL; // 重定向URL
-@property (nonatomic, strong) SetDataModel *sdm;
+@property (nonatomic, assign) BOOL parseErrorFlag; // 下载失败标识
+@property (nonatomic, strong) SetDataModel *sdm;       // 根文件模型
 @property (nonatomic, strong) MutableOrderedDictionary *fileListDic;
 @property (nonatomic, strong) MutableOrderedDictionary *fileDLinkDic;
+@property (nonatomic, strong) JMModalOverlay *modalOverlay;
 
 
 - (IBAction)fetch:(id)sender;
@@ -102,7 +108,6 @@
     self.vcodeIV.enabled = NO;
     self.vcodeTF.enabled = NO;
 }
-
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
@@ -123,6 +128,9 @@
 
 - (void)openURL:(NSString *)url
 {
+//    [self showFileOutlineView];
+//    return;
+
     // 打开URL， 从中获取Cookie
     if ([url rangeOfString:@"://"].location == NSNotFound)
     {
@@ -315,7 +323,7 @@
     [HttpUtil request:url method:@"GET" headers:headers params:nil completion:^(NSURLResponse *response, id responseObject, NSError *error) {
         @StrongObj(self)
         NSString *app_id = __VREGEX__(__RD__(responseObject), @"app_id=", @"&");
-        NSString *logid = [self executeJS:logid_js params:@[__UDGET__(@"BAIDUID")]];
+        NSString *logid = [self executeJS:logid_js func:@"w" params:@[__UDGET__(@"BAIDUID")]];
         __UDSET__(@"app_id", app_id);
         __UDSET__(@"logid", logid); __UDSYNC__;
         [self setStatus:__TOSTR__(@"获取AppID%@", error?@"失败":@"成功") isSuccess:!error];
@@ -354,7 +362,7 @@
             o += [dic[@"id"] integerValue];
         }
         NSString *cflag = [NSString stringWithFormat:@"%ld:%ld", (long)o, (long)c];
-        cflag = [self executeJS:cflag_js params:@[cflag]];
+        cflag = [self executeJS:cflag_js func:@"w" params:@[cflag]];
         __UDSET__(@"hm_lpvt", hm_lpvt);
         __UDSET__(@"cflag", cflag);
         __UDREMOVE__(@"vcode"); __UDSYNC__;
@@ -400,7 +408,7 @@
         if (BDCLND.length == 0)
         {
             NSDictionary *jsonDic = __JSONDIC__(responseObject);
-            if([jsonDic[@"errno"] intValue] == BDCLND_ERROR_1)
+            if([jsonDic[@"errno"] intValue] == BDCLND_MULTIDOWNLOAD_ERROR)
             {
                 [self setStatus:@"请输入图片中的验证码后，重新获取!" isSuccess:!error];
                 self.vcodeIV.enabled = YES;
@@ -467,7 +475,11 @@
         // 调用获取host列表接口模拟_getHostList的ajax请求
         [self setStatus:__TOSTR__(@"获取文件列表%@", error?@"失败":@"成功") isSuccess:!error];
         if (error) return;
-        [self getFileList:self.sdm.file_list.list[0].path];
+        if (self.sdm)
+        {
+            [self showFileOutlineView];
+        }
+//        [self getFileList:self.sdm.file_list.list[0].path];
     }];
 }
 
@@ -476,7 +488,7 @@
     return ((arc4random()%100000000000000000)*1.0/100000000000000000);
 }
 
-- (void)getFileList:(NSString *)path
+- (void)getFileList:(NSString *)path completionBlock:(GetFileListBlock)complete
 {
     NSString *url = __TOSTR__(@"https://%@/share/list", BAIDU_PAN_HOST);
     NSDictionary *headers = @{@"Host":BAIDU_PAN_HOST,
@@ -489,188 +501,27 @@
                               @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;%@;BDCLND=%@;%@;cflag=%@",__UDGET__(@"BAIDUID"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"HMVT")), __UDGET__ (@"BDCLND"), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"hm_lpvt")), __UDGET__(@"cflag")]
                               };
     NSDictionary *queryParams = @{@"uk":__UDGET__(@"uk"), @"shareid":_sdm.shareid, @"order":@"other", @"desc":@"1", @"showempty":@"0", @"web":@"1", @"page":@"1", @"num":@"100", @"dir":path, @"t":@"", @"channel":@"chunlei", @"web":@"1", @"app_id":__UDGET__(@"app_id"), @"bdstoken":@"null", @"logid":__UDGET__(@"logid"), @"clienttype":@"0"};
-    /*
-     {
-     errno = 0;
-     list =     (
-     {
-     category = 6;
-     "fs_id" = 251947432066287;
-     isdir = 1;
-     "local_ctime" = 1484072738;
-     "local_mtime" = 1484072738;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/react native \U5feb\U901f\U5f00\U53d1App \U5b9e\U6218 \U8bfe\U7a0b\U5341\U4e94\Uff088\U670823\U65e5\Uff09";
-     "server_ctime" = 1484072738;
-     "server_filename" = "react native \U5feb\U901f\U5f00\U53d1App \U5b9e\U6218 \U8bfe\U7a0b\U5341\U4e94\Uff088\U670823\U65e5\Uff09";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 1017227447865750;
-     isdir = 1;
-     "local_ctime" = 1474802565;
-     "local_mtime" = 1474802565;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/12.\U8d2f\U7a7f\U5168\U6808React Native\U5f00\U53d1App \U5ba0\U7269\U9879\U76ee\U5b9e\U6218";
-     "server_ctime" = 1474802565;
-     "server_filename" = "12.\U8d2f\U7a7f\U5168\U6808React Native\U5f00\U53d1App \U5ba0\U7269\U9879\U76ee\U5b9e\U6218";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 548822466330868;
-     isdir = 1;
-     "local_ctime" = 1478620743;
-     "local_mtime" = 1478620743;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/11.React+Redux \Uff08\U8865\U5145\Uff09";
-     "server_ctime" = 1478620743;
-     "server_filename" = "11.React+Redux \Uff08\U8865\U5145\Uff09";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 926164119559310;
-     isdir = 1;
-     "local_ctime" = 1470059379;
-     "local_mtime" = 1470059379;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/10.React Native\U89c6\U9891\U6559\U7a0b-\U7535\U5546\U9879\U76ee\U5b9e\U6218";
-     "server_ctime" = 1470059379;
-     "server_filename" = "10.React Native\U89c6\U9891\U6559\U7a0b-\U7535\U5546\U9879\U76ee\U5b9e\U6218";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 150094146437499;
-     isdir = 1;
-     "local_ctime" = 1471537659;
-     "local_mtime" = 1471537659;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/09.React Native\U9ad8\U7ea7";
-     "server_ctime" = 1471537659;
-     "server_filename" = "09.React Native\U9ad8\U7ea7";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 1096856158843310;
-     isdir = 1;
-     "local_ctime" = 1471535065;
-     "local_mtime" = 1471535065;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/08.React Native\U8fdb\U9636";
-     "server_ctime" = 1471535065;
-     "server_filename" = "08.React Native\U8fdb\U9636";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 788026160045988;
-     isdir = 1;
-     "local_ctime" = 1471535060;
-     "local_mtime" = 1471535060;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/07.React Native\U57fa\U7840\U77e5\U8bc6";
-     "server_ctime" = 1471535060;
-     "server_filename" = "07.React Native\U57fa\U7840\U77e5\U8bc6";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 137615177121955;
-     isdir = 1;
-     "local_ctime" = 1464093743;
-     "local_mtime" = 1464093743;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/06.ReactJs\U89c6\U9891\U6559\U7a0b";
-     "server_ctime" = 1464093743;
-     "server_filename" = "06.ReactJs\U89c6\U9891\U6559\U7a0b";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 20266363437945;
-     isdir = 1;
-     "local_ctime" = 1471535056;
-     "local_mtime" = 1471535056;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/05.React \U8def\U7531";
-     "server_ctime" = 1471535056;
-     "server_filename" = "05.React \U8def\U7531";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 192018523381613;
-     isdir = 1;
-     "local_ctime" = 1471535051;
-     "local_mtime" = 1471535051;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/04.React \U57fa\U7840";
-     "server_ctime" = 1471535051;
-     "server_filename" = "04.React \U57fa\U7840";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 168424752130142;
-     isdir = 1;
-     "local_ctime" = 1471535039;
-     "local_mtime" = 1471535039;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/03.ECMAScript (es6)\U65b0\U529f\U80fd";
-     "server_ctime" = 1471535039;
-     "server_filename" = "03.ECMAScript (es6)\U65b0\U529f\U80fd";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 165338753862896;
-     isdir = 1;
-     "local_ctime" = 1434380419;
-     "local_mtime" = 1434380419;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/02.Javascript\U8fdb\U9636 48\U96c6";
-     "server_ctime" = 1434380419;
-     "server_filename" = "02.Javascript\U8fdb\U9636 48\U96c6";
-     "server_mtime" = 1509458806;
-     size = 0;
-     },
-     {
-     category = 6;
-     "fs_id" = 527544908695990;
-     isdir = 1;
-     "local_ctime" = 1471535028;
-     "local_mtime" = 1471535028;
-     path = "/\U9879\U76ee\U5907\U4efd/React.js es6\U5305\U542b\U5b9e\U6218/01.JavaScript\U57fa\U7840 36\U96c6";
-     "server_ctime" = 1471535028;
-     "server_filename" = "01.JavaScript\U57fa\U7840 36\U96c6";
-     "server_mtime" = 1509458806;
-     size = 0;
-     }
-     );
-     "request_id" = 1955971382984942545;
-     "server_time" = 1522022561;
-     }
-     */
     @WeakObj(self)
     [HttpUtil request:url method:@"GET" headers:headers params:queryParams completion:^(NSURLResponse *response, id responseObject, NSError *error) {
         @StrongObj(self)
         NSString *jsonDic = __JSONDIC__(responseObject);
         NSLog(@"jsonDic-->%@", jsonDic);
         FileListModel *fileListModel = [FileListModel yy_modelWithJSON:responseObject];
-        _fileListDic[path] = fileListModel.list;
+        if (complete)
+        {
+            complete(fileListModel);
+        }
+//        _fileListDic[path] = fileListModel.list;
         [fileListModel.list enumerateObjectsUsingBlock:^(ListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj.isdir integerValue] == 1)
-            {
-                [self getFileList:obj.path];
-            }
-            else
-            {
-                [self downloadFile:obj.fs_id code_input:@"" vcode_str:@""];
-                NSLog(@"文件名%@", obj.path);
-            }
+//            if ([obj.isdir integerValue] == 1)
+//            {
+//                [self getFileList:obj.path];
+//            }
+//            else
+//            {
+//                NSLog(@"文件名%@", obj.path);
+//                [self parseDlink:obj.fs_id code_input:@"" vcode_str:@""];
+//            }
         }];
     }];
 }
@@ -726,8 +577,9 @@
 }
 
 // vcode_input用户输入验证码 vcode_str服务器返回验证码
-- (void)downloadFile:(NSString *)fid code_input:(NSString *)vcode_input vcode_str:(NSString *)vcode_str
+- (void)parseDlink:(NSString *)fid code_input:(NSString *)vcode_input vcode_str:(NSString *)vcode_str
 {
+    if (self.parseErrorFlag) return;
     [self setStatus:@"正在解析资源真实地址，请稍后..." isSuccess:YES];
     NSString *url = @"https://pan.baidu.com/api/sharedownload";
     NSDictionary *headers = @{@"Host":BAIDU_PAN_HOST,
@@ -740,8 +592,7 @@
                               @"Referer":self.shareURL,
                               @"Accept-Encoding":BAIDU_ACCEPT_ENCODING,
                               @"Accept-Language":BAIDU_ACCEPT_LANGUAGE,
-                              //                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;BDCLND=%@;cflag=%@;%@;%@",__UDGET__(@"BAIDUID"), __UDGET__(@"BDCLND"), __UDGET__(@"cflag"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __CTS__), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"hm_lpvt"))]
-                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;BDCLND=%@;cflag=%@",__UDGET__(@"BAIDUID"), __UDGET__(@"BDCLND"), __UDGET__(@"cflag")]
+                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;BDCLND=%@;cflag=%@;%@;%@",__UDGET__(@"BAIDUID"), __UDGET__(@"BDCLND"), __UDGET__(@"cflag"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"HMVT")), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"hm_lpvt"))]
                               };
     NSDictionary *queryParams = @{@"sign":__UDGET__(@"sign"), @"timestamp":__UDGET__(@"timestamp"), @"channel":@"chunlei", @"web":@"1", @"app_id":__UDGET__(@"app_id"), @"bdstoken":@"null", @"logid":__UDGET__(@"logid"), @"clienttype":@"0"};
     url = [NSString stringWithFormat:@"%@?%@",url, [HttpUtil URLParamsString:queryParams]];
@@ -757,8 +608,14 @@
     [HttpUtil request:url method:@"POST" headers:headers params:formData completion:^(NSURLResponse *response, id responseObject, NSError *error) {
         @StrongObj(self)
         NSDictionary *jsonDic = __JSONDIC__(responseObject);
-        if ([jsonDic[@"errno"] intValue] == DLINK_ERROR_1 || [jsonDic[@"errno"] intValue] == DLINK_ERROR_2)
+        if ([jsonDic[@"errno"] intValue] == DLINK_PARAM_ERROR)
         {
+            [self setStatus:@"获取文件链接地址异常, 参数错误!" isSuccess:NO];
+            return;
+        }
+        if ([jsonDic[@"errno"] intValue] == DLINK_MULTIREQUEST_ERROR)
+        {
+            self.parseErrorFlag = YES;
             self.vcodeIV.enabled = YES;
             [self requestCaptcha];
             [self setStatus:@"获取文件链接地址异常, 稍后请重试!" isSuccess:NO];
@@ -780,20 +637,29 @@
     return directLink;
 }
 
-- (void)showFileList
+- (JMModalOverlay *)modalOverlay
+{
+    if (!_modalOverlay) {
+        _modalOverlay = [[JMModalOverlay alloc] init];
+        _modalOverlay.animates = YES;
+        _modalOverlay.animationDirection = JMModalOverlayDirectionBottom;
+        _modalOverlay.shouldOverlayTitleBar = YES;
+        _modalOverlay.shouldCloseWhenClickOnBackground = NO;
+        _modalOverlay.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+        _modalOverlay.backgroundColor = [NSColor colorWithRed:0.97 green:0.93 blue:0.84 alpha:1.00];
+    }
+    return _modalOverlay;
+}
+
+- (void)showFileOutlineView
 {
     NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
-    FileListVC *_fileListVC = [storyboard instantiateControllerWithIdentifier:@"FileListVC"];
-    
-    JMModalOverlay *modalOverlay = [[JMModalOverlay alloc] init];
-    modalOverlay.contentViewController = _fileListVC;
-    modalOverlay.animates = YES;
-    modalOverlay.animationDirection = JMModalOverlayDirectionBottom;
-    modalOverlay.shouldOverlayTitleBar = NO;
-    modalOverlay.shouldCloseWhenClickOnBackground = YES;
-    modalOverlay.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
-    modalOverlay.backgroundColor = [NSColor colorWithRed:0.97 green:0.93 blue:0.84 alpha:1.00];
-    [modalOverlay showInWindow:[[NSApplication sharedApplication] mainWindow]];
+    FileOutlineWindow *outlineVC = [storyboard instantiateControllerWithIdentifier:@"FileOutlineWindow"];
+    ((FileOutlineVC *)outlineVC.contentViewController).fileListModel = self.sdm.file_list;
+    ((FileOutlineVC *)outlineVC.contentViewController).getFileList = ^(NSString *path, GetFileListBlock block) {
+        [self getFileList:path completionBlock:block];
+    };
+     [outlineVC showWithStyle:ShowWindowStyleModal];
 }
 
 - (void)getloginPublicKey
@@ -817,8 +683,11 @@
 
 - (IBAction)fetch:(id)sender
 {
-    [self showFileList];
-    return;
+    if (self.sdm)
+    {
+        [self showFileOutlineView];
+        return;
+    }
     _realURL.stringValue = @"";
     NSString *url = _downloadURL.stringValue;
     if ([url isEqualToString:@""])
@@ -869,13 +738,13 @@
     system([@"open -a Terminal.app" UTF8String]);
 }
 
-- (NSString *)executeJS:(NSString *)js params:(NSArray *)params
+- (NSString *)executeJS:(NSString *)js func:(NSString *)func params:(NSArray *)params
 {
     self.context = [[JSContext alloc] init];
     [self.context evaluateScript:js];
-    JSValue *addJS = self.context[@"w"];
-    JSValue *sum = [addJS callWithArguments:params];
-    return [sum toString];
+    JSValue *jsFunc = self.context[func];
+    JSValue *value = [jsFunc callWithArguments:params];
+    return [value toString];
 }
 
 @end

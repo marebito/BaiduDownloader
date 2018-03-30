@@ -9,11 +9,14 @@
 #import "FileListVC.h"
 #import "SetDataModel.h"
 #import "CustomTableRowView.h"
+#import "JMModalOverlay.h"
 
 @interface FileListVC () <NSTableViewDelegate, NSTableViewDataSource>
 {
     NSMutableArray<ListModel *> *files;
 }
+- (IBAction)close:(id)sender;
+
 @end
 
 @implementation FileListVC
@@ -36,9 +39,10 @@
     }
 }
 
-- (void)doubleClick:(NSTableView *)sender
+- (void)doubleClick:(NSTableView *)tableView
 {
-    
+    NSString *url = files[tableView.selectedRow].path;
+    NSLog(@"url-->%@", url);
 }
 
 - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row
@@ -91,6 +95,11 @@
 - (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     
+}
+
+- (IBAction)close:(id)sender
+{
+    if (self.closeAction) self.closeAction();
 }
 
 @end

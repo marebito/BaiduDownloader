@@ -1,12 +1,4 @@
-### JS解析难点
----
+**TODO** 
+![](https://ws1.sinaimg.cn/large/006tNbRwly1fpuutteedlj306v09aju2.jpg)
 
-Unicode 字符无法用一个单一的 \u 转义, 需要拆分成一个UTF-16 代理项对
 
-[^\ud800-\udfff] 表示不包含代理对代码点的所有字符，普通的 BMP 字符
-
-[\uD800-\uDBFF][\uDC00-\uDFFFF] 表示合法的代理对的所有字符
-
-[\ud800-\udfff] 表示代理对的代码点（本身不是合法的Unicode字符）
-
-[^\x00-\x7F] 匹配ASCII值从0-127的字符 0-127表示单字节字符，也就是：数字，英文字符，半角符号，以及某些控制字符。
