@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2201D76DCD9DD8ABF83DBF34 /* Pods_BaiduDownloader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC99FB40D9B14CC6C5AC013 /* Pods_BaiduDownloader.framework */; };
 		54140228206BD47100F8733E /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 54140226206BD47100F8733E /* OrderedDictionary.m */; };
+		541F24582074355700A186D5 /* NSObject+DebugDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 541F24572074355700A186D5 /* NSObject+DebugDescription.m */; };
 		54461D28205F8ABC00C2835B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D27205F8ABC00C2835B /* AppDelegate.m */; };
 		54461D2B205F8ABC00C2835B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D2A205F8ABC00C2835B /* ViewController.m */; };
 		54461D2D205F8ABC00C2835B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54461D2C205F8ABC00C2835B /* Assets.xcassets */; };
 		54461D30205F8ABC00C2835B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54461D2E205F8ABC00C2835B /* Main.storyboard */; };
 		54461D33205F8ABC00C2835B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D32205F8ABC00C2835B /* main.m */; };
 		54461D3C205F8B6B00C2835B /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D3B205F8B6B00C2835B /* HttpUtil.m */; };
+		5446E96D2075B8080080DBCC /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5446E96C2075B8080080DBCC /* ImageAndTextCell.m */; };
+		5446E9712075C3710080DBCC /* FileOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5446E9702075C3710080DBCC /* FileOutlineDataSource.m */; };
 		5455A9F8206C53940030D137 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 5455A9F7206C53940030D137 /* close.png */; };
 		5455A9FB206C69430030D137 /* CustomTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FA206C69430030D137 /* CustomTableRowView.m */; };
 		5455A9FE206C697B0030D137 /* CustomTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FD206C697B0030D137 /* CustomTableCellView.m */; };
@@ -25,6 +29,10 @@
 		5465FAC8206A9EBE0054F573 /* ColorTitleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FAC7206A9EBE0054F573 /* ColorTitleButtonCell.m */; };
 		546607442063291800370966 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 546607432063291800370966 /* StringUtil.m */; };
 		5467E4872064FD2900F39920 /* ClickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467E4862064FD2900F39920 /* ClickableImageView.m */; };
+		549854512073280900AB8942 /* CustomTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 549854502073280900AB8942 /* CustomTextFieldCell.m */; };
+		549854552073AE7D00AB8942 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 549854542073AE7D00AB8942 /* JRSwizzle.m */; };
+		549854602073B23500AB8942 /* NSDictionary+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5498545F2073B23400AB8942 /* NSDictionary+Unicode.m */; };
+		549854632073B4A000AB8942 /* NSArray+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 549854622073B4A000AB8942 /* NSArray+Unicode.m */; };
 		549FFE00206C499F001C9D2B /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 549FFDFC206C499F001C9D2B /* NSString+Hash.m */; };
 		549FFE01206C499F001C9D2B /* DownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 549FFDFF206C499F001C9D2B /* DownLoadManager.m */; };
 		54A25BA7206CEB8F00D3061A /* FileOutlineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A25BA6206CEB8F00D3061A /* FileOutlineVC.m */; };
@@ -40,14 +48,13 @@
 		54CFC67D206378B8004F0C25 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CFC67C206378B7004F0C25 /* JavaScriptCore.framework */; };
 		54E48CAE206CCC400088B954 /* CustomOutlineRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */; };
 		54E48CBA206CD2FE0088B954 /* CustomWindowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E48CB9206CD2FE0088B954 /* CustomWindowVC.m */; };
-		54E48CBD206CDA520088B954 /* FileOutlineWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E48CBC206CDA520088B954 /* FileOutlineWindow.m */; };
-		DFFE5E1B7B532470504752E3 /* libPods-BaiduDownloader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8A756E57FDE5FE305028D4 /* libPods-BaiduDownloader.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D8A756E57FDE5FE305028D4 /* libPods-BaiduDownloader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BaiduDownloader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54140226206BD47100F8733E /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 		54140227206BD47100F8733E /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
+		541F24562074355700A186D5 /* NSObject+DebugDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+DebugDescription.h"; sourceTree = "<group>"; };
+		541F24572074355700A186D5 /* NSObject+DebugDescription.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DebugDescription.m"; sourceTree = "<group>"; };
 		54461D23205F8ABC00C2835B /* BaiduDownloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaiduDownloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54461D26205F8ABC00C2835B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		54461D27205F8ABC00C2835B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,6 +67,10 @@
 		54461D34205F8ABC00C2835B /* BaiduDownloader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BaiduDownloader.entitlements; sourceTree = "<group>"; };
 		54461D3A205F8B6B00C2835B /* HttpUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
 		54461D3B205F8B6B00C2835B /* HttpUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
+		5446E96B2075B8080080DBCC /* ImageAndTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
+		5446E96C2075B8080080DBCC /* ImageAndTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
+		5446E96F2075C3710080DBCC /* FileOutlineDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileOutlineDataSource.h; sourceTree = "<group>"; };
+		5446E9702075C3710080DBCC /* FileOutlineDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileOutlineDataSource.m; sourceTree = "<group>"; };
 		5455A9F7206C53940030D137 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		5455A9F9206C69430030D137 /* CustomTableRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableRowView.h; sourceTree = "<group>"; };
 		5455A9FA206C69430030D137 /* CustomTableRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableRowView.m; sourceTree = "<group>"; };
@@ -80,6 +91,15 @@
 		546607432063291800370966 /* StringUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		5467E4852064FD2900F39920 /* ClickableImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClickableImageView.h; sourceTree = "<group>"; };
 		5467E4862064FD2900F39920 /* ClickableImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClickableImageView.m; sourceTree = "<group>"; };
+		5498544F2073280900AB8942 /* CustomTextFieldCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTextFieldCell.h; sourceTree = "<group>"; };
+		549854502073280900AB8942 /* CustomTextFieldCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTextFieldCell.m; sourceTree = "<group>"; };
+		549854532073AE7D00AB8942 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		549854542073AE7D00AB8942 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		5498545C2073B06800AB8942 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		5498545E2073B23400AB8942 /* NSDictionary+Unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Unicode.h"; sourceTree = "<group>"; };
+		5498545F2073B23400AB8942 /* NSDictionary+Unicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Unicode.m"; sourceTree = "<group>"; };
+		549854612073B4A000AB8942 /* NSArray+Unicode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Unicode.h"; sourceTree = "<group>"; };
+		549854622073B4A000AB8942 /* NSArray+Unicode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Unicode.m"; sourceTree = "<group>"; };
 		549FFDFC206C499F001C9D2B /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		549FFDFD206C499F001C9D2B /* DownLoadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadManager.h; sourceTree = "<group>"; };
 		549FFDFE206C499F001C9D2B /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
@@ -103,9 +123,8 @@
 		54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomOutlineRowView.m; sourceTree = "<group>"; };
 		54E48CB8206CD2FE0088B954 /* CustomWindowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomWindowVC.h; sourceTree = "<group>"; };
 		54E48CB9206CD2FE0088B954 /* CustomWindowVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomWindowVC.m; sourceTree = "<group>"; };
-		54E48CBB206CDA520088B954 /* FileOutlineWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileOutlineWindow.h; sourceTree = "<group>"; };
-		54E48CBC206CDA520088B954 /* FileOutlineWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileOutlineWindow.m; sourceTree = "<group>"; };
 		65A55BF2B930BCDDBD217304 /* Pods-BaiduDownloader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaiduDownloader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaiduDownloader/Pods-BaiduDownloader.debug.xcconfig"; sourceTree = "<group>"; };
+		EEC99FB40D9B14CC6C5AC013 /* Pods_BaiduDownloader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaiduDownloader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F67AB1C341AD46075E290D8D /* Pods-BaiduDownloader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaiduDownloader.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaiduDownloader/Pods-BaiduDownloader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,7 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54CFC67D206378B8004F0C25 /* JavaScriptCore.framework in Frameworks */,
-				DFFE5E1B7B532470504752E3 /* libPods-BaiduDownloader.a in Frameworks */,
+				2201D76DCD9DD8ABF83DBF34 /* Pods_BaiduDownloader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +146,7 @@
 			children = (
 				54BBF0272068097600C27FF8 /* libxml2.2.tbd */,
 				54CFC67C206378B7004F0C25 /* JavaScriptCore.framework */,
-				3D8A756E57FDE5FE305028D4 /* libPods-BaiduDownloader.a */,
+				EEC99FB40D9B14CC6C5AC013 /* Pods_BaiduDownloader.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,6 +158,22 @@
 				54140226206BD47100F8733E /* OrderedDictionary.m */,
 			);
 			path = OrderedDictionary;
+			sourceTree = "<group>";
+		};
+		541F24592074355C00A186D5 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				541F24562074355700A186D5 /* NSObject+DebugDescription.h */,
+				541F24572074355700A186D5 /* NSObject+DebugDescription.m */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		541F2460207499D200A186D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		54461D1A205F8ABC00C2835B = {
@@ -165,6 +200,7 @@
 				54461D26205F8ABC00C2835B /* AppDelegate.h */,
 				54461D27205F8ABC00C2835B /* AppDelegate.m */,
 				54461D2C205F8ABC00C2835B /* Assets.xcassets */,
+				5498545C2073B06800AB8942 /* PrefixHeader.pch */,
 				54461D34205F8ABC00C2835B /* BaiduDownloader.entitlements */,
 				5455A9F1206C4C490030D137 /* Dependency */,
 				54BBF047206815B900C27FF8 /* Images */,
@@ -178,9 +214,26 @@
 			path = BaiduDownloader;
 			sourceTree = "<group>";
 		};
+		5446E96E2075BE1F0080DBCC /* CustomOutlineView */ = {
+			isa = PBXGroup;
+			children = (
+				54E48CAC206CCC400088B954 /* CustomOutlineRowView.h */,
+				54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */,
+				54A25BA8206CF9E000D3061A /* CustomOutlineView.h */,
+				54A25BA9206CF9E000D3061A /* CustomOutlineView.m */,
+				5446E96B2075B8080080DBCC /* ImageAndTextCell.h */,
+				5446E96C2075B8080080DBCC /* ImageAndTextCell.m */,
+			);
+			path = CustomOutlineView;
+			sourceTree = "<group>";
+		};
 		5455A9F1206C4C490030D137 /* Dependency */ = {
 			isa = PBXGroup;
 			children = (
+				541F2460207499D200A186D5 /* Frameworks */,
+				541F24592074355C00A186D5 /* Debug */,
+				5498545D2073B23400AB8942 /* Unicode */,
+				549854522073AE7400AB8942 /* JRSwizzle */,
 				5455A9F3206C4CB60030D137 /* Util */,
 				5465FAB5206A94690054F573 /* CustomUI */,
 				549FFDFB206C499F001C9D2B /* Network */,
@@ -207,6 +260,8 @@
 			children = (
 				54BBF048206815D100C27FF8 /* SetDataModel.h */,
 				54BBF049206815D100C27FF8 /* SetDataModel.m */,
+				5446E96F2075C3710080DBCC /* FileOutlineDataSource.h */,
+				5446E9702075C3710080DBCC /* FileOutlineDataSource.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -216,8 +271,6 @@
 			children = (
 				5465FAC3206A94E00054F573 /* FileListVC.h */,
 				5465FAC4206A94E00054F573 /* FileListVC.m */,
-				54E48CBB206CDA520088B954 /* FileOutlineWindow.h */,
-				54E48CBC206CDA520088B954 /* FileOutlineWindow.m */,
 				54A25BA5206CEB8F00D3061A /* FileOutlineVC.h */,
 				54A25BA6206CEB8F00D3061A /* FileOutlineVC.m */,
 				54461D29205F8ABC00C2835B /* ViewController.h */,
@@ -231,6 +284,7 @@
 		5455A9F6206C4D070030D137 /* VIew */ = {
 			isa = PBXGroup;
 			children = (
+				5446E96E2075BE1F0080DBCC /* CustomOutlineView */,
 				5467E4852064FD2900F39920 /* ClickableImageView.h */,
 				5467E4862064FD2900F39920 /* ClickableImageView.m */,
 				5465FAC6206A9EBE0054F573 /* ColorTitleButtonCell.h */,
@@ -239,10 +293,8 @@
 				5455A9FA206C69430030D137 /* CustomTableRowView.m */,
 				5455A9FC206C697B0030D137 /* CustomTableCellView.h */,
 				5455A9FD206C697B0030D137 /* CustomTableCellView.m */,
-				54E48CAC206CCC400088B954 /* CustomOutlineRowView.h */,
-				54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */,
-				54A25BA8206CF9E000D3061A /* CustomOutlineView.h */,
-				54A25BA9206CF9E000D3061A /* CustomOutlineView.m */,
+				5498544F2073280900AB8942 /* CustomTextFieldCell.h */,
+				549854502073280900AB8942 /* CustomTextFieldCell.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -258,6 +310,26 @@
 				5465FABA206A94690054F573 /* JMOverlayView.m */,
 			);
 			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		549854522073AE7400AB8942 /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				549854532073AE7D00AB8942 /* JRSwizzle.h */,
+				549854542073AE7D00AB8942 /* JRSwizzle.m */,
+			);
+			path = JRSwizzle;
+			sourceTree = "<group>";
+		};
+		5498545D2073B23400AB8942 /* Unicode */ = {
+			isa = PBXGroup;
+			children = (
+				5498545E2073B23400AB8942 /* NSDictionary+Unicode.h */,
+				5498545F2073B23400AB8942 /* NSDictionary+Unicode.m */,
+				549854612073B4A000AB8942 /* NSArray+Unicode.h */,
+				549854622073B4A000AB8942 /* NSArray+Unicode.m */,
+			);
+			path = Unicode;
 			sourceTree = "<group>";
 		};
 		549FFDFB206C499F001C9D2B /* Network */ = {
@@ -323,7 +395,7 @@
 		54461D1B205F8ABC00C2835B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Godlike Studio";
 				TargetAttributes = {
 					54461D22205F8ABC00C2835B = {
@@ -379,9 +451,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BaiduDownloader/Pods-BaiduDownloader-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Ono/Ono.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ono.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -434,21 +515,27 @@
 				54E48CAE206CCC400088B954 /* CustomOutlineRowView.m in Sources */,
 				54BBF04A206815D100C27FF8 /* SetDataModel.m in Sources */,
 				549FFE01206C499F001C9D2B /* DownLoadManager.m in Sources */,
+				5446E96D2075B8080080DBCC /* ImageAndTextCell.m in Sources */,
 				54461D33205F8ABC00C2835B /* main.m in Sources */,
 				54A25BAA206CF9E000D3061A /* CustomOutlineView.m in Sources */,
 				5465FAC1206A94690054F573 /* JMModalOverlay.m in Sources */,
 				54461D28205F8ABC00C2835B /* AppDelegate.m in Sources */,
 				5465FAC8206A9EBE0054F573 /* ColorTitleButtonCell.m in Sources */,
+				541F24582074355700A186D5 /* NSObject+DebugDescription.m in Sources */,
 				549FFE00206C499F001C9D2B /* NSString+Hash.m in Sources */,
 				54461D3C205F8B6B00C2835B /* HttpUtil.m in Sources */,
-				54E48CBD206CDA520088B954 /* FileOutlineWindow.m in Sources */,
 				5455A9FB206C69430030D137 /* CustomTableRowView.m in Sources */,
 				54A25BA7206CEB8F00D3061A /* FileOutlineVC.m in Sources */,
 				5465FAC0206A94690054F573 /* JMOverlayView.m in Sources */,
 				54140228206BD47100F8733E /* OrderedDictionary.m in Sources */,
 				5465FAC5206A94E00054F573 /* FileListVC.m in Sources */,
 				5455A9FE206C697B0030D137 /* CustomTableCellView.m in Sources */,
+				549854512073280900AB8942 /* CustomTextFieldCell.m in Sources */,
+				549854552073AE7D00AB8942 /* JRSwizzle.m in Sources */,
+				5446E9712075C3710080DBCC /* FileOutlineDataSource.m in Sources */,
 				5467E4872064FD2900F39920 /* ClickableImageView.m in Sources */,
+				549854632073B4A000AB8942 /* NSArray+Unicode.m in Sources */,
+				549854602073B23500AB8942 /* NSDictionary+Unicode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +567,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -487,6 +575,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -535,6 +624,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -542,6 +632,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -578,6 +669,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = LQW337MH2W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BaiduDownloader/Dependency/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(TARGET_NAME)/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -600,6 +697,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = LQW337MH2W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BaiduDownloader/Dependency/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(TARGET_NAME)/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

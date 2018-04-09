@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "StringUtil.h"
 
 #define __UD__ [NSUserDefaults standardUserDefaults]
 #define __UDGET__(o) [__UD__ objectForKey:o]

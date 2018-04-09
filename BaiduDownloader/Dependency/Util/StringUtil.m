@@ -126,4 +126,9 @@
     return [StringUtil stringWithUnicodes:@[u(240 | e >> 18 & 7), u(128 | e >> 12 & 63), u(128 | e >> 6 & 63), u(128 | 63 & e)]];
 }
 
++ (NSString *)fileSizeWithBytes:(long long)bytes
+{
+    return [NSByteCountFormatter stringFromByteCount:bytes countStyle:NSByteCountFormatterCountStyleFile];
+}
+
 @end

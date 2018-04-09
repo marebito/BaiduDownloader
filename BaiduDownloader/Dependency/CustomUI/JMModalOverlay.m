@@ -178,9 +178,9 @@ NSString * const JMModalOverlayDidCloseNotification = @"JMModalOverlayDidCloseNo
        self.shown = YES;
         
         // Avoid resize
-        _wasResizable = _parentWindow.styleMask&NSResizableWindowMask;
+        _wasResizable = _parentWindow.styleMask&NSWindowStyleMaskResizable;
         if(_wasResizable){
-            _parentWindow.styleMask &= ~NSResizableWindowMask;
+            _parentWindow.styleMask &= ~NSWindowStyleMaskResizable;
         }
         
         
@@ -307,7 +307,7 @@ NSString * const JMModalOverlayDidCloseNotification = @"JMModalOverlayDidCloseNo
     
         // Restore window mask
         if(_wasResizable){
-            _parentWindow.styleMask |= NSResizableWindowMask;
+            _parentWindow.styleMask |= NSWindowStyleMaskResizable;
         }
     
         self.shown = NO;

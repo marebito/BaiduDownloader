@@ -11,17 +11,12 @@
 #import "YYModel.h"
 #import "Ono.h"
 #import "HttpUtil.h"
-#import "StringUtil.h"
 #import "SetDataModel.h"
 #import "JMModalOverlay.h"
 #import "FileListVC.h"
-#import "OrderedDictionary.h"
-#import "FileOutlineWindow.h"
+#import "CustomWindowVC.h"
 #import "FileOutlineVC.h"
 
-#define WeakObj(o) try{}@finally{} __weak typeof(o) o##Weak = o;
-#define StrongObj(o) autoreleasepool{} __strong typeof(o) o = o##Weak;
-#define __TOSTR__(FORMAT, ...) [NSString stringWithFormat:FORMAT, ##__VA_ARGS__]
 #define __CTS__ [HttpUtil currentTimestamp]
 #define __CTSD__(d) [HttpUtil currentTimestampDelay:d]
 #define __CMTS__ [HttpUtil currentMilliTimestamp]
@@ -72,13 +67,12 @@
 
 #define TEST_URL4 @"https://pan.baidu.com/surl/init=oMrGKlFXGn0FEFCSQQAepQ"
 
-//链接: https://pan.baidu.com/s/1R7pANOEhmHSf17KeRM9BGw 密码: iiha
+// 链接: https://pan.baidu.com/s/1IDo1qxGjtnIY5ReA_Twihg 密码: nwpb
 
 @interface ViewController ()
 
 @property (nonatomic, strong) JSContext *context;
 @property (weak) IBOutlet NSTextField *downloadURL;
-@property (weak) IBOutlet NSTextField *realURL;
 @property (weak) IBOutlet NSTextField *fetchPwdTF;
 @property (weak) IBOutlet NSImageView *vcodeIV;
 @property (weak) IBOutlet NSTextField *vcodeTF;
@@ -128,10 +122,8 @@
 
 - (void)openURL:(NSString *)url
 {
-//    [self showFileOutlineView];
-//    return;
-
     // 打开URL， 从中获取Cookie
+    [self setStatus:@"正在获取资源，请稍后..." isSuccess:YES];
     if ([url rangeOfString:@"://"].location == NSNotFound)
     {
         url = __TOSTR__(@"https//%@",url);
@@ -166,11 +158,11 @@
             [self setStatus:@"啊哦，你所访问的页面不存在了！" isSuccess:NO];
             return;
         }
-        [self getPlantCookieEtt];
+        [self requestPlantCookieEtt];
     }];
 }
 
-- (void)getPlantCookieEtt
+- (void)requestPlantCookieEtt
 {
     [self setStatus:@"正在获取Ett，请稍后..." isSuccess:YES];
     NSString *url = @"https://pcs.baidu.com/rest/2.0/pcs/file";
@@ -366,7 +358,7 @@
         __UDSET__(@"hm_lpvt", hm_lpvt);
         __UDSET__(@"cflag", cflag);
         __UDREMOVE__(@"vcode"); __UDSYNC__;
-        [self requestBDCLND:_fetchPwdTF.stringValue];
+        [self requestBDCLND:self.fetchPwdTF.stringValue];
     }];
 }
 
@@ -478,15 +470,32 @@
         [self getFileList:self.sdm.file_list.list[0].path completionBlock:^(FileListModel *model) {
             if (self.sdm)
             {
-                [self showFileOutlineView];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self showFileOutlineView];
+                });
             }
         }];
     }];
 }
 
-- (double)randomTimestamp
+- (NSString *)randomTimestamp
 {
-    return ((arc4random()%100000000000000000)*1.0/100000000000000000);
+    NSString *number = @"0123456789";
+    NSString *randomT = [[NSMutableString alloc] initWithString:@"0."];
+    for (int i = 0; i < 17; i++)
+    {
+        NSString *randNum = nil;
+        if (i < 2)
+        {
+            randNum =  [number substringWithRange:NSMakeRange(arc4random()%8+1, 1)];
+        }
+        else
+        {
+            randNum = [number substringWithRange:NSMakeRange(arc4random()%9, 1)];
+        }
+        randomT = [randomT stringByAppendingString:randNum];
+    }
+    return randomT;
 }
 
 - (void)getFileList:(NSString *)path completionBlock:(GetFileListBlock)complete
@@ -501,35 +510,36 @@
                               @"Accept-Language":BAIDU_ACCEPT_LANGUAGE,
                               @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;%@;BDCLND=%@;%@;cflag=%@",__UDGET__(@"BAIDUID"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"HMVT")), __UDGET__ (@"BDCLND"), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"hm_lpvt")), __UDGET__(@"cflag")]
                               };
-    NSDictionary *queryParams = @{@"uk":__UDGET__(@"uk"), @"shareid":_sdm.shareid, @"order":@"other", @"desc":@"1", @"showempty":@"0", @"web":@"1", @"page":@"1", @"num":@"100", @"dir":path, @"t":@"", @"channel":@"chunlei", @"web":@"1", @"app_id":__UDGET__(@"app_id"), @"bdstoken":@"null", @"logid":__UDGET__(@"logid"), @"clienttype":@"0"};
+    NSDictionary *queryParams = @{@"uk":__UDGET__(@"uk"), @"shareid":_sdm.shareid, @"order":@"other", @"desc":@"1", @"showempty":@"0", @"web":@"1", @"page":@"1", @"num":@"100", @"dir":path, @"t":[self randomTimestamp], @"channel":@"chunlei", @"web":@"1", @"app_id":__UDGET__(@"app_id"), @"bdstoken":@"null", @"logid":__UDGET__(@"logid"), @"clienttype":@"0"};
     @WeakObj(self)
     [HttpUtil request:url method:@"GET" headers:headers params:queryParams completion:^(NSURLResponse *response, id responseObject, NSError *error) {
         @StrongObj(self)
         NSString *jsonDic = __JSONDIC__(responseObject);
         NSLog(@"jsonDic-->%@", jsonDic);
         FileListModel *fileListModel = [FileListModel yy_modelWithJSON:responseObject];
-        if (complete)
-        {
+        self.fileListDic[path] = fileListModel;
+        [fileListModel.list enumerateObjectsUsingBlock:^(ListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.isdir integerValue] == 1)
+            {
+                [self getFileList:obj.path completionBlock:nil];
+            }
+            else
+            {
+                NSLog(@"文件名%@", obj.path);
+                self.parseErrorFlag = NO;
+                [self parseDlink:obj.fs_id code_input:@"" vcode_str:@""];
+            }
+        }];
+        if (complete) {
             complete(fileListModel);
         }
-//        _fileListDic[path] = fileListModel.list;
-        [fileListModel.list enumerateObjectsUsingBlock:^(ListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            if ([obj.isdir integerValue] == 1)
-//            {
-//                [self getFileList:obj.path];
-//            }
-//            else
-//            {
-//                NSLog(@"文件名%@", obj.path);
-//                [self parseDlink:obj.fs_id code_input:@"" vcode_str:@""];
-//            }
-        }];
     }];
 }
 
 - (void)requestCaptcha
 {
     if (!self.vcodeIV.enabled) return;
+    self.parseErrorFlag = YES;
     self.vcodeIV.enabled = NO;
     NSString *url = @"https://pan.baidu.com/api/getvcode";
     NSDictionary *headers = @{@"Host":BAIDU_PAN_HOST,
@@ -539,7 +549,7 @@
                               @"Referer":self.shareURL,
                               @"Accept-Encoding":BAIDU_ACCEPT_ENCODING,
                               @"Accept-Language":BAIDU_ACCEPT_LANGUAGE,
-                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;BDCLND=%@;cflag=%@",__UDGET__(@"BAIDUID"), __UDGET__ (@"BDCLND"),  __UDGET__(@"cflag")],
+                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;%@;%@",__UDGET__(@"BAIDUID"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"HMVT")), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"HMVT"))],
                               @"X-Requested-With":@"XMLHttpRequest"
                               };
     NSDictionary *queryParams = @{@"prod":@"pan", @"t":__CTS__, @"channel":@"chunlei", @"web":@"1", @"app_id":__UDGET__(@"app_id"), @"bdstoken":@"null", @"logid":__UDGET__(@"logid"), @"clienttype":@"0"};
@@ -565,14 +575,14 @@
                               @"Referer":self.shareURL,
                               @"Accept-Encoding":BAIDU_ACCEPT_ENCODING,
                               @"Accept-Language":BAIDU_ACCEPT_LANGUAGE,
-                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;BDCLND=%@;cflag=%@",__UDGET__(@"BAIDUID"), __UDGET__(@"BDCLND"), __UDGET__(@"cflag")],
+                              @"Cookie":[NSString stringWithFormat:@"PANWEB=1;BAIDUID=%@;%@;%@",__UDGET__(@"BAIDUID"), __TOSTR__(@"Hm_lvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"HMVT")), __TOSTR__(@"Hm_lpvt_%@=%@", __UDGET__(@"hm_value"), __UDGET__(@"HMVT"))],
                               };
     @WeakObj(self)
     [HttpUtil request:url method:@"GET" headers:headers params:nil completion:^(NSURLResponse *response, id responseObject, NSError *error) {
         @StrongObj(self)
         // 此处返回验证码图片, 需要使用OpenCV自动填入验证码
         NSImage *image = [[NSImage alloc] initWithData:responseObject];
-        _vcodeIV.image = image;
+        self.vcodeIV.image = image;
         [self setStatus:@"请输入验证码!" isSuccess:NO];
     }];
 }
@@ -616,7 +626,6 @@
         }
         if ([jsonDic[@"errno"] intValue] == DLINK_MULTIREQUEST_ERROR)
         {
-            self.parseErrorFlag = YES;
             self.vcodeIV.enabled = YES;
             [self requestCaptcha];
             [self setStatus:@"获取文件链接地址异常, 稍后请重试!" isSuccess:NO];
@@ -625,7 +634,7 @@
         [self setStatus:__TOSTR__(@"解析资源真实地址%@", error?@"失败":@"成功") isSuccess:!error];
         if (error) return;
         NSString *dlink = [self parseRealURL:__RD__(responseObject)];
-        _fileDLinkDic[fid] = dlink;
+        self.fileDLinkDic[fid] = dlink;
     }];
 }
 
@@ -634,7 +643,6 @@
     NSString *dlink = __VREGEX__(jsonStr, @"\"dlink\":", @",");
     dlink = [dlink substringWithRange:NSMakeRange(1, dlink.length - 2)];
     NSString *directLink = [dlink stringByReplacingOccurrencesOfString:@"\\" withString:@""];
-    _realURL.stringValue = directLink;
     return directLink;
 }
 
@@ -654,13 +662,20 @@
 
 - (void)showFileOutlineView
 {
-    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
-    FileOutlineWindow *outlineVC = [storyboard instantiateControllerWithIdentifier:@"FileOutlineWindow"];
-    ((FileOutlineVC *)outlineVC.contentViewController).fileListModel = self.sdm.file_list;
-    ((FileOutlineVC *)outlineVC.contentViewController).getFileList = ^(NSString *path, GetFileListBlock block) {
-        [self getFileList:path completionBlock:block];
-    };
-     [outlineVC showWithStyle:ShowWindowStyleModal];
+    if (!self.parseErrorFlag)
+    {
+        NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+        CustomWindowVC *outlineVC = [storyboard instantiateControllerWithIdentifier:@"FileOutlineWindow"];
+        ((FileOutlineVC *)outlineVC.contentViewController).fileListCache = self.fileListDic;
+        ((FileOutlineVC *)outlineVC.contentViewController).fileDlinkCache = self.fileDLinkDic;
+        ((FileOutlineVC *)outlineVC.contentViewController).getFileList = ^(NSString *path, GetFileListBlock block) {
+            if (block)
+            {
+                block(self.fileListDic[path]);
+            }
+        };
+        [outlineVC showWithStyle:ShowWindowStyleSheet];
+    }
 }
 
 - (void)getloginPublicKey
@@ -684,12 +699,11 @@
 
 - (IBAction)fetch:(id)sender
 {
-    if (self.sdm)
+    if (self.sdm && !self.parseErrorFlag)
     {
         [self showFileOutlineView];
         return;
     }
-    _realURL.stringValue = @"";
     NSString *url = _downloadURL.stringValue;
     if ([url isEqualToString:@""])
     {
@@ -714,29 +728,29 @@
 {
     NSPasteboard *paste = [NSPasteboard generalPasteboard];
     [paste clearContents];
-    [paste writeObjects:@[_realURL.stringValue]];
+//    [paste writeObjects:@[_realURL.stringValue]];
 }
 
 - (IBAction)downloadWithFolx:(id)sender
 {
-    if (![[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.eltima.Folx3" options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:NULL launchIdentifier:NULL]) return;
-    NSString *command = [NSString stringWithFormat:@"open -a /Applications/Folx.app %@", _realURL.stringValue];
-    system([[command stringByReplacingOccurrencesOfString:@"&" withString:@"'&'"] UTF8String]);
+//    if (![[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.eltima.Folx3" options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:NULL launchIdentifier:NULL]) return;
+//    NSString *command = [NSString stringWithFormat:@"open -a /Applications/Folx.app %@", _realURL.stringValue];
+//    system([[command stringByReplacingOccurrencesOfString:@"&" withString:@"'&'"] UTF8String]);
 }
 
 - (IBAction)downloadWithThunder:(id)sender
 {
-    if (![[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.xunlei.Thunder" options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:NULL launchIdentifier:NULL]) return;
-    NSString *command = [NSString stringWithFormat:@"open -a /Applications/Thunder.app %@", _realURL.stringValue];
-    system([[command stringByReplacingOccurrencesOfString:@"&" withString:@"'&'"] UTF8String]);
+//    if (![[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.xunlei.Thunder" options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:NULL launchIdentifier:NULL]) return;
+//    NSString *command = [NSString stringWithFormat:@"open -a /Applications/Thunder.app %@", _realURL.stringValue];
+//    system([[command stringByReplacingOccurrencesOfString:@"&" withString:@"'&'"] UTF8String]);
 }
 
 - (IBAction)downloadWithWget:(id)sender
 {
-    NSPasteboard *paste = [NSPasteboard generalPasteboard];
-    [paste clearContents];
-    [paste writeObjects:@[[NSString stringWithFormat:@"wget %@", _realURL.stringValue]]];
-    system([@"open -a Terminal.app" UTF8String]);
+//    NSPasteboard *paste = [NSPasteboard generalPasteboard];
+//    [paste clearContents];
+//    [paste writeObjects:@[[NSString stringWithFormat:@"wget %@", _realURL.stringValue]]];
+//    system([@"open -a Terminal.app" UTF8String]);
 }
 
 - (NSString *)executeJS:(NSString *)js func:(NSString *)func params:(NSArray *)params

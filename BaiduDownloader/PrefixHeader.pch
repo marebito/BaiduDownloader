@@ -1,0 +1,39 @@
+//
+//  PrefixHeader.pch
+//  BaiduDownloader
+//
+//  Created by zll on 2018/4/3.
+//  Copyright © 2018 Godlike Studio. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+
+#import <AppKit/AppKit.h>
+
+#import "JRSwizzle.h"
+#import "OrderedDictionary.h"
+#import "NSDictionary+Unicode.h"
+#import "NSArray+Unicode.h"
+#import "NSObject+DebugDescription.h"
+#import "StringUtil.h"
+
+#define __TOSTR__(FORMAT, ...) [NSString stringWithFormat:FORMAT, ##__VA_ARGS__]
+
+#define WeakObj(o) try{}@finally{} __weak typeof(o) o##Weak = o;
+#define StrongObj(o) autoreleasepool{} __strong typeof(o) o = o##Weak;
+
+#ifdef DEBUG
+#define NSLog(FORMAT, ...) fprintf(stderr,"\n %s:%d   %s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],__LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define NSLog(...)
+#endif
+
+#endif
+
+#endif /* PrefixHeader_pch */

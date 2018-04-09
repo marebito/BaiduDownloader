@@ -12,19 +12,24 @@ PODS:
   - AFNetworking/Reachability (3.2.0)
   - AFNetworking/Security (3.2.0)
   - AFNetworking/Serialization (3.2.0)
-  - Ono (1.2.2)
+  - Ono (2.0.0)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
   - AFNetworking
   - Ono
+  - SDWebImage
   - YYModel
 
 SPEC CHECKSUMS:
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
-  Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
+  Ono: e6d825e80ec73325e6d872ae4f2304f7378acb0e
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: f40e076e40efce97eb49a213f760a84d98b7a452
+PODFILE CHECKSUM: 287b22471c738365bfdf005865cd4fd1fde7a3c4
 
 COCOAPODS: 1.4.0

@@ -51,4 +51,6 @@
 
 @interface StringUtil : NSObject
 
++ (NSString *)fileSizeWithBytes:(long long)bytes;
+
 @end

@@ -38,7 +38,7 @@
 #pragma mark background color
 - (void)drawRect:(NSRect)dirtyRect{
     [self.backgroundColor setFill];
-    NSRectFillUsingOperation(dirtyRect,  NSCompositeSourceOver);
+    NSRectFillUsingOperation(dirtyRect,  NSCompositingOperationSourceOver);
     
 }
 #pragma mark -
