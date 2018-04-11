@@ -19,7 +19,7 @@
      NSTreeNode *_rootTreeNode;
 }
 
-- (NSTreeNode *)treeNodeFromObject:(id)object;
+- (NSTreeNode *)treeNodeFromPath:(NSString *)path;
 
 @end
 
@@ -29,7 +29,7 @@
 {
     if (nil != (self = [super init]))
     {
-        _rootTreeNode = [self treeNodeFromObject:nil];
+        _rootTreeNode = [self treeNodeFromPath:nil];
     }
     return self;
 }
@@ -79,25 +79,25 @@
     return objectValue;
 }
 
-
-- (NSTreeNode *)treeNodeFromObject:(id)object
+- (NSTreeNode *)treeNodeFromPath:(NSString *)path
 {
-    NSString *nodeName = [dictionary objectForKey:NAME_KEY];
-    SimpleNodeData *nodeData = [SimpleNodeData nodeDataWithName:nodeName];
-    NSTreeNode *result = [NSTreeNode treeNodeWithRepresentedObject:nodeData];
-    NSArray *children = [dictionary objectForKey:CHILDREN_KEY];
-    for (id item in children) {
-        NSTreeNode *childTreeNode;
-        if ([item isKindOfClass:[NSDictionary class]]) {
-            childTreeNode = [self treeNodeFromDictionary:item];
-        }
-        else
+    FileListModel *model = self.cacheFileList[path];
+    NSTreeNode *result = [NSTreeNode treeNodeWithRepresentedObject:model.list[0]];
+    if (model)
+    {
+        for (ListModel *lm in model.list)
         {
-            SimpleNodeData *childNodeData = [[SimpleNodeData alloc]initWithName:item];
-            childNodeData.container =NO;
-            childTreeNode = [NSTreeNode treeNodeWithRepresentedObject:childNodeData];
+            NSTreeNode *childTreeNode;
+            if ([lm.isdir integerValue] == 1)
+            {
+                childTreeNode = [self treeNodeFromPath:lm.path];
+            }
+            else
+            {
+                childTreeNode = [NSTreeNode treeNodeWithRepresentedObject:lm];
+            }
+            [[result mutableChildNodes] addObject:childTreeNode];
         }
-        [[result mutableChildNodes] addObject:childTreeNode];
     }
     return result;
 }

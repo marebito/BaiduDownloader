@@ -12,4 +12,6 @@
 
 @property (weak) IBOutlet NSOutlineView *outlineView;
 
+@property (nonatomic, strong) NSMutableDictionary *cacheFileList;
+
 @end
