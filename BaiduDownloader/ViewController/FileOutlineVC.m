@@ -12,6 +12,9 @@
 #define TREE_ROOT_NODE @"TREE_ROOT_NODE"     // 树根
 #define COLUMNID_FILE_NAME @"FileNameColumn" // 文件名列
 #define COLUMNID_FILE_SIZE @"FileSizeColumn" // 文件大小列
+#define FILE_ITEM_CELL @"FileItemCell"       // 文件Cell
+#define FILE_DIR_CELL @"DirItemCell"         // 文件夹Cell
+#define FILE_SIZE_CELL @"FileSizeCell"       // 文件大小Cell
 #define PARENT_KEY @"Parent"                 // 父节点
 #define CHILDREN_KEY @"Children"             // 子节点
 
@@ -28,6 +31,7 @@
 @property (nonatomic, copy) NSString *fileDlinkURL;
 
 - (NSTreeNode *)treeNodeFromListModel:(ListModel *)listModel;
+- (IBAction)copyURL:(id)sender;
 - (IBAction)download:(id)sender;
 @end
 
@@ -41,16 +45,16 @@
 - (void)setFileList:(NSArray *)fileList
 {
     _fileList = fileList;
-    _rootTreeNode = [NSTreeNode treeNodeWithRepresentedObject:TREE_ROOT_NODE];
-    for (ListModel *lm in self.fileList)
-    {
-        [[_rootTreeNode mutableChildNodes] addObject:[self treeNodeFromListModel:lm]];
-    }
 }
 
 - (void)setFileListCache:(MutableOrderedDictionary *)fileListCache
 {
     _fileListCache = fileListCache;
+    _rootTreeNode = [NSTreeNode treeNodeWithRepresentedObject:TREE_ROOT_NODE];
+    for (ListModel *lm in self.fileList)
+    {
+        [[_rootTreeNode mutableChildNodes] addObject:[self treeNodeFromListModel:lm]];
+    }
 }
 
 - (void)setFileDlinkCache:(MutableOrderedDictionary *)fileDlinkCache
@@ -81,6 +85,13 @@
         }
     }
     return result;
+}
+
+- (IBAction)copyURL:(id)sender
+{
+    NSPasteboard *paste = [NSPasteboard generalPasteboard];
+    [paste clearContents];
+    [paste writeObjects:@[self.fileDlinkURL]];
 }
 
 #pragma mark - Actions
@@ -129,42 +140,36 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 {
-    ListModel *nodeData = [item representedObject];
-    return 1 == [nodeData.isdir integerValue];
+    id nodeData = [item representedObject];
+    if ([nodeData isKindOfClass:[ListModel class]])
+    {
+        return 1 == [((ListModel *)nodeData).isdir integerValue];
+    }
+    FileListModel *flm = self.fileListCache[nodeData];
+    if(flm)
+    {
+        return flm.list.count > 0;
+    }
+    return NO;
 }
 
 #pragma mark - NSOutlineViewDelegate
-- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-{
-    id objectValue =nil;
-    ListModel *nodeData = [item representedObject];
-    if ((tableColumn ==nil) || [[tableColumn identifier] isEqualToString:COLUMNID_FILE_NAME])
-    {
-        objectValue = nodeData.server_filename;
-    }
-    if ((tableColumn ==nil) || [[tableColumn identifier] isEqualToString:COLUMNID_FILE_SIZE])
-    {
-        objectValue = nodeData.size;
-    }
-    return objectValue;
-}
-
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {
     NSTableCellView *view;
-    ListModel *nodeData = [item representedObject];
-    if ([item isKindOfClass:[ListModel class]])
+    id nodeData = [item representedObject];
+    if ([nodeData isKindOfClass:[ListModel class]])
     {
-        ListModel *listModel = (ListModel *)item;
-        if ([tableColumn.identifier isEqualToString:@"ServerFileNameColumn"])
+        ListModel *listModel = (ListModel *)nodeData;
+        if ([tableColumn.identifier isEqualToString:COLUMNID_FILE_NAME])
         {
             if ([listModel.isdir integerValue] != 1)
             {
-                view = (NSTableCellView *)[outlineView makeViewWithIdentifier:@"FileItemCell" owner:self];
+                view = (NSTableCellView *)[outlineView makeViewWithIdentifier:FILE_ITEM_CELL owner:self];
             }
             else
             {
-                view = (NSTableCellView *)[outlineView makeViewWithIdentifier:@"DirItemCell" owner:self];
+                view = (NSTableCellView *)[outlineView makeViewWithIdentifier:FILE_DIR_CELL owner:self];
             }
             NSTextField *textField = view.textField;
             if (textField)
@@ -173,9 +178,9 @@
                 [textField sizeToFit];
             }
         }
-        if (([listModel.isdir integerValue] != 1) && [tableColumn.identifier isEqualToString:@"FileSizeColumn"])
+        if (([listModel.isdir integerValue] != 1) && [tableColumn.identifier isEqualToString:COLUMNID_FILE_SIZE])
         {
-            view = (NSTableCellView *)[outlineView makeViewWithIdentifier:@"FileSizeCell" owner:self];
+            view = (NSTableCellView *)[outlineView makeViewWithIdentifier:FILE_SIZE_CELL owner:self];
             NSTextField *textField = view.textField;
             if (textField)
             {
@@ -186,20 +191,20 @@
     }
     else
     {
-        if ([tableColumn.identifier isEqualToString:@"ServerFileNameColumn"])
+        if ([tableColumn.identifier isEqualToString:COLUMNID_FILE_NAME])
         {
-            view = (NSTableCellView *)[outlineView makeViewWithIdentifier:@"DirItemCell" owner:self];
+            view = (NSTableCellView *)[outlineView makeViewWithIdentifier:FILE_DIR_CELL owner:self];
             NSTextField *textField = view.textField;
             if (textField)
             {
-                textField.stringValue = item;
+                textField.stringValue = [nodeData lastPathComponent];
                 [textField sizeToFit];
             }
         }
-        if ([tableColumn.identifier isEqualToString:@"FileSizeColumn"])
+        if ([tableColumn.identifier isEqualToString:COLUMNID_FILE_SIZE])
         {
-            long long allFileSize = [self fileSizeWithDir:item];
-            view = (NSTableCellView *)[outlineView makeViewWithIdentifier:@"FileSizeCell" owner:self];
+            long long allFileSize = [self fileSizeWithDir:nodeData];
+            view = (NSTableCellView *)[outlineView makeViewWithIdentifier:FILE_SIZE_CELL owner:self];
             NSTextField *textField = view.textField;
             if (textField)
             {
@@ -218,7 +223,14 @@
     {
         for (ListModel *listModel in ((FileListModel *)self.fileListCache[dir]).list)
         {
-            allFileSize += [listModel.size longLongValue];
+            if ([listModel.isdir integerValue] == 1)
+            {
+                allFileSize += [self fileSizeWithDir:listModel.path];
+            }
+            else
+            {
+                allFileSize += [listModel.size longLongValue];
+            }
         }
     }
     return allFileSize;
@@ -227,23 +239,24 @@
 - (void)updateDescView:(id)object
 {
     if (!object) return;
-    if ([object isKindOfClass:[ListModel class]])
+    id model = [object representedObject];
+    if ([model isKindOfClass:[ListModel class]])
     {
-        self.serverFileName.stringValue = ((ListModel *)object).server_filename;
-        self.fileDir.stringValue = ((ListModel *)object).path;
-        self.fileSize.stringValue = [StringUtil fileSizeWithBytes:[((ListModel *)object).size longLongValue]];
-        self.fileMD5.stringValue = ((ListModel *)object).md5;
+        self.serverFileName.stringValue = ((ListModel *)model).server_filename;
+        self.fileDir.stringValue = ((ListModel *)model).path;
+        self.fileSize.stringValue = [StringUtil fileSizeWithBytes:[((ListModel *)model).size longLongValue]];
+        self.fileMD5.stringValue = ((ListModel *)model).md5;
         if ([[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"png"].location != NSNotFound || [[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"jpg"].location != NSNotFound || [[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"gif"].location != NSNotFound || [[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"webp"].location != NSNotFound)
         {
-            [self.previewImage sd_setImageWithURL:[NSURL URLWithString:self.fileDlinkCache[((ListModel *)object).fs_id]] placeholderImage:nil options:SDWebImageRetryFailed];
+            //            [self.previewImage sd_setImageWithURL:[NSURL URLWithString:self.fileDlinkCache[((ListModel *)model).fs_id]] placeholderImage:nil options:SDWebImageRetryFailed completed:^(NSImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {}];
         }
-        self.fileDlinkURL = self.fileDlinkCache[((ListModel *)object).fs_id];
+        self.fileDlinkURL = self.fileDlinkCache[((ListModel *)model).fs_id];
     }
     else
     {
-        self.serverFileName.stringValue = object;
-        self.fileDir.stringValue = object;
-        self.fileSize.stringValue = [StringUtil fileSizeWithBytes:[self fileSizeWithDir:object]];
+        self.serverFileName.stringValue = model;
+        self.fileDir.stringValue = model;
+        self.fileSize.stringValue = [StringUtil fileSizeWithBytes:[self fileSizeWithDir:model]];
         self.fileMD5.stringValue = @"";
         self.previewImage.image = nil;
     }
@@ -278,7 +291,7 @@
     if (callback) callback(result, filePath);
 }
 
-- (void)selectFile:(void (^)(NSInteger response, NSString *filePath))callback isPresent:(BOOL)isPresent
+- (void)selectDownloadPath:(void (^)(NSInteger response, NSString *filePath))callback isPresent:(BOOL)isPresent
 {
     NSOpenPanel* panel = [NSOpenPanel openPanel];
     //是否可以创建文件夹
@@ -312,26 +325,60 @@
 
 - (IBAction)download:(id)sender
 {
-    switch (_downloadStyle.indexOfSelectedItem) {
+    [self selectDownloadPath:^(NSInteger response, NSString *filePath) {
+        NSLog(@"%@", filePath);
+        switch (_downloadStyle.indexOfSelectedItem) {
             case -1:
             case 0:
-        {
-            NSLog(@"默认");
-        }
-            break;
+            {
+                NSLog(@"默认");
+            }
+                break;
             case 1:
-        {
-            NSLog(@"迅雷");
-        }
-            break;
+            {
+                NSLog(@"迅雷");
+            }
+                break;
             case 2:
-        {
-            NSLog(@"Folx");
+            {
+                NSLog(@"Folx");
+            }
+                break;
+            case 3:
+            {
+                // wget
+                NSAppleEventDescriptor *eventDescriptor = nil;
+                NSAppleScript *script = nil;
+                NSString *dir = @"~/Documents/workspace/AMOutlineView";
+                NSArray *fileName = @[@"file1", @"file2"];
+                NSArray *array = @[@"http://google.com", @"http://example.com"];
+                NSMutableArray *cmds = [[NSMutableArray alloc] init];
+                for (int i = 0; i < array.count; i++)
+                {
+                    NSString *wgetCmd = [NSString stringWithFormat:@"wget -P %@ -O %@/%@ %@",dir, dir, fileName[i], array[i]];
+                    [cmds addObject:wgetCmd];
+                }
+                NSString *cmdArray = [NSString stringWithFormat:@"\"%@\"",[cmds componentsJoinedByString:@"\",\""]];
+
+                NSString *scriptSource = [NSString stringWithFormat:@"set downloads to {%@}\n tell application \"Terminal\"\n    activate\n repeat with download in downloads\n do script download in tab 1 of window 1\n end repeat\nend tell", cmdArray];
+                if (scriptSource)
+                {
+                    script = [[NSAppleScript alloc] initWithSource:scriptSource];
+                    if (script)
+                    {
+                        eventDescriptor = [script executeAndReturnError:nil];
+                        if (eventDescriptor)
+                        {
+                            NSLog(@"%@", [eventDescriptor stringValue]);
+                        }
+                    }
+                }
+            }
+                break;
+            default:
+                break;
         }
-            break;
-        default:
-            break;
-    }
+    } isPresent:YES];
 }
 
 @end

@@ -700,6 +700,33 @@
 
 - (IBAction)fetch:(id)sender
 {
+    NSString *modelCachePath = [self modelCachePath];
+    NSString *rootJson = [NSString stringWithContentsOfFile:[modelCachePath stringByAppendingPathComponent:@"ROOT.json"] encoding:NSUTF8StringEncoding error:nil];
+    NSString *fileListModelJson = [NSString stringWithContentsOfFile:[modelCachePath stringByAppendingPathComponent:@"FILELISTMODEL.json"] encoding:NSUTF8StringEncoding error:nil];
+    NSString *fileDlinkJson = [NSString stringWithContentsOfFile:[modelCachePath stringByAppendingPathComponent:@"FILEDLINK.json"] encoding:NSUTF8StringEncoding error:nil];
+    self.sdm = [SetDataModel yy_modelWithJSON:rootJson];
+    MutableOrderedDictionary *fileCache = [NSJSONSerialization JSONObjectWithData:[fileListModelJson dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:NULL];
+    if (!self.fileListDic) {
+        self.fileListDic = [[MutableOrderedDictionary alloc] init];
+    }
+    for (NSString *path in fileCache)
+    {
+        self.fileListDic[path] = [FileListModel yy_modelWithJSON:fileCache[path]];
+    }
+    self.fileDLinkDic = [NSJSONSerialization JSONObjectWithData:[fileDlinkJson dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:NULL];
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    CustomWindowVC *outlineVC = [storyboard instantiateControllerWithIdentifier:@"FileOutlineWindow"];
+    ((FileOutlineVC *)outlineVC.contentViewController).fileList = self.sdm.file_list.list;
+    ((FileOutlineVC *)outlineVC.contentViewController).fileListCache = self.fileListDic;
+    ((FileOutlineVC *)outlineVC.contentViewController).fileDlinkCache = self.fileDLinkDic;
+    ((FileOutlineVC *)outlineVC.contentViewController).getFileList = ^(NSString *path, GetFileListBlock block) {
+        if (block)
+        {
+            block(self.fileListDic[path]);
+        }
+    };
+    [outlineVC showWithStyle:ShowWindowStyleSheet];
+    return;
     if (self.sdm && !self.parseErrorFlag)
     {
         [self showFileOutlineView];
@@ -761,6 +788,33 @@
     JSValue *jsFunc = self.context[func];
     JSValue *value = [jsFunc callWithArguments:params];
     return [value toString];
+}
+
+- (NSString *)modelCachePath
+{
+    NSString *bundle = [[NSBundle mainBundle] resourcePath];
+    NSString *modelCachePath = [[bundle substringToIndex:[bundle rangeOfString:@"Library"].location] stringByAppendingPathComponent:@"Desktop/BaiduModelCache"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:modelCachePath])
+    {
+        NSError * error = nil;
+        BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:modelCachePath
+                                                 withIntermediateDirectories:YES
+                                                                  attributes:nil
+                                                                       error:&error];
+        if (!success || error) {
+            NSLog(@"[创建文件夹失败]! %@", error);
+            return nil;
+        }
+    }
+    return modelCachePath;
+}
+
+- (void)cacheModel
+{
+    NSString *modelCachePath = [self modelCachePath];
+    [[self.sdm yy_modelToJSONString] writeToFile:[modelCachePath stringByAppendingPathComponent:@"ROOT.json"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    [[self.fileListDic yy_modelToJSONString] writeToFile:[modelCachePath stringByAppendingPathComponent:@"FILELISTMODEL.json"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    [[self.fileDLinkDic yy_modelToJSONString] writeToFile:[modelCachePath stringByAppendingPathComponent:@"FILEDLINK.json"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 @end

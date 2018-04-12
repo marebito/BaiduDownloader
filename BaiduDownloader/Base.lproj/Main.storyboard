@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
@@ -969,11 +969,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="nt2-oS-zQz" customClass="CustomTableCellView">
-                                                            <rect key="frame" x="150" y="1" width="307" height="17"/>
+                                                            <rect key="frame" x="150" y="1" width="306" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fG-eP-yTh">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="307" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="306" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="S2a-Vr-EgK">
                                                                         <font key="font" metaFont="system"/>
@@ -1002,11 +1002,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Wfb-36-YwP" customClass="CustomTableCellView">
-                                                            <rect key="frame" x="459.5" y="1" width="51" height="17"/>
+                                                            <rect key="frame" x="459.5" y="1" width="50" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iXO-wt-zFM">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="51" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="x8r-66-f4D">
                                                                         <font key="font" metaFont="system"/>
@@ -1031,7 +1031,7 @@
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="f1u-iQ-dOo">
-                                    <rect key="frame" x="0.0" y="8" width="0.0" height="15"/>
+                                    <rect key="frame" x="0.0" y="7" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="L3P-AZ-N3O">
@@ -1205,11 +1205,11 @@
                                             </subviews>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Wo0-kf-pJd">
-                                            <rect key="frame" x="-7" y="8" width="0.0" height="15"/>
+                                            <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Ca8-xh-Gyi">
-                                            <rect key="frame" x="-14" y="15" width="15" height="0.0"/>
+                                            <rect key="frame" x="-15" y="23" width="16" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <tableHeaderView key="headerView" id="e8i-ZZ-C0T">
@@ -1327,7 +1327,7 @@
                                     <comboBox verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jb-f4-pPT">
                                         <rect key="frame" x="93" y="286" width="50" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="border" title="默认" drawsBackground="YES" completes="NO" numberOfVisibleItems="3" id="teG-Dt-c66">
+                                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="border" title="默认" drawsBackground="YES" completes="NO" numberOfVisibleItems="4" id="teG-Dt-c66">
                                             <font key="font" metaFont="cellTitle"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1335,6 +1335,7 @@
                                                 <string>默认</string>
                                                 <string>迅雷</string>
                                                 <string>Folx</string>
+                                                <string>wget</string>
                                             </objectValues>
                                         </comboBoxCell>
                                     </comboBox>
@@ -1345,6 +1346,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="12" name=".PingFangSC-Regular"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="copyURL:" target="5Ti-NO-yMW" id="Dl6-7l-oMu"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rBv-BB-vMc">
                                         <rect key="frame" x="158" y="289" width="57" height="19"/>
