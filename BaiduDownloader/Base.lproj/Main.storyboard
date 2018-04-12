@@ -1072,7 +1072,7 @@
                 </windowController>
                 <customObject id="XPs-3T-CY0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-784" y="1605"/>
+            <point key="canvasLocation" x="-539" y="1604"/>
         </scene>
         <!--File OutlineVC-->
         <scene sceneID="1pa-JN-Ceg">
@@ -1099,7 +1099,7 @@
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn identifier="ServerFileNameColumn" width="346" minWidth="40" maxWidth="1000" id="VPg-F7-Trp">
+                                                        <tableColumn identifier="FileNameColumn" width="346" minWidth="40" maxWidth="1000" id="VPg-F7-Trp">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="文件名">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

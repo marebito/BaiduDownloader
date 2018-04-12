@@ -9,7 +9,16 @@
 #import "FileOutlineVC.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#define TREE_ROOT_NODE @"TREE_ROOT_NODE"     // 树根
+#define COLUMNID_FILE_NAME @"FileNameColumn" // 文件名列
+#define COLUMNID_FILE_SIZE @"FileSizeColumn" // 文件大小列
+#define PARENT_KEY @"Parent"                 // 父节点
+#define CHILDREN_KEY @"Children"             // 子节点
+
 @interface FileOutlineVC () <NSOutlineViewDelegate, NSOutlineViewDataSource>
+{
+    NSTreeNode *_rootTreeNode;
+}
 @property (weak) IBOutlet NSTextField *serverFileName;
 @property (weak) IBOutlet NSTextField *fileDir;
 @property (weak) IBOutlet NSTextField *fileSize;
@@ -17,6 +26,8 @@
 @property (weak) IBOutlet NSComboBox *downloadStyle;
 @property (weak) IBOutlet NSImageView *previewImage;
 @property (nonatomic, copy) NSString *fileDlinkURL;
+
+- (NSTreeNode *)treeNodeFromListModel:(ListModel *)listModel;
 - (IBAction)download:(id)sender;
 @end
 
@@ -25,6 +36,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)setFileList:(NSArray *)fileList
+{
+    _fileList = fileList;
+    _rootTreeNode = [NSTreeNode treeNodeWithRepresentedObject:TREE_ROOT_NODE];
+    for (ListModel *lm in self.fileList)
+    {
+        [[_rootTreeNode mutableChildNodes] addObject:[self treeNodeFromListModel:lm]];
+    }
 }
 
 - (void)setFileListCache:(MutableOrderedDictionary *)fileListCache
@@ -37,6 +58,29 @@
     _fileDlinkCache = fileDlinkCache;
     [self.outlineView reloadData];
     [self updateDescView:[self.outlineView itemAtRow:0]];
+}
+
+- (NSTreeNode *)treeNodeFromListModel:(ListModel *)listModel
+{
+    FileListModel *model = self.fileListCache[listModel.path];
+    NSTreeNode *result = [NSTreeNode treeNodeWithRepresentedObject:listModel.path];
+    if (model)
+    {
+        for (ListModel *lm in model.list)
+        {
+            NSTreeNode *childTreeNode;
+            if ([lm.isdir integerValue] == 1)
+            {
+                childTreeNode = [self treeNodeFromListModel:lm];
+            }
+            else
+            {
+                childTreeNode = [NSTreeNode treeNodeWithRepresentedObject:lm];
+            }
+            [[result mutableChildNodes] addObject:childTreeNode];
+        }
+    }
+    return result;
 }
 
 #pragma mark - Actions
@@ -58,41 +102,57 @@
 }
 
 #pragma mark - NSOutlineViewDataSource
+- (NSArray *)childrenForItem:(id)item
+{
+    if (item ==nil)
+    {
+        return [_rootTreeNode childNodes];
+    }
+    else
+    {
+        return [item childNodes];
+    }
+}
 
 // 返回包含子项目的数量
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
-    return MAX(1, ((FileListModel *)self.fileListCache[item]).list.count);
+    NSArray *children = [self childrenForItem:item];
+    return [children count];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
-    FileListModel *model = ((FileListModel *)self.fileListCache[item]);
-    if (model)
-    {
-        ListModel *file = model.list[index];
-        if ([file.isdir integerValue] == 1)
-        {
-            return self.fileListCache[file.path];
-        }
-        else
-        {
-            return file;
-        }
-    }
-    return [self.fileListCache keyAtIndex:index];
+    NSArray *children = [self childrenForItem:item];
+    return [children objectAtIndex:index];
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 {
-    FileListModel *model = ((FileListModel *)self.fileListCache[item]);
-    return model.list.count > 0;
+    ListModel *nodeData = [item representedObject];
+    return 1 == [nodeData.isdir integerValue];
 }
 
 #pragma mark - NSOutlineViewDelegate
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+{
+    id objectValue =nil;
+    ListModel *nodeData = [item representedObject];
+    if ((tableColumn ==nil) || [[tableColumn identifier] isEqualToString:COLUMNID_FILE_NAME])
+    {
+        objectValue = nodeData.server_filename;
+    }
+    if ((tableColumn ==nil) || [[tableColumn identifier] isEqualToString:COLUMNID_FILE_SIZE])
+    {
+        objectValue = nodeData.size;
+    }
+    return objectValue;
+}
+
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {
     NSTableCellView *view;
+    ListModel *nodeData = [item representedObject];
     if ([item isKindOfClass:[ListModel class]])
     {
         ListModel *listModel = (ListModel *)item;

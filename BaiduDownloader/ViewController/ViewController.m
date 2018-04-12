@@ -666,6 +666,7 @@
     {
         NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
         CustomWindowVC *outlineVC = [storyboard instantiateControllerWithIdentifier:@"FileOutlineWindow"];
+        ((FileOutlineVC *)outlineVC.contentViewController).fileList = self.sdm.file_list.list;
         ((FileOutlineVC *)outlineVC.contentViewController).fileListCache = self.fileListDic;
         ((FileOutlineVC *)outlineVC.contentViewController).fileDlinkCache = self.fileDLinkDic;
         ((FileOutlineVC *)outlineVC.contentViewController).getFileList = ^(NSString *path, GetFileListBlock block) {

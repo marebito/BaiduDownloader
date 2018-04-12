@@ -13,6 +13,7 @@ typedef void (^GetFileListBlock)(FileListModel *model);
 
 @interface FileOutlineVC : NSViewController
 @property (weak) IBOutlet NSOutlineView *outlineView;
+@property (nonatomic, strong) NSArray *fileList;
 @property (nonatomic, strong) MutableOrderedDictionary *fileListCache;
 @property (nonatomic, strong) MutableOrderedDictionary *fileDlinkCache;
 @property (nonatomic, copy) void (^getFileList) (NSString *path, GetFileListBlock block);

@@ -17,7 +17,6 @@
 		54461D33205F8ABC00C2835B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D32205F8ABC00C2835B /* main.m */; };
 		54461D3C205F8B6B00C2835B /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D3B205F8B6B00C2835B /* HttpUtil.m */; };
 		5446E96D2075B8080080DBCC /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5446E96C2075B8080080DBCC /* ImageAndTextCell.m */; };
-		5446E9712075C3710080DBCC /* FileOutlineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5446E9702075C3710080DBCC /* FileOutlineDataSource.m */; };
 		5455A9F8206C53940030D137 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 5455A9F7206C53940030D137 /* close.png */; };
 		5455A9FB206C69430030D137 /* CustomTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FA206C69430030D137 /* CustomTableRowView.m */; };
 		5455A9FE206C697B0030D137 /* CustomTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FD206C697B0030D137 /* CustomTableCellView.m */; };
@@ -69,8 +68,6 @@
 		54461D3B205F8B6B00C2835B /* HttpUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
 		5446E96B2075B8080080DBCC /* ImageAndTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
 		5446E96C2075B8080080DBCC /* ImageAndTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
-		5446E96F2075C3710080DBCC /* FileOutlineDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileOutlineDataSource.h; sourceTree = "<group>"; };
-		5446E9702075C3710080DBCC /* FileOutlineDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileOutlineDataSource.m; sourceTree = "<group>"; };
 		5455A9F7206C53940030D137 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		5455A9F9206C69430030D137 /* CustomTableRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableRowView.h; sourceTree = "<group>"; };
 		5455A9FA206C69430030D137 /* CustomTableRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableRowView.m; sourceTree = "<group>"; };
@@ -260,8 +257,6 @@
 			children = (
 				54BBF048206815D100C27FF8 /* SetDataModel.h */,
 				54BBF049206815D100C27FF8 /* SetDataModel.m */,
-				5446E96F2075C3710080DBCC /* FileOutlineDataSource.h */,
-				5446E9702075C3710080DBCC /* FileOutlineDataSource.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -532,7 +527,6 @@
 				5455A9FE206C697B0030D137 /* CustomTableCellView.m in Sources */,
 				549854512073280900AB8942 /* CustomTextFieldCell.m in Sources */,
 				549854552073AE7D00AB8942 /* JRSwizzle.m in Sources */,
-				5446E9712075C3710080DBCC /* FileOutlineDataSource.m in Sources */,
 				5467E4872064FD2900F39920 /* ClickableImageView.m in Sources */,
 				549854632073B4A000AB8942 /* NSArray+Unicode.m in Sources */,
 				549854602073B23500AB8942 /* NSDictionary+Unicode.m in Sources */,
