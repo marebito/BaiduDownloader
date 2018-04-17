@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2201D76DCD9DD8ABF83DBF34 /* Pods_BaiduDownloader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC99FB40D9B14CC6C5AC013 /* Pods_BaiduDownloader.framework */; };
 		54140228206BD47100F8733E /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 54140226206BD47100F8733E /* OrderedDictionary.m */; };
-		54166E3C207F7EB4007990AB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 54166E25207F7EB4007990AB /* .gitignore */; };
 		54166E3D207F7EB4007990AB /* bootstrap-responsive.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 54166E27207F7EB4007990AB /* bootstrap-responsive.min.css */; };
 		54166E3E207F7EB4007990AB /* bootstrap.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 54166E28207F7EB4007990AB /* bootstrap.min.css */; };
 		54166E3F207F7EB4007990AB /* main.css in Resources */ = {isa = PBXBuildFile; fileRef = 54166E29207F7EB4007990AB /* main.css */; };
@@ -72,7 +71,6 @@
 /* Begin PBXFileReference section */
 		54140226206BD47100F8733E /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 		54140227206BD47100F8733E /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
-		54166E25207F7EB4007990AB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		54166E27207F7EB4007990AB /* bootstrap-responsive.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "bootstrap-responsive.min.css"; sourceTree = "<group>"; };
 		54166E28207F7EB4007990AB /* bootstrap.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.min.css; sourceTree = "<group>"; };
 		54166E29207F7EB4007990AB /* main.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = main.css; sourceTree = "<group>"; };
@@ -200,7 +198,6 @@
 		54166E24207F7EB4007990AB /* yaaw */ = {
 			isa = PBXGroup;
 			children = (
-				54166E25207F7EB4007990AB /* .gitignore */,
 				54166E26207F7EB4007990AB /* css */,
 				54166E2A207F7EB4007990AB /* img */,
 				54166E2E207F7EB4007990AB /* index.html */,
@@ -536,7 +533,6 @@
 				5465FAB4206A927D0054F573 /* background.jpg in Resources */,
 				54166E4F207F7EB4007990AB /* TODO.md in Resources */,
 				5465FAC2206A94690054F573 /* JMModalOverlay-Info.plist in Resources */,
-				54166E3C207F7EB4007990AB /* .gitignore in Resources */,
 				54461D30205F8ABC00C2835B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

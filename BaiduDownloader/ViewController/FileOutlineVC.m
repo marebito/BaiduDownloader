@@ -9,26 +9,26 @@
 #import "FileOutlineVC.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-#define TREE_ROOT_NODE @"TREE_ROOT_NODE"     // 树根
-#define COLUMNID_FILE_NAME @"FileNameColumn" // 文件名列
-#define COLUMNID_FILE_SIZE @"FileSizeColumn" // 文件大小列
-#define FILE_ITEM_CELL @"FileItemCell"       // 文件Cell
-#define FILE_DIR_CELL @"DirItemCell"         // 文件夹Cell
-#define FILE_SIZE_CELL @"FileSizeCell"       // 文件大小Cell
-#define PARENT_KEY @"Parent"                 // 父节点
-#define CHILDREN_KEY @"Children"             // 子节点
+#define TREE_ROOT_NODE @"TREE_ROOT_NODE"      // 树根
+#define COLUMNID_FILE_NAME @"FileNameColumn"  // 文件名列
+#define COLUMNID_FILE_SIZE @"FileSizeColumn"  // 文件大小列
+#define FILE_ITEM_CELL @"FileItemCell"        // 文件Cell
+#define FILE_DIR_CELL @"DirItemCell"          // 文件夹Cell
+#define FILE_SIZE_CELL @"FileSizeCell"        // 文件大小Cell
+#define PARENT_KEY @"Parent"                  // 父节点
+#define CHILDREN_KEY @"Children"              // 子节点
 
-@interface FileOutlineVC () <NSOutlineViewDelegate, NSOutlineViewDataSource>
+@interface FileOutlineVC ()<NSOutlineViewDelegate, NSOutlineViewDataSource>
 {
     NSTreeNode *_rootTreeNode;
 }
-@property (weak) IBOutlet NSTextField *serverFileName;
-@property (weak) IBOutlet NSTextField *fileDir;
-@property (weak) IBOutlet NSTextField *fileSize;
-@property (weak) IBOutlet NSTextField *fileMD5;
-@property (weak) IBOutlet NSComboBox *downloadStyle;
-@property (weak) IBOutlet NSImageView *previewImage;
-@property (nonatomic, copy) NSString *fileDlinkURL;
+@property(weak) IBOutlet NSTextField *serverFileName;
+@property(weak) IBOutlet NSTextField *fileDir;
+@property(weak) IBOutlet NSTextField *fileSize;
+@property(weak) IBOutlet NSTextField *fileMD5;
+@property(weak) IBOutlet NSComboBox *downloadStyle;
+@property(weak) IBOutlet NSImageView *previewImage;
+@property(nonatomic, copy) NSString *fileDlinkURL;
 
 - (NSTreeNode *)treeNodeFromListModel:(ListModel *)listModel;
 - (IBAction)copyURL:(id)sender;
@@ -37,16 +37,8 @@
 
 @implementation FileOutlineVC
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
-- (void)setFileList:(NSArray *)fileList
-{
-    _fileList = fileList;
-}
-
+- (void)viewDidLoad { [super viewDidLoad]; }
+- (void)setFileList:(NSArray *)fileList { _fileList = fileList; }
 - (void)setFileListCache:(MutableOrderedDictionary *)fileListCache
 {
     _fileListCache = fileListCache;
@@ -91,7 +83,7 @@
 {
     NSPasteboard *paste = [NSPasteboard generalPasteboard];
     [paste clearContents];
-    [paste writeObjects:@[self.fileDlinkURL]];
+    [paste writeObjects:@[ self.fileDlinkURL ]];
 }
 
 #pragma mark - Actions
@@ -115,7 +107,7 @@
 #pragma mark - NSOutlineViewDataSource
 - (NSArray *)childrenForItem:(id)item
 {
-    if (item ==nil)
+    if (item == nil)
     {
         return [_rootTreeNode childNodes];
     }
@@ -146,7 +138,7 @@
         return 1 == [((ListModel *)nodeData).isdir integerValue];
     }
     FileListModel *flm = self.fileListCache[nodeData];
-    if(flm)
+    if (flm)
     {
         return flm.list.count > 0;
     }
@@ -219,7 +211,7 @@
 - (long long)fileSizeWithDir:(NSString *)dir
 {
     long long allFileSize = 0;
-    if(((FileListModel *)self.fileListCache[dir]).list.count > 0)
+    if (((FileListModel *)self.fileListCache[dir]).list.count > 0)
     {
         for (ListModel *listModel in ((FileListModel *)self.fileListCache[dir]).list)
         {
@@ -246,9 +238,19 @@
         self.fileDir.stringValue = ((ListModel *)model).path;
         self.fileSize.stringValue = [StringUtil fileSizeWithBytes:[((ListModel *)model).size longLongValue]];
         self.fileMD5.stringValue = ((ListModel *)model).md5;
-        if ([[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"png"].location != NSNotFound || [[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"jpg"].location != NSNotFound || [[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"gif"].location != NSNotFound || [[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"webp"].location != NSNotFound)
+        if ([[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"png"].location !=
+                NSNotFound ||
+            [[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"jpg"].location !=
+                NSNotFound ||
+            [[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"gif"].location !=
+                NSNotFound ||
+            [[[self.serverFileName.stringValue pathExtension] lowercaseString] rangeOfString:@"webp"].location !=
+                NSNotFound)
         {
-            //            [self.previewImage sd_setImageWithURL:[NSURL URLWithString:self.fileDlinkCache[((ListModel *)model).fs_id]] placeholderImage:nil options:SDWebImageRetryFailed completed:^(NSImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {}];
+            //            [self.previewImage sd_setImageWithURL:[NSURL URLWithString:self.fileDlinkCache[((ListModel
+            //            *)model).fs_id]] placeholderImage:nil options:SDWebImageRetryFailed completed:^(NSImage *
+            //            _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable
+            //            imageURL) {}];
         }
         self.fileDlinkURL = self.fileDlinkCache[((ListModel *)model).fs_id];
     }
@@ -264,7 +266,8 @@
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification
 {
-    if (![notification.object isKindOfClass:[NSOutlineView class]]) {
+    if (![notification.object isKindOfClass:[NSOutlineView class]])
+    {
         return;
     }
     NSOutlineView *outlineView = (NSOutlineView *)notification.object;
@@ -277,12 +280,9 @@
 
 #pragma mark - Keyboard Handling
 
-- (void)keyDown:(NSEvent *)event
+- (void)keyDown:(NSEvent *)event { [self interpretKeyEvents:[NSArray arrayWithObject:event]]; }
+- (void)selectFile:(void (^)(NSInteger, NSString *))callback panel:(NSOpenPanel *)panel result:(NSInteger)result
 {
-    [self interpretKeyEvents:[NSArray arrayWithObject:event]];
-}
-
-- (void)selectFile:(void (^)(NSInteger, NSString *))callback panel:(NSOpenPanel *)panel result:(NSInteger)result {
     NSString *filePath = nil;
     if (result == NSModalResponseOK)
     {
@@ -293,74 +293,120 @@
 
 - (void)selectDownloadPath:(void (^)(NSInteger response, NSString *filePath))callback isPresent:(BOOL)isPresent
 {
-    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
     //是否可以创建文件夹
     panel.canCreateDirectories = YES;
     //是否可以选择文件夹
     panel.canChooseDirectories = YES;
     //是否可以选择文件
     panel.canChooseFiles = YES;
-    
+
     //是否可以多选
     [panel setAllowsMultipleSelection:NO];
-    
+
     __weak typeof(self) weakSelf = self;
     if (!isPresent)
     {
         //显示
-        [panel beginSheetModalForWindow:self.view.window completionHandler:^(NSInteger result) {
-            __strong typeof(weakSelf) strongSelf = weakSelf;
-            [strongSelf selectFile:callback panel:panel result:result];
-        }];
+        [panel beginSheetModalForWindow:self.view.window
+                      completionHandler:^(NSModalResponse result) {
+                          __strong typeof(weakSelf) strongSelf = weakSelf;
+                          [strongSelf selectFile:callback panel:panel result:result];
+                      }];
     }
     else
     {
         // 悬浮电脑主屏幕上
-        [panel beginWithCompletionHandler:^(NSInteger result) {
+        [panel beginWithCompletionHandler:^(NSModalResponse result) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             [strongSelf selectFile:callback panel:panel result:result];
         }];
     }
 }
 
+- (NSMutableArray *)filesInDir:(NSString *)dir
+{
+    NSMutableArray *files = [[NSMutableArray alloc] init];
+    FileListModel *flm = self.fileListCache[dir];
+    for (ListModel *lm in flm.list)
+    {
+        if ([lm.isdir integerValue] == 1)
+        {
+            [files addObjectsFromArray:[self filesInDir:lm.path]];
+        }
+        else
+        {
+            [files addObject:@{@"name":lm.server_filename, @"link":self.fileDlinkCache[lm.fs_id]}];
+        }
+    }
+    return files;
+}
+
 - (IBAction)download:(id)sender
 {
-    [self selectDownloadPath:^(NSInteger response, NSString *filePath) {
+    @WeakObj(self)[self selectDownloadPath:^(NSModalResponse response, NSString *filePath) {
+        @StrongObj(self)
+        if (response == 0) return;
+        NSString *downloadDir = filePath;
         NSLog(@"%@", filePath);
-        switch (_downloadStyle.indexOfSelectedItem) {
+        id nodeData = [[self.outlineView itemAtRow:self.outlineView.selectedRow] representedObject];
+        NSMutableArray *files;
+        if ([nodeData isKindOfClass:[FileModel class]])
+        {
+            [files addObject:self.fileDlinkCache[((FileModel *)nodeData).fs_id]];
+        }
+        else
+        {
+            files = [self filesInDir:nodeData];
+        }
+        switch (self.downloadStyle.indexOfSelectedItem)
+        {
             case -1:
             case 0:
             {
                 NSLog(@"默认");
             }
-                break;
+            break;
             case 1:
             {
                 NSLog(@"迅雷");
+                if (![[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.xunlei.Thunder"
+                                                                          options:NSWorkspaceLaunchDefault
+                                                   additionalEventParamDescriptor:NULL
+                                                                 launchIdentifier:NULL])
+                    return;
+                NSString *command = [NSString stringWithFormat:@"open -a /Applications/Thunder.app %@", @"skldfj"];
+                system([[command stringByReplacingOccurrencesOfString:@"&" withString:@"'&'"] UTF8String]);
             }
-                break;
+            break;
             case 2:
             {
                 NSLog(@"Folx");
+                if (![[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.eltima.Folx3"
+                options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:NULL launchIdentifier:NULL]) return;
+                NSString *command = [NSString stringWithFormat:@"open -a /Applications/Folx.app %@", @""];
+                system([[command stringByReplacingOccurrencesOfString:@"&" withString:@"'&'"] UTF8String]);
             }
-                break;
+            break;
             case 3:
             {
                 // wget
                 NSAppleEventDescriptor *eventDescriptor = nil;
                 NSAppleScript *script = nil;
-                NSString *dir = @"~/Documents/workspace/AMOutlineView";
-                NSArray *fileName = @[@"file1", @"file2"];
-                NSArray *array = @[@"http://google.com", @"http://example.com"];
                 NSMutableArray *cmds = [[NSMutableArray alloc] init];
-                for (int i = 0; i < array.count; i++)
+                for (int i = 0; i < files.count; i++)
                 {
-                    NSString *wgetCmd = [NSString stringWithFormat:@"wget -P %@ -O %@/%@ %@",dir, dir, fileName[i], array[i]];
+                    NSString *wgetCmd =
+                        [NSString stringWithFormat:@"wget -c -P %@ -O %@/%@ %@", downloadDir, downloadDir, files[i][@"name"], files[i][@"link"]];
                     [cmds addObject:wgetCmd];
                 }
-                NSString *cmdArray = [NSString stringWithFormat:@"\"%@\"",[cmds componentsJoinedByString:@"\",\""]];
+                NSString *cmdArray = [NSString stringWithFormat:@"\"%@\"", [cmds componentsJoinedByString:@"\",\""]];
 
-                NSString *scriptSource = [NSString stringWithFormat:@"set downloads to {%@}\n tell application \"Terminal\"\n    activate\n repeat with download in downloads\n do script download in tab 1 of window 1\n end repeat\nend tell", cmdArray];
+                NSString *scriptSource =
+                    [NSString stringWithFormat:@"set downloads to {%@}\n tell application \"Terminal\"\n    activate\n "
+                                               @"repeat with download in downloads\n do script download in tab 1 of "
+                                               @"window 1\n end repeat\nend tell",
+                                               cmdArray];
                 if (scriptSource)
                 {
                     script = [[NSAppleScript alloc] initWithSource:scriptSource];
@@ -374,11 +420,12 @@
                     }
                 }
             }
-                break;
+            break;
             default:
                 break;
         }
-    } isPresent:YES];
+    }
+                                 isPresent:NO];
 }
 
 @end
