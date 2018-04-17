@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2201D76DCD9DD8ABF83DBF34 /* Pods_BaiduDownloader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC99FB40D9B14CC6C5AC013 /* Pods_BaiduDownloader.framework */; };
+		540D2C3A2085FD6700A5ED36 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 540D2C392085FD6700A5ED36 /* close.png */; };
+		540D2C3F2086050900A5ED36 /* NSOutlineView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 540D2C3E2086050900A5ED36 /* NSOutlineView+Additions.m */; };
 		54140228206BD47100F8733E /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 54140226206BD47100F8733E /* OrderedDictionary.m */; };
 		54166E3D207F7EB4007990AB /* bootstrap-responsive.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 54166E27207F7EB4007990AB /* bootstrap-responsive.min.css */; };
 		54166E3E207F7EB4007990AB /* bootstrap.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 54166E28207F7EB4007990AB /* bootstrap.min.css */; };
@@ -36,7 +38,6 @@
 		54461D33205F8ABC00C2835B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D32205F8ABC00C2835B /* main.m */; };
 		54461D3C205F8B6B00C2835B /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D3B205F8B6B00C2835B /* HttpUtil.m */; };
 		5446E96D2075B8080080DBCC /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5446E96C2075B8080080DBCC /* ImageAndTextCell.m */; };
-		5455A9F8206C53940030D137 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 5455A9F7206C53940030D137 /* close.png */; };
 		5455A9FB206C69430030D137 /* CustomTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FA206C69430030D137 /* CustomTableRowView.m */; };
 		5455A9FE206C697B0030D137 /* CustomTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FD206C697B0030D137 /* CustomTableCellView.m */; };
 		5465FAB4206A927D0054F573 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5465FAB3206A927D0054F573 /* background.jpg */; };
@@ -69,6 +70,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		540D2C392085FD6700A5ED36 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		540D2C3D2086050900A5ED36 /* NSOutlineView+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSOutlineView+Additions.h"; sourceTree = "<group>"; };
+		540D2C3E2086050900A5ED36 /* NSOutlineView+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSOutlineView+Additions.m"; sourceTree = "<group>"; };
 		54140226206BD47100F8733E /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 		54140227206BD47100F8733E /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
 		54166E27207F7EB4007990AB /* bootstrap-responsive.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "bootstrap-responsive.min.css"; sourceTree = "<group>"; };
@@ -106,7 +110,6 @@
 		54461D3B205F8B6B00C2835B /* HttpUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
 		5446E96B2075B8080080DBCC /* ImageAndTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
 		5446E96C2075B8080080DBCC /* ImageAndTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
-		5455A9F7206C53940030D137 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		5455A9F9206C69430030D137 /* CustomTableRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableRowView.h; sourceTree = "<group>"; };
 		5455A9FA206C69430030D137 /* CustomTableRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableRowView.m; sourceTree = "<group>"; };
 		5455A9FC206C697B0030D137 /* CustomTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableCellView.h; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 				54A25BA9206CF9E000D3061A /* CustomOutlineView.m */,
 				5446E96B2075B8080080DBCC /* ImageAndTextCell.h */,
 				5446E96C2075B8080080DBCC /* ImageAndTextCell.m */,
+				540D2C3D2086050900A5ED36 /* NSOutlineView+Additions.h */,
+				540D2C3E2086050900A5ED36 /* NSOutlineView+Additions.m */,
 			);
 			path = CustomOutlineView;
 			sourceTree = "<group>";
@@ -420,7 +425,7 @@
 		54BBF047206815B900C27FF8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				5455A9F7206C53940030D137 /* close.png */,
+				540D2C392085FD6700A5ED36 /* close.png */,
 				5465FAB3206A927D0054F573 /* background.jpg */,
 				54BBF0252067799B00C27FF8 /* checkcode.png */,
 				54BBF01B20676D6300C27FF8 /* download.png */,
@@ -477,6 +482,11 @@
 					54461D22205F8ABC00C2835B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -520,12 +530,12 @@
 				54BBF01C20676D6300C27FF8 /* download.png in Resources */,
 				54166E47207F7EB4007990AB /* jquery.base64.min.js in Resources */,
 				54166E49207F7EB4007990AB /* jquery.Storage.js in Resources */,
-				5455A9F8206C53940030D137 /* close.png in Resources */,
 				54BBF01620674C5200C27FF8 /* copy_link.png in Resources */,
 				54166E3D207F7EB4007990AB /* bootstrap-responsive.min.css in Resources */,
 				54166E4C207F7EB4007990AB /* yaaw.js in Resources */,
 				54166E4D207F7EB4007990AB /* offline.appcache in Resources */,
 				54BBF01820674E7600C27FF8 /* convert.png in Resources */,
+				540D2C3A2085FD6700A5ED36 /* close.png in Resources */,
 				54166E41207F7EB4007990AB /* glyphicons-halflings-white.png in Resources */,
 				54166E3E207F7EB4007990AB /* bootstrap.min.css in Resources */,
 				54166E42207F7EB4007990AB /* glyphicons-halflings.png in Resources */,
@@ -609,6 +619,7 @@
 				54461D2B205F8ABC00C2835B /* ViewController.m in Sources */,
 				54E48CAE206CCC400088B954 /* CustomOutlineRowView.m in Sources */,
 				54BBF04A206815D100C27FF8 /* SetDataModel.m in Sources */,
+				540D2C3F2086050900A5ED36 /* NSOutlineView+Additions.m in Sources */,
 				549FFE01206C499F001C9D2B /* DownLoadManager.m in Sources */,
 				5446E96D2075B8080080DBCC /* ImageAndTextCell.m in Sources */,
 				54461D33205F8ABC00C2835B /* main.m in Sources */,

@@ -28,11 +28,14 @@
 @property(weak) IBOutlet NSTextField *fileMD5;
 @property(weak) IBOutlet NSComboBox *downloadStyle;
 @property(weak) IBOutlet NSImageView *previewImage;
+@property(weak) IBOutlet NSButton *cpLinkBtn;
 @property(nonatomic, copy) NSString *fileDlinkURL;
 
 - (NSTreeNode *)treeNodeFromListModel:(ListModel *)listModel;
 - (IBAction)copyURL:(id)sender;
 - (IBAction)download:(id)sender;
+- (IBAction)close:(id)sender;
+
 @end
 
 @implementation FileOutlineVC
@@ -53,6 +56,7 @@
 {
     _fileDlinkCache = fileDlinkCache;
     [self.outlineView reloadData];
+    [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:YES];
     [self updateDescView:[self.outlineView itemAtRow:0]];
 }
 
@@ -336,7 +340,7 @@
         }
         else
         {
-            [files addObject:@{@"name":lm.server_filename, @"link":self.fileDlinkCache[lm.fs_id]}];
+            [files addObject:@{ @"name" : lm.server_filename, @"link" : self.fileDlinkCache[lm.fs_id] }];
         }
     }
     return files;
@@ -345,10 +349,8 @@
 - (IBAction)download:(id)sender
 {
     @WeakObj(self)[self selectDownloadPath:^(NSModalResponse response, NSString *filePath) {
-        @StrongObj(self)
-        if (response == 0) return;
+        @StrongObj(self) if (response == 0) return;
         NSString *downloadDir = filePath;
-        NSLog(@"%@", filePath);
         id nodeData = [[self.outlineView itemAtRow:self.outlineView.selectedRow] representedObject];
         NSMutableArray *files;
         if ([nodeData isKindOfClass:[FileModel class]])
@@ -358,6 +360,11 @@
         else
         {
             files = [self filesInDir:nodeData];
+        }
+        NSMutableArray *links = [[NSMutableArray alloc] init];
+        for (NSDictionary *dic in files)
+        {
+            [links addObject:dic[@"link"]];
         }
         switch (self.downloadStyle.indexOfSelectedItem)
         {
@@ -374,8 +381,15 @@
                                                                           options:NSWorkspaceLaunchDefault
                                                    additionalEventParamDescriptor:NULL
                                                                  launchIdentifier:NULL])
+                {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+                    NSRunAlertPanel(@"无法下载", @"未安装迅雷， 请安装最新版本迅雷进行下载", @"OK", nil, nil);
+#pragma clang diagnostic pop
                     return;
-                NSString *command = [NSString stringWithFormat:@"open -a /Applications/Thunder.app %@", @"skldfj"];
+                }
+                NSString *command = [NSString
+                    stringWithFormat:@"open -a /Applications/Thunder.app %@", [links componentsJoinedByString:@" "]];
                 system([[command stringByReplacingOccurrencesOfString:@"&" withString:@"'&'"] UTF8String]);
             }
             break;
@@ -383,8 +397,18 @@
             {
                 NSLog(@"Folx");
                 if (![[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.eltima.Folx3"
-                options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:NULL launchIdentifier:NULL]) return;
-                NSString *command = [NSString stringWithFormat:@"open -a /Applications/Folx.app %@", @""];
+                                                                          options:NSWorkspaceLaunchDefault
+                                                   additionalEventParamDescriptor:NULL
+                                                                 launchIdentifier:NULL])
+                {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+                    NSRunAlertPanel(@"无法下载", @"未安装Folx， 请安装最新版本Folx进行下载", @"OK", nil, nil);
+#pragma clang diagnostic pop
+                    return;
+                }
+                NSString *command = [NSString
+                    stringWithFormat:@"open -a /Applications/Folx.app %@", [links componentsJoinedByString:@" "]];
                 system([[command stringByReplacingOccurrencesOfString:@"&" withString:@"'&'"] UTF8String]);
             }
             break;
@@ -396,8 +420,8 @@
                 NSMutableArray *cmds = [[NSMutableArray alloc] init];
                 for (int i = 0; i < files.count; i++)
                 {
-                    NSString *wgetCmd =
-                        [NSString stringWithFormat:@"wget -c -P %@ -O %@/%@ %@", downloadDir, downloadDir, files[i][@"name"], files[i][@"link"]];
+                    NSString *wgetCmd = [NSString stringWithFormat:@"wget -P %@ -O %@/%@ %@", downloadDir, downloadDir,
+                                                                   files[i][@"name"], files[i][@"link"]];
                     [cmds addObject:wgetCmd];
                 }
                 NSString *cmdArray = [NSString stringWithFormat:@"\"%@\"", [cmds componentsJoinedByString:@"\",\""]];
@@ -428,4 +452,5 @@
                                  isPresent:NO];
 }
 
+- (IBAction)close:(id)sender { [self.view.window close]; }
 @end

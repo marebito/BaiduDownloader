@@ -787,17 +787,6 @@
                                     <action selector="fetchVCode:" target="XfG-lQ-9wD" id="Af2-e6-x2f"/>
                                 </connections>
                             </imageView>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wp8-yZ-0ie">
-                                <rect key="frame" x="34" y="45" width="68" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="迅 雷" bezelStyle="shadowlessSquare" image="thunder" imagePosition="left" alignment="center" alternateImage="thunder" imageScaling="proportionallyUpOrDown" inset="2" id="y5v-b9-I41" customClass="ColorTitleButtonCell">
-                                    <behavior key="behavior" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="downloadWithThunder:" target="XfG-lQ-9wD" id="C2b-iP-ChO"/>
-                                </connections>
-                            </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bK6-YQ-DKJ">
                                 <rect key="frame" x="353" y="235" width="116" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -807,17 +796,6 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="fetch:" target="XfG-lQ-9wD" id="phF-OE-PHa"/>
-                                </connections>
-                            </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vM-a9-jQm">
-                                <rect key="frame" x="413" y="45" width="66" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="下 载" bezelStyle="shadowlessSquare" image="download" imagePosition="left" alignment="center" alternateImage="download" imageScaling="proportionallyUpOrDown" inset="2" id="W6K-d0-2u3" customClass="ColorTitleButtonCell">
-                                    <behavior key="behavior" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="downloadWithWget:" target="XfG-lQ-9wD" id="W7r-k1-ylU"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wKH-hT-div">
@@ -838,17 +816,6 @@
                                     <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Yc-gN-hFF">
-                                <rect key="frame" x="156" y="45" width="59" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="Folx" bezelStyle="shadowlessSquare" image="folx" imagePosition="left" alignment="center" alternateImage="folx" imageScaling="proportionallyUpOrDown" inset="2" id="4c1-Ih-34d" customClass="ColorTitleButtonCell">
-                                    <behavior key="behavior" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="downloadWithFolx:" target="XfG-lQ-9wD" id="ZdZ-cG-ih2"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eIz-Pf-6gk">
                                 <rect key="frame" x="345" y="185" width="124" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -858,17 +825,6 @@
                                     <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64p-ls-qWo">
-                                <rect key="frame" x="276" y="45" width="85" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="拷贝链接" bezelStyle="shadowlessSquare" image="copy_link" imagePosition="left" alignment="center" alternateImage="copy_link" imageScaling="proportionallyUpOrDown" inset="2" id="bS7-oq-7sU" customClass="ColorTitleButtonCell">
-                                    <behavior key="behavior" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="copyDirectLink:" target="XfG-lQ-9wD" id="JC8-Qk-aBH"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -1325,7 +1281,7 @@
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" id="lpn-Zx-wNo"/>
                                     </imageView>
                                     <comboBox verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jb-f4-pPT">
-                                        <rect key="frame" x="93" y="286" width="50" height="24"/>
+                                        <rect key="frame" x="93" y="286" width="56" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="border" title="默认" drawsBackground="YES" completes="NO" numberOfVisibleItems="4" id="teG-Dt-c66">
                                             <font key="font" metaFont="cellTitle"/>
@@ -1361,11 +1317,23 @@
                                             <action selector="download:" target="5Ti-NO-yMW" id="m46-jR-KoP"/>
                                         </connections>
                                     </button>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pPv-nR-frf">
+                                        <rect key="frame" x="330" y="433" width="28" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="close" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="CmV-Rd-stW">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="close:" target="5Ti-NO-yMW" id="wvW-gT-Dx6"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </customView>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="cpLinkBtn" destination="w6S-jW-nCg" id="dQH-bO-dME"/>
                         <outlet property="downloadStyle" destination="3jb-f4-pPT" id="boS-Rp-h6F"/>
                         <outlet property="fileDir" destination="5mX-13-faq" id="urm-AW-64G"/>
                         <outlet property="fileMD5" destination="qVb-SH-KNl" id="zip-ot-tYP"/>
@@ -1385,10 +1353,6 @@
         <image name="arrows" width="108" height="111"/>
         <image name="background" width="1024" height="640"/>
         <image name="checkcode" width="240" height="80"/>
-        <image name="close" width="14" height="14"/>
-        <image name="copy_link" width="88" height="88"/>
-        <image name="download" width="100" height="109"/>
-        <image name="folx" width="44" height="44"/>
-        <image name="thunder" width="44" height="44"/>
+        <image name="close" width="3.4360086917877197" height="3.4360086917877197"/>
     </resources>
 </document>
