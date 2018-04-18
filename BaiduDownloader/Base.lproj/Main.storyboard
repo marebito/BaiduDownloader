@@ -958,7 +958,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Wfb-36-YwP" customClass="CustomTableCellView">
-                                                            <rect key="frame" x="460" y="1" width="51" height="17"/>
+                                                            <rect key="frame" x="459.5" y="1" width="51" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iXO-wt-zFM">
@@ -1153,7 +1153,6 @@
                                                         </tableColumn>
                                                     </tableColumns>
                                                     <connections>
-                                                        <action selector="clickedItem:" target="5Ti-NO-yMW" id="vmB-9b-9Xm"/>
                                                         <action trigger="doubleAction" selector="doubleClickedItem:" target="5Ti-NO-yMW" id="eGw-vf-qst"/>
                                                         <outlet property="dataSource" destination="5Ti-NO-yMW" id="qFD-VM-1TP"/>
                                                         <outlet property="delegate" destination="5Ti-NO-yMW" id="15Y-V4-ZfK"/>

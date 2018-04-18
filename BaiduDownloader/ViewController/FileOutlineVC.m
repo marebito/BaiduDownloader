@@ -21,6 +21,7 @@
 @interface FileOutlineVC ()<NSOutlineViewDelegate, NSOutlineViewDataSource>
 {
     NSTreeNode *_rootTreeNode;
+    NSInteger _lastSelectedRow;
 }
 @property(weak) IBOutlet NSTextField *serverFileName;
 @property(weak) IBOutlet NSTextField *fileDir;
@@ -59,6 +60,7 @@
     [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:YES];
     [self.outlineView expandItem:[self.outlineView itemAtRow:0] expandChildren:YES];
     [self updateDescView:[self.outlineView itemAtRow:0]];
+    _lastSelectedRow = 0;
 }
 
 - (NSTreeNode *)treeNodeFromListModel:(ListModel *)listModel
@@ -92,16 +94,10 @@
 }
 
 #pragma mark - Actions
-- (IBAction)clickedItem:(NSOutlineView *)sender
-{
-    if ([self.outlineView clickedRow] == -1) {
-        [self.outlineView deselectAll:nil];
-    }
-}
-
 - (IBAction)doubleClickedItem:(NSOutlineView *)sender
 {
     id item = [sender itemAtRow:[sender clickedRow]];
+    if (!item) return;
     if ([sender isItemExpanded:item])
     {
         [sender collapseItem:item];
@@ -110,6 +106,7 @@
     {
         [sender expandItem:item];
     }
+    _lastSelectedRow = [sender clickedRow];
 }
 
 #pragma mark - NSOutlineViewDataSource
@@ -274,12 +271,23 @@
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification
 {
-    if (![notification.object isKindOfClass:[NSOutlineView class]])
-    {
-        return;
-    }
     NSOutlineView *outlineView = (NSOutlineView *)notification.object;
+    if (![notification.object isKindOfClass:[NSOutlineView class]]) return;
     id item = [outlineView itemAtRow:outlineView.selectedRow];
+    self.cpLinkBtn.hidden = [[item representedObject] isKindOfClass:[NSString class]];
+    if ([self.outlineView clickedRow] == -1)
+    {
+        if (item)
+        {
+            _lastSelectedRow = outlineView.selectedRow;
+        }
+        else
+        {
+            [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:_lastSelectedRow]
+                          byExtendingSelection:YES];
+            return;
+        }
+    }
     if (item)
     {
         [self updateDescView:item];
@@ -356,10 +364,10 @@
         @StrongObj(self) if (response == 0) return;
         NSString *downloadDir = filePath;
         id nodeData = [[self.outlineView itemAtRow:self.outlineView.selectedRow] representedObject];
-        NSMutableArray *files;
+        NSMutableArray *files = [[NSMutableArray alloc] init];
         if ([nodeData isKindOfClass:[FileModel class]])
         {
-            [files addObject:self.fileDlinkCache[((FileModel *)nodeData).fs_id]];
+            [files addObject:@{ @"link" : self.fileDlinkCache[((FileModel *)nodeData).fs_id] }];
         }
         else
         {
