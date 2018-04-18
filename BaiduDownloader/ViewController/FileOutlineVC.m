@@ -57,6 +57,7 @@
     _fileDlinkCache = fileDlinkCache;
     [self.outlineView reloadData];
     [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:YES];
+    [self.outlineView expandItem:[self.outlineView itemAtRow:0] expandChildren:YES];
     [self updateDescView:[self.outlineView itemAtRow:0]];
 }
 
@@ -91,20 +92,23 @@
 }
 
 #pragma mark - Actions
+- (IBAction)clickedItem:(NSOutlineView *)sender
+{
+    if ([self.outlineView clickedRow] == -1) {
+        [self.outlineView deselectAll:nil];
+    }
+}
 
 - (IBAction)doubleClickedItem:(NSOutlineView *)sender
 {
     id item = [sender itemAtRow:[sender clickedRow]];
-    if ([item isKindOfClass:[NSString class]])
+    if ([sender isItemExpanded:item])
     {
-        if ([sender isItemExpanded:item])
-        {
-            [sender collapseItem:item];
-        }
-        else
-        {
-            [sender expandItem:item];
-        }
+        [sender collapseItem:item];
+    }
+    else
+    {
+        [sender expandItem:item];
     }
 }
 
