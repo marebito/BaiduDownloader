@@ -2,7 +2,7 @@
 //  NSObject+DebugDescription.h
 //  BaiduDownloader
 //
-//  Created by zll on 2018/4/4.
+//  Created by Yuri Boyka on 2018/4/4.
 //  Copyright © 2018 Godlike Studio. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  FileListVC.m
 //  BaiduDownloader
 //
-//  Created by zll on 27/03/2018.
+//  Created by Yuri Boyka on 27/03/2018.
 //  Copyright © 2018 Godlike Studio. All rights reserved.
 //
 

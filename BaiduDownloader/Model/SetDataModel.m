@@ -2,7 +2,7 @@
 //  SetDataModel.m
 //  BaiduDownloader
 //
-//  Created by zll on 26/03/2018.
+//  Created by Yuri Boyka on 26/03/2018.
 //  Copyright © 2018 Godlike Studio. All rights reserved.
 //
 

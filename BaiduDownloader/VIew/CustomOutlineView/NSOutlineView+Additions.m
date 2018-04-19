@@ -2,7 +2,7 @@
 //  NSOutlineView+Additions.m
 //  BaiduDownloader
 //
-//  Created by zll on 2018/4/17.
+//  Created by Yuri Boyka on 2018/4/17.
 //  Copyright © 2018年 Godlike Studio. All rights reserved.
 //
 

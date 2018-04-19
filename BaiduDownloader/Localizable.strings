@@ -1,0 +1,15 @@
+//
+//  Localizable.strings
+//  BaiduDownloader
+//
+//  Created by Yuri Boyka on 27/03/2018.
+//  Copyright © 2018 Godlike Studio. All rights reserved.
+//
+/* FRENCH : 
+"Version %@ (Build %@)" = "Version %@ (%@)";
+"Credits" = "Remerciements";
+"EULA" = "CL Utilisateur Final"*/
+
+"Version %@ (Build %@)" = "Version %@ (Build %@)";
+"Credits" = "Acknowledgments";
+"License Agreement" = "License";

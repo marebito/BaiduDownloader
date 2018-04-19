@@ -2,14 +2,14 @@
 //  ViewController.m
 //  BaiduDownloader
 //
-//  Created by zll on 2018/3/19.
+//  Created by Yuri Boyka on 2018/3/19.
 //  Copyright © 2018年 Godlike Studio. All rights reserved.
 //
 
 #import "ViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "AboutWindowController.h"
 #import "YYModel.h"
-#import "Ono.h"
 #import "HttpUtil.h"
 #import "SetDataModel.h"
 #import "JMModalOverlay.h"
@@ -102,13 +102,10 @@
 @property(nonatomic, strong) MutableOrderedDictionary *fileListDic;
 @property(nonatomic, strong) MutableOrderedDictionary *fileDLinkDic;
 @property(nonatomic, strong) JMModalOverlay *modalOverlay;
-
+@property AboutWindowController *aboutWindowController;
+- (IBAction)showHelp:(id)sender;
 - (IBAction)fetch:(id)sender;
 - (IBAction)fetchVCode:(id)sender;
-- (IBAction)copyDirectLink:(id)sender;
-- (IBAction)downloadWithFolx:(id)sender;
-- (IBAction)downloadWithThunder:(id)sender;
-- (IBAction)downloadWithWget:(id)sender;
 
 @end
 
@@ -116,9 +113,34 @@
 
 - (void)viewDidLoad
 {
+    NSVisualEffectView *blurryView = [[NSVisualEffectView alloc] initWithFrame:CGRectMake(0, 0, 800, 600)];
+    
+    // this is default value but is here for clarity
+    blurryView.blendingMode = NSVisualEffectBlendingModeBehindWindow;
+    // set the background to always be the dark blur
+    blurryView.material = NSVisualEffectMaterialDark;
+
+    // set it to always be blurry regardless of window state
+    blurryView.state = NSVisualEffectStateActive;
+
+
+    //    self.window.contentView.addSubview(blurryView)
     [super viewDidLoad];
+    self.view.window.opaque = NO;
+    self.view.window.backgroundColor = [NSColor clearColor];
     self.vcodeIV.enabled = NO;
     self.vcodeTF.enabled = NO;
+    self.aboutWindowController = [[AboutWindowController alloc] init];
+    [self.aboutWindowController setAppURL:[[NSURL alloc] initWithString:@"http://app.faramaz.com"]];
+    [self.aboutWindowController
+        setAppCopyright:[[NSAttributedString alloc]
+                            initWithString:@"Nice Small String"
+                                attributes:@{
+                                    NSForegroundColorAttributeName : [NSColor tertiaryLabelColor],
+                                    NSFontAttributeName : [NSFont fontWithName:@"HelveticaNeue" size:11]
+                                }]];
+    [self.aboutWindowController
+        setAppName:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
 }
 
 - (void)setRepresentedObject:(id)representedObject { [super setRepresentedObject:representedObject]; }
@@ -177,7 +199,9 @@
                                  {
                                      [self setStatus:@"此"
                                                      @"链"
-                                                     @"接分享内容可能因为涉及侵权、色情、反动、低俗等信息，无法访问！"
+                                                     @"接"
+                                                     @"分"
+                                                     @"享内容可能因为涉及侵权、色情、反动、低俗等信息，无法访问！"
                                            isSuccess:NO];
                                      return;
                                  }
@@ -885,40 +909,42 @@
            }];
 }
 
+- (IBAction)showHelp:(id)sender { [self.aboutWindowController showWindow:nil]; }
 - (IBAction)fetch:(id)sender
 {
-//        NSString *modelCachePath = [self modelCachePath];
-//        NSString *rootJson = [NSString stringWithContentsOfFile:[modelCachePath
-//        stringByAppendingPathComponent:@"ROOT.json"] encoding:NSUTF8StringEncoding error:nil];
-//        NSString *fileListModelJson = [NSString stringWithContentsOfFile:[modelCachePath
-//        stringByAppendingPathComponent:@"FILELISTMODEL.json"] encoding:NSUTF8StringEncoding error:nil];
-//        NSString *fileDlinkJson = [NSString stringWithContentsOfFile:[modelCachePath
-//        stringByAppendingPathComponent:@"FILEDLINK.json"] encoding:NSUTF8StringEncoding error:nil];
-//        self.sdm = [SetDataModel yy_modelWithJSON:rootJson];
-//        MutableOrderedDictionary *fileCache = [NSJSONSerialization JSONObjectWithData:[fileListModelJson
-//        dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:NULL];
-//        if (!self.fileListDic) {
-//            self.fileListDic = [[MutableOrderedDictionary alloc] init];
-//        }
-//        for (NSString *path in fileCache)
-//        {
-//            self.fileListDic[path] = [FileListModel yy_modelWithJSON:fileCache[path]];
-//        }
-//        self.fileDLinkDic = [NSJSONSerialization JSONObjectWithData:[fileDlinkJson
-//        dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:NULL];
-//        NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
-//        CustomWindowVC *outlineVC = [storyboard instantiateControllerWithIdentifier:@"FileOutlineWindow"];
-//        ((FileOutlineVC *)outlineVC.contentViewController).fileList = self.sdm.file_list.list;
-//        ((FileOutlineVC *)outlineVC.contentViewController).fileListCache = self.fileListDic;
-//        ((FileOutlineVC *)outlineVC.contentViewController).fileDlinkCache = self.fileDLinkDic;
-//        ((FileOutlineVC *)outlineVC.contentViewController).getFileList = ^(NSString *path, GetFileListBlock block) {
-//            if (block)
-//            {
-//                block(self.fileListDic[path]);
-//            }
-//        };
-//        [outlineVC showWithStyle:ShowWindowStyleSheet];
-//        return;
+    //        NSString *modelCachePath = [self modelCachePath];
+    //        NSString *rootJson = [NSString stringWithContentsOfFile:[modelCachePath
+    //        stringByAppendingPathComponent:@"ROOT.json"] encoding:NSUTF8StringEncoding error:nil];
+    //        NSString *fileListModelJson = [NSString stringWithContentsOfFile:[modelCachePath
+    //        stringByAppendingPathComponent:@"FILELISTMODEL.json"] encoding:NSUTF8StringEncoding error:nil];
+    //        NSString *fileDlinkJson = [NSString stringWithContentsOfFile:[modelCachePath
+    //        stringByAppendingPathComponent:@"FILEDLINK.json"] encoding:NSUTF8StringEncoding error:nil];
+    //        self.sdm = [SetDataModel yy_modelWithJSON:rootJson];
+    //        MutableOrderedDictionary *fileCache = [NSJSONSerialization JSONObjectWithData:[fileListModelJson
+    //        dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:NULL];
+    //        if (!self.fileListDic) {
+    //            self.fileListDic = [[MutableOrderedDictionary alloc] init];
+    //        }
+    //        for (NSString *path in fileCache)
+    //        {
+    //            self.fileListDic[path] = [FileListModel yy_modelWithJSON:fileCache[path]];
+    //        }
+    //        self.fileDLinkDic = [NSJSONSerialization JSONObjectWithData:[fileDlinkJson
+    //        dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:NULL];
+    //        NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    //        CustomWindowVC *outlineVC = [storyboard instantiateControllerWithIdentifier:@"FileOutlineWindow"];
+    //        ((FileOutlineVC *)outlineVC.contentViewController).fileList = self.sdm.file_list.list;
+    //        ((FileOutlineVC *)outlineVC.contentViewController).fileListCache = self.fileListDic;
+    //        ((FileOutlineVC *)outlineVC.contentViewController).fileDlinkCache = self.fileDLinkDic;
+    //        ((FileOutlineVC *)outlineVC.contentViewController).getFileList = ^(NSString *path, GetFileListBlock block)
+    //        {
+    //            if (block)
+    //            {
+    //                block(self.fileListDic[path]);
+    //            }
+    //        };
+    //        [outlineVC showWithStyle:ShowWindowStyleSheet];
+    //        return;
     if (self.sdm && !self.parseErrorFlag)
     {
         [self showFileOutlineView];
@@ -945,30 +971,6 @@
     NSPasteboard *paste = [NSPasteboard generalPasteboard];
     [paste clearContents];
     //    [paste writeObjects:@[_realURL.stringValue]];
-}
-
-- (IBAction)downloadWithFolx:(id)sender
-{
-    //    if (![[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.eltima.Folx3"
-    //    options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:NULL launchIdentifier:NULL]) return;
-    //    NSString *command = [NSString stringWithFormat:@"open -a /Applications/Folx.app %@", _realURL.stringValue];
-    //    system([[command stringByReplacingOccurrencesOfString:@"&" withString:@"'&'"] UTF8String]);
-}
-
-- (IBAction)downloadWithThunder:(id)sender
-{
-    //    if (![[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.xunlei.Thunder"
-    //    options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:NULL launchIdentifier:NULL]) return;
-    //    NSString *command = [NSString stringWithFormat:@"open -a /Applications/Thunder.app %@", _realURL.stringValue];
-    //    system([[command stringByReplacingOccurrencesOfString:@"&" withString:@"'&'"] UTF8String]);
-}
-
-- (IBAction)downloadWithWget:(id)sender
-{
-    //    NSPasteboard *paste = [NSPasteboard generalPasteboard];
-    //    [paste clearContents];
-    //    [paste writeObjects:@[[NSString stringWithFormat:@"wget %@", _realURL.stringValue]]];
-    //    system([@"open -a Terminal.app" UTF8String]);
 }
 
 - (NSString *)executeJS:(NSString *)js func:(NSString *)func params:(NSArray *)params

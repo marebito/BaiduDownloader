@@ -67,6 +67,12 @@
 		54CFC67D206378B8004F0C25 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CFC67C206378B7004F0C25 /* JavaScriptCore.framework */; };
 		54E48CAE206CCC400088B954 /* CustomOutlineRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */; };
 		54E48CBA206CD2FE0088B954 /* CustomWindowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E48CB9206CD2FE0088B954 /* CustomWindowVC.m */; };
+		54F9844B2086EC9B00C9E4D0 /* EULA.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 54F984492086EC9B00C9E4D0 /* EULA.rtf */; };
+		54F9844C2086EC9B00C9E4D0 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 54F9844A2086EC9B00C9E4D0 /* Credits.rtf */; };
+		54F9844E2086ECAF00C9E4D0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 54F9844D2086ECAE00C9E4D0 /* Localizable.strings */; };
+		54F984542087206500C9E4D0 /* AboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F984512087206500C9E4D0 /* AboutWindow.xib */; };
+		54F984552087206500C9E4D0 /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F984532087206500C9E4D0 /* AboutWindowController.m */; };
+		54F9845E2087366A00C9E4D0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F9845D2087366A00C9E4D0 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -161,6 +167,13 @@
 		54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomOutlineRowView.m; sourceTree = "<group>"; };
 		54E48CB8206CD2FE0088B954 /* CustomWindowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomWindowVC.h; sourceTree = "<group>"; };
 		54E48CB9206CD2FE0088B954 /* CustomWindowVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomWindowVC.m; sourceTree = "<group>"; };
+		54F984492086EC9B00C9E4D0 /* EULA.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = EULA.rtf; sourceTree = "<group>"; };
+		54F9844A2086EC9B00C9E4D0 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		54F9844D2086ECAE00C9E4D0 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		54F984512087206500C9E4D0 /* AboutWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutWindow.xib; sourceTree = "<group>"; };
+		54F984522087206500C9E4D0 /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
+		54F984532087206500C9E4D0 /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWindowController.m; sourceTree = "<group>"; };
+		54F9845D2087366A00C9E4D0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		65A55BF2B930BCDDBD217304 /* Pods-BaiduDownloader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaiduDownloader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaiduDownloader/Pods-BaiduDownloader.debug.xcconfig"; sourceTree = "<group>"; };
 		EEC99FB40D9B14CC6C5AC013 /* Pods_BaiduDownloader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaiduDownloader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F67AB1C341AD46075E290D8D /* Pods-BaiduDownloader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaiduDownloader.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaiduDownloader/Pods-BaiduDownloader.release.xcconfig"; sourceTree = "<group>"; };
@@ -171,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54F9845E2087366A00C9E4D0 /* Accelerate.framework in Frameworks */,
 				54CFC67D206378B8004F0C25 /* JavaScriptCore.framework in Frameworks */,
 				2201D76DCD9DD8ABF83DBF34 /* Pods_BaiduDownloader.framework in Frameworks */,
 			);
@@ -182,6 +196,7 @@
 		0358E7F7D167E7333E891130 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				54F9845D2087366A00C9E4D0 /* Accelerate.framework */,
 				54BBF0272068097600C27FF8 /* libxml2.2.tbd */,
 				54CFC67C206378B7004F0C25 /* JavaScriptCore.framework */,
 				EEC99FB40D9B14CC6C5AC013 /* Pods_BaiduDownloader.framework */,
@@ -287,6 +302,9 @@
 				54BBF047206815B900C27FF8 /* Images */,
 				54461D31205F8ABC00C2835B /* Info.plist */,
 				54461D32205F8ABC00C2835B /* main.m */,
+				54F9844A2086EC9B00C9E4D0 /* Credits.rtf */,
+				54F984492086EC9B00C9E4D0 /* EULA.rtf */,
+				54F9844D2086ECAE00C9E4D0 /* Localizable.strings */,
 				54461D2E205F8ABC00C2835B /* Main.storyboard */,
 				5455A9F4206C4CE00030D137 /* Model */,
 				5455A9F6206C4D070030D137 /* VIew */,
@@ -350,6 +368,7 @@
 		5455A9F5206C4CE80030D137 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				54F984502087206500C9E4D0 /* AboutWindow */,
 				5465FAC3206A94E00054F573 /* FileListVC.h */,
 				5465FAC4206A94E00054F573 /* FileListVC.m */,
 				54A25BA5206CEB8F00D3061A /* FileOutlineVC.h */,
@@ -438,6 +457,16 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		54F984502087206500C9E4D0 /* AboutWindow */ = {
+			isa = PBXGroup;
+			children = (
+				54F984512087206500C9E4D0 /* AboutWindow.xib */,
+				54F984522087206500C9E4D0 /* AboutWindowController.h */,
+				54F984532087206500C9E4D0 /* AboutWindowController.m */,
+			);
+			path = AboutWindow;
+			sourceTree = "<group>";
+		};
 		AA10EE730DB8ECEAA36EDA44 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -522,6 +551,8 @@
 				54166E40207F7EB4007990AB /* favicon.ico in Resources */,
 				54461D2D205F8ABC00C2835B /* Assets.xcassets in Resources */,
 				54BBF01A20676C7100C27FF8 /* arrows.png in Resources */,
+				54F984542087206500C9E4D0 /* AboutWindow.xib in Resources */,
+				54F9844B2086EC9B00C9E4D0 /* EULA.rtf in Resources */,
 				54166E43207F7EB4007990AB /* index.html in Resources */,
 				54166E4B207F7EB4007990AB /* peerid.js in Resources */,
 				54166E3F207F7EB4007990AB /* main.css in Resources */,
@@ -529,8 +560,10 @@
 				54BBF0262067799C00C27FF8 /* checkcode.png in Resources */,
 				54BBF01C20676D6300C27FF8 /* download.png in Resources */,
 				54166E47207F7EB4007990AB /* jquery.base64.min.js in Resources */,
+				54F9844E2086ECAF00C9E4D0 /* Localizable.strings in Resources */,
 				54166E49207F7EB4007990AB /* jquery.Storage.js in Resources */,
 				54BBF01620674C5200C27FF8 /* copy_link.png in Resources */,
+				54F9844C2086EC9B00C9E4D0 /* Credits.rtf in Resources */,
 				54166E3D207F7EB4007990AB /* bootstrap-responsive.min.css in Resources */,
 				54166E4C207F7EB4007990AB /* yaaw.js in Resources */,
 				54166E4D207F7EB4007990AB /* offline.appcache in Resources */,
@@ -615,6 +648,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				546607442063291800370966 /* StringUtil.m in Sources */,
+				54F984552087206500C9E4D0 /* AboutWindowController.m in Sources */,
 				54E48CBA206CD2FE0088B954 /* CustomWindowVC.m in Sources */,
 				54461D2B205F8ABC00C2835B /* ViewController.m in Sources */,
 				54E48CAE206CCC400088B954 /* CustomOutlineRowView.m in Sources */,

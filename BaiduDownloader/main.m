@@ -2,7 +2,7 @@
 //  main.m
 //  BaiduDownloader
 //
-//  Created by zll on 2018/3/19.
+//  Created by Yuri Boyka on 2018/3/19.
 //  Copyright © 2018年 Godlike Studio. All rights reserved.
 //
 
