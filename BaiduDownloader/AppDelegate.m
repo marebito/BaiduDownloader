@@ -7,15 +7,19 @@
 //
 
 #import "AppDelegate.h"
+#import "RegisterWindowController.h"
 
 @interface AppDelegate ()
-
+@property(nonatomic, strong) RegisterWindowController *registerWindowController;
+- (IBAction)clickRegister:(id)sender;
 @end
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
     // Insert code here to initialize your application
+    _registerWindowController = [[RegisterWindowController alloc] init];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
@@ -23,10 +27,10 @@
     return YES;
 }
 
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
     // Insert code here to tear down your application
 }
 
-
+- (IBAction)clickRegister:(id)sender { [_registerWindowController showWindow:nil]; }
 @end

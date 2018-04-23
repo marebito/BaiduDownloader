@@ -184,6 +184,12 @@
     [super showWindow:sender];
 }
 
+- (BOOL)windowShouldClose:(id)sender
+{
+    [self close];
+    return YES;
+}
+
 #pragma mark - Public Methods
 
 - (id)initWithBackgroundColor:(NSColor*)background titleColor:(NSColor*)title textColor:(NSColor*)text {

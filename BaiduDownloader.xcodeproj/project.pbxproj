@@ -38,6 +38,8 @@
 		54461D33205F8ABC00C2835B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D32205F8ABC00C2835B /* main.m */; };
 		54461D3C205F8B6B00C2835B /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 54461D3B205F8B6B00C2835B /* HttpUtil.m */; };
 		5446E96D2075B8080080DBCC /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5446E96C2075B8080080DBCC /* ImageAndTextCell.m */; };
+		54538B0C208DAFCE008A4A0D /* RegisterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54538B0A208DAFCE008A4A0D /* RegisterWindowController.m */; };
+		54538B0D208DAFCE008A4A0D /* RegisterWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54538B0B208DAFCE008A4A0D /* RegisterWindowController.xib */; };
 		5455A9FB206C69430030D137 /* CustomTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FA206C69430030D137 /* CustomTableRowView.m */; };
 		5455A9FE206C697B0030D137 /* CustomTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FD206C697B0030D137 /* CustomTableCellView.m */; };
 		5465FAB4206A927D0054F573 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5465FAB3206A927D0054F573 /* background.jpg */; };
@@ -116,6 +118,9 @@
 		54461D3B205F8B6B00C2835B /* HttpUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
 		5446E96B2075B8080080DBCC /* ImageAndTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
 		5446E96C2075B8080080DBCC /* ImageAndTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
+		54538B09208DAFCE008A4A0D /* RegisterWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterWindowController.h; sourceTree = "<group>"; };
+		54538B0A208DAFCE008A4A0D /* RegisterWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterWindowController.m; sourceTree = "<group>"; };
+		54538B0B208DAFCE008A4A0D /* RegisterWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterWindowController.xib; sourceTree = "<group>"; };
 		5455A9F9206C69430030D137 /* CustomTableRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableRowView.h; sourceTree = "<group>"; };
 		5455A9FA206C69430030D137 /* CustomTableRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableRowView.m; sourceTree = "<group>"; };
 		5455A9FC206C697B0030D137 /* CustomTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableCellView.h; sourceTree = "<group>"; };
@@ -328,6 +333,16 @@
 			path = CustomOutlineView;
 			sourceTree = "<group>";
 		};
+		54538B03208DAF93008A4A0D /* RegisterWindow */ = {
+			isa = PBXGroup;
+			children = (
+				54538B09208DAFCE008A4A0D /* RegisterWindowController.h */,
+				54538B0A208DAFCE008A4A0D /* RegisterWindowController.m */,
+				54538B0B208DAFCE008A4A0D /* RegisterWindowController.xib */,
+			);
+			path = RegisterWindow;
+			sourceTree = "<group>";
+		};
 		5455A9F1206C4C490030D137 /* Dependency */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +383,7 @@
 		5455A9F5206C4CE80030D137 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				54538B03208DAF93008A4A0D /* RegisterWindow */,
 				54F984502087206500C9E4D0 /* AboutWindow */,
 				5465FAC3206A94E00054F573 /* FileListVC.h */,
 				5465FAC4206A94E00054F573 /* FileListVC.m */,
@@ -576,6 +592,7 @@
 				5465FAB4206A927D0054F573 /* background.jpg in Resources */,
 				54166E4F207F7EB4007990AB /* TODO.md in Resources */,
 				5465FAC2206A94690054F573 /* JMModalOverlay-Info.plist in Resources */,
+				54538B0D208DAFCE008A4A0D /* RegisterWindowController.xib in Resources */,
 				54461D30205F8ABC00C2835B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -660,6 +677,7 @@
 				54A25BAA206CF9E000D3061A /* CustomOutlineView.m in Sources */,
 				5465FAC1206A94690054F573 /* JMModalOverlay.m in Sources */,
 				54461D28205F8ABC00C2835B /* AppDelegate.m in Sources */,
+				54538B0C208DAFCE008A4A0D /* RegisterWindowController.m in Sources */,
 				5465FAC8206A9EBE0054F573 /* ColorTitleButtonCell.m in Sources */,
 				541F24582074355700A186D5 /* NSObject+DebugDescription.m in Sources */,
 				549FFE00206C499F001C9D2B /* NSString+Hash.m in Sources */,

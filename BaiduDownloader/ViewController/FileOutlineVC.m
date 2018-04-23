@@ -145,6 +145,14 @@
     FileListModel *flm = self.fileListCache[nodeData];
     if (flm)
     {
+        if (flm.list.count == 1)
+        {
+            ListModel *lm = flm.list[0];
+            if ([lm.isdir integerValue] == 0)
+            {
+                return NO;
+            }
+        }
         return flm.list.count > 0;
     }
     return NO;

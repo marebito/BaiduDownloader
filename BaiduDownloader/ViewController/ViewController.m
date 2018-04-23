@@ -10,10 +10,8 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "AboutWindowController.h"
 #import "YYModel.h"
-#import "HttpUtil.h"
 #import "SetDataModel.h"
 #import "JMModalOverlay.h"
-#import "FileListVC.h"
 #import "CustomWindowVC.h"
 #import "FileOutlineVC.h"
 
@@ -113,18 +111,9 @@
 
 - (void)viewDidLoad
 {
-    NSVisualEffectView *blurryView = [[NSVisualEffectView alloc] initWithFrame:CGRectMake(0, 0, 800, 600)];
-    
-    // this is default value but is here for clarity
-    blurryView.blendingMode = NSVisualEffectBlendingModeBehindWindow;
-    // set the background to always be the dark blur
-    blurryView.material = NSVisualEffectMaterialDark;
 
-    // set it to always be blurry regardless of window state
-    blurryView.state = NSVisualEffectStateActive;
+//    链接: https://pan.baidu.com/s/1X97czU7FTBRJcc7NO8o4cg 密码: z96e
 
-
-    //    self.window.contentView.addSubview(blurryView)
     [super viewDidLoad];
     self.view.window.opaque = NO;
     self.view.window.backgroundColor = [NSColor clearColor];
@@ -134,7 +123,7 @@
     [self.aboutWindowController setAppURL:[[NSURL alloc] initWithString:@"http://app.faramaz.com"]];
     [self.aboutWindowController
         setAppCopyright:[[NSAttributedString alloc]
-                            initWithString:@"Nice Small String"
+                            initWithString:@"软件未注册"
                                 attributes:@{
                                     NSForegroundColorAttributeName : [NSColor tertiaryLabelColor],
                                     NSFontAttributeName : [NSFont fontWithName:@"HelveticaNeue" size:11]
@@ -181,38 +170,40 @@
         @"Accept-Encoding" : BAIDU_ACCEPT_ENCODING,
         @"Accept-Language" : BAIDU_ACCEPT_LANGUAGE
     };
-    @WeakObj(self)[HttpUtil request:self.shareURL
-                             method:@"GET"
-                            headers:headers
-                             params:nil
-                         completion:^(NSURLResponse *response, id responseObject, NSError *error) {
-                             @StrongObj(self) if (error.code == kCFURLErrorCannotConnectToHost)
-                             {
-                                 [self setStatus:@"啊哦，你所访问的页面不存在了！" isSuccess:NO];
-                                 return;
-                             }
-                             NSString *html = __RD__(responseObject);
-                             if (html)
-                             {
-                                 NSString *share_page_type = __VREGEX__(html, @"share_page_type\":\"", @"\",");
-                                 if ([share_page_type isEqualToString:@"error"])
-                                 {
-                                     [self setStatus:@"此"
-                                                     @"链"
-                                                     @"接"
-                                                     @"分"
-                                                     @"享内容可能因为涉及侵权、色情、反动、低俗等信息，无法访问！"
-                                           isSuccess:NO];
-                                     return;
-                                 }
-                             }
-                             if ([html rangeOfString:@"error-404"].location != NSNotFound)
-                             {
-                                 [self setStatus:@"啊哦，你所访问的页面不存在了！" isSuccess:NO];
-                                 return;
-                             }
-                             [self requestPlantCookieEtt];
-                         }];
+    @WeakObj(self)[HttpUtil
+           request:self.shareURL
+            method:@"GET"
+           headers:headers
+            params:nil
+        completion:^(NSURLResponse *response, id responseObject, NSError *error) {
+            @StrongObj(self) if (error.code == kCFURLErrorCannotConnectToHost)
+            {
+                [self setStatus:@"啊哦，你所访问的页面不存在了！" isSuccess:NO];
+                return;
+            }
+            NSString *html = __RD__(responseObject);
+            if (html)
+            {
+                NSString *share_page_type = __VREGEX__(html, @"share_page_type\":\"", @"\",");
+                if ([share_page_type isEqualToString:@"error"])
+                {
+                    [self setStatus:
+                              @"此"
+                              @"链"
+                              @"接"
+                              @"分"
+                              @"享内容可能因为涉及侵权、色情、反动、低俗等信息，无法访问！"
+                          isSuccess:NO];
+                    return;
+                }
+            }
+            if ([html rangeOfString:@"error-404"].location != NSNotFound)
+            {
+                [self setStatus:@"啊哦，你所访问的页面不存在了！" isSuccess:NO];
+                return;
+            }
+            [self requestPlantCookieEtt];
+        }];
 }
 
 - (void)requestPlantCookieEtt
@@ -569,11 +560,19 @@
                              uk = [uk substringToIndex:uk.length - 1];
                              // 获取share_id, 该值为后续请求参数中的primaryid
                              NSArray *shareIdArray = __MREGEX__(html, @"SHARE_ID.*?;");
-                             NSString *share_id = [[shareIdArray[0] componentsSeparatedByString:@"="][1]
-                                 stringByReplacingOccurrencesOfString:@"\""
-                                                           withString:@""];
-                             share_id = [[share_id stringByReplacingOccurrencesOfString:@";" withString:@""]
-                                 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                             NSString *share_id = @"";
+                             if (shareIdArray.count > 0)
+                             {
+                                 share_id = [[shareIdArray[0] componentsSeparatedByString:@"="][1]
+                                     stringByReplacingOccurrencesOfString:@"\""
+                                                               withString:@""];
+                                 share_id = [[share_id stringByReplacingOccurrencesOfString:@";" withString:@""]
+                                     stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                             }
+                             else
+                             {
+                                 share_id = __VREGEX__(html, @"shareid\":", @",");
+                             }
                              NSArray *signArray = __MREGEX__(html, @"\"sign\".*?,");
                              NSString *sign = [[signArray[0] componentsSeparatedByString:@":"][1]
                                  stringByReplacingOccurrencesOfString:@"\""
@@ -660,33 +659,39 @@
         @"logid" : __UDGET__(@"logid"),
         @"clienttype" : @"0"
     };
-    @WeakObj(self)[HttpUtil request:url
-                             method:@"GET"
-                            headers:headers
-                             params:queryParams
-                         completion:^(NSURLResponse *response, id responseObject, NSError *error) {
-                             @StrongObj(self) NSString *jsonDic = __JSONDIC__(responseObject);
-                             NSLog(@"jsonDic-->%@", jsonDic);
-                             FileListModel *fileListModel = [FileListModel yy_modelWithJSON:responseObject];
-                             self.fileListDic[path] = fileListModel;
-                             [fileListModel.list enumerateObjectsUsingBlock:^(ListModel *_Nonnull obj, NSUInteger idx,
-                                                                              BOOL *_Nonnull stop) {
-                                 if ([obj.isdir integerValue] == 1)
-                                 {
-                                     [self getFileList:obj.path completionBlock:nil];
-                                 }
-                                 else
-                                 {
-                                     NSLog(@"文件名%@", obj.path);
-                                     self.parseErrorFlag = NO;
-                                     [self parseDlink:obj.fs_id code_input:@"" vcode_str:@""];
-                                 }
-                             }];
-                             if (complete)
-                             {
-                                 complete(fileListModel);
-                             }
-                         }];
+    @WeakObj(
+        self)[HttpUtil request:url
+                        method:@"GET"
+                       headers:headers
+                        params:queryParams
+                    completion:^(NSURLResponse *response, id responseObject, NSError *error) {
+                        @StrongObj(self) NSString *jsonDic = __JSONDIC__(responseObject);
+                        NSLog(@"[获取到文件列表]:%@", jsonDic);
+                        FileListModel *fileListModel = [FileListModel yy_modelWithJSON:responseObject];
+                        FileListModel *validFileListModel = fileListModel;
+                        if (fileListModel.list.count == 0)
+                        {
+                            validFileListModel = self.sdm.file_list;
+                        }
+                        self.fileListDic[path] = validFileListModel;
+                        [validFileListModel.list
+                            enumerateObjectsUsingBlock:^(ListModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+                                if ([obj.isdir integerValue] == 1)
+                                {
+                                    [self getFileList:obj.path completionBlock:nil];
+                                }
+                                else
+                                {
+                                    NSLog(@"文件名%@", obj.path);
+                                    self.parseErrorFlag = NO;
+                                    [self parseDlink:obj.fs_id code_input:@"" vcode_str:@""];
+                                }
+                            }];
+                        if (complete)
+                        {
+                            complete(fileListModel);
+                        }
+                    }];
 }
 
 - (void)requestCaptcha
@@ -817,6 +822,7 @@
                              params:formData
                          completion:^(NSURLResponse *response, id responseObject, NSError *error) {
                              @StrongObj(self) NSDictionary *jsonDic = __JSONDIC__(responseObject);
+                             NSLog(@"[文件直链]:%@", jsonDic);
                              if ([jsonDic[@"errno"] intValue] == DLINK_PARAM_ERROR)
                              {
                                  [self setStatus:@"获取文件链接地址异常, 参数错误!" isSuccess:NO];

@@ -662,9 +662,16 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="帮助" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="直链转换帮助文档" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="关于" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="xXp-pF-NHR"/>
+                                        <menuItem title="注册" id="pSv-mw-a95">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="clickRegister:" target="Voe-Tx-rLC" id="XKj-OF-lkW"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -686,8 +693,9 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="百度云盘直链转换器" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="百度云盘直链转换器" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="512" height="320"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -711,131 +719,105 @@
                         <rect key="frame" x="0.0" y="0.0" width="512" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BXu-mb-LNh">
+                            <visualEffectView focusRingType="none" appearanceType="vibrantDark" fixedFrame="YES" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" maskImage="background" translatesAutoresizingMaskIntoConstraints="NO" id="TLO-cQ-u6V">
                                 <rect key="frame" x="0.0" y="0.0" width="512" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="background" id="iLN-Wj-xMU"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VA7-25-T1L">
-                                <rect key="frame" x="32" y="273" width="84" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="百度云盘链接" id="vTY-DV-Bx9">
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                    <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rn9-a3-pQP">
-                                <rect key="frame" x="156" y="269" width="313" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" drawsBackground="YES" id="l14-K9-4C2">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdz-CW-RAQ">
-                                <rect key="frame" x="32" y="196" width="85" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="justified" title="验     证    码" id="gce-ja-Dhn">
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                    <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3nZ-wg-DjI">
-                                <rect key="frame" x="156" y="273" width="313" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" title="https://pan.baidu.com/s/1IDo1qxGjtnIY5ReA_Twihg" placeholderString="https://pan.baidu.com/s/1eQrwbKY" drawsBackground="YES" id="0yZ-9P-1mS" customClass="CustomTextFieldCell">
-                                    <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" name="shadowColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xkq-op-ZyY">
-                                <rect key="frame" x="343" y="187" width="128" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="请输入图片中验证码" id="A7J-WL-22x" customClass="CustomTextFieldCell">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="shadowColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xv8-ls-m4b">
-                                <rect key="frame" x="32" y="238" width="85" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="链  接  密  码" id="9cL-n1-6Gw">
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                    <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FG0-P7-wPI">
-                                <rect key="frame" x="0.0" y="1" width="401" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" drawsBackground="YES" id="8s6-5G-fld">
-                                    <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                </textFieldCell>
-                            </textField>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Amb-RX-hs3" customClass="ClickableImageView">
-                                <rect key="frame" x="156" y="185" width="120" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="checkcode" id="6Ya-Ed-w4F"/>
-                                <connections>
-                                    <action selector="fetchVCode:" target="XfG-lQ-9wD" id="Af2-e6-x2f"/>
-                                </connections>
-                            </imageView>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bK6-YQ-DKJ">
-                                <rect key="frame" x="353" y="235" width="116" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="获取真实路径" bezelStyle="shadowlessSquare" image="arrows" imagePosition="left" alignment="center" alternateImage="arrows" imageScaling="proportionallyUpOrDown" inset="2" id="zlB-6A-Bcb" customClass="ColorTitleButtonCell">
-                                    <behavior key="behavior" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="fetch:" target="XfG-lQ-9wD" id="phF-OE-PHa"/>
-                                </connections>
-                            </button>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wKH-hT-div">
-                                <rect key="frame" x="154" y="240" width="108" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="请输入提取密码" id="IvK-Ff-ttF" customClass="CustomTextFieldCell">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="shadowColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NTY-VQ-Ue7">
-                                <rect key="frame" x="156" y="238" width="102" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" drawsBackground="YES" id="UVC-cD-qqs">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eIz-Pf-6gk">
-                                <rect key="frame" x="345" y="185" width="124" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" drawsBackground="YES" id="273-In-Heb">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QI4-K7-j6p">
-                                <rect key="frame" x="482" y="4" width="25" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zp0-tq-2sU">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="showHelp:" target="XfG-lQ-9wD" id="U6Y-aC-hsG"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VA7-25-T1L">
+                                        <rect key="frame" x="32" y="273" width="82" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="百度云盘链接" id="vTY-DV-Bx9">
+                                            <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                            <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdz-CW-RAQ">
+                                        <rect key="frame" x="32" y="196" width="85" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="justified" title="验     证    码" id="gce-ja-Dhn">
+                                            <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                            <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3nZ-wg-DjI">
+                                        <rect key="frame" x="156" y="273" width="313" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="请输入百度网盘分享链接" drawsBackground="YES" id="0yZ-9P-1mS" customClass="CustomTextFieldCell">
+                                            <font key="font" metaFont="cellTitle"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xkq-op-ZyY">
+                                        <rect key="frame" x="343" y="187" width="128" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="请输入图片中验证码" id="A7J-WL-22x" customClass="CustomTextFieldCell">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="shadowColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xv8-ls-m4b">
+                                        <rect key="frame" x="32" y="238" width="85" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="链  接  密  码" id="9cL-n1-6Gw">
+                                            <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                            <color key="textColor" red="0.96862745098039216" green="0.93333333333333335" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FG0-P7-wPI">
+                                        <rect key="frame" x="0.0" y="0.0" width="401" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" drawsBackground="YES" id="8s6-5G-fld">
+                                            <font key="font" metaFont="cellTitle"/>
+                                            <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Amb-RX-hs3" customClass="ClickableImageView">
+                                        <rect key="frame" x="156" y="185" width="120" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="checkcode" id="6Ya-Ed-w4F"/>
+                                        <connections>
+                                            <action selector="fetchVCode:" target="XfG-lQ-9wD" id="Af2-e6-x2f"/>
+                                        </connections>
+                                    </imageView>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bK6-YQ-DKJ">
+                                        <rect key="frame" x="353" y="235" width="116" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" title="获取真实路径" bezelStyle="shadowlessSquare" image="arrows" imagePosition="left" alignment="center" alternateImage="arrows" imageScaling="proportionallyUpOrDown" inset="2" id="zlB-6A-Bcb" customClass="ColorTitleButtonCell">
+                                            <behavior key="behavior" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="fetch:" target="XfG-lQ-9wD" id="phF-OE-PHa"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wKH-hT-div">
+                                        <rect key="frame" x="154" y="240" width="108" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="请输入提取密码" id="IvK-Ff-ttF" customClass="CustomTextFieldCell">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="shadowColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QI4-K7-j6p">
+                                        <rect key="frame" x="482" y="4" width="25" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zp0-tq-2sU">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="showHelp:" target="XfG-lQ-9wD" id="U6Y-aC-hsG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </visualEffectView>
                         </subviews>
                     </view>
                     <connections>

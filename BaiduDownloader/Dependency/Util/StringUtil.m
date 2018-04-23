@@ -7,7 +7,6 @@
 //
 
 #import "StringUtil.h"
-#import "HttpUtil.h"
 
 @implementation NSString (RegexUtil)
 //(\w)=(\d+)

@@ -21,6 +21,7 @@
 #import "NSDictionary+Unicode.h"
 #import "NSArray+Unicode.h"
 #import "NSObject+DebugDescription.h"
+#import "HttpUtil.h"
 #import "StringUtil.h"
 
 #define __TOSTR__(FORMAT, ...) [NSString stringWithFormat:FORMAT, ##__VA_ARGS__]
