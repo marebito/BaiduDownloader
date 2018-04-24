@@ -74,12 +74,7 @@
 
 - (IBAction)registerAction:(id)sender
 {
-    NSAlert *alert = [NSAlert alertWithMessageText:@"提示"
-                                     defaultButton:nil
-                                   alternateButton:nil
-                                       otherButton:nil
-                         informativeTextWithFormat:@"注册成功！"];
-    [alert runModal];
+    [Alert alertWithStyle:kAlertStyleSheet titles:nil message:@"提示" informative:@"注册成功!" clickBlock:nil];
 }
 
 @end

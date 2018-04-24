@@ -26,6 +26,8 @@
 
 @interface HttpUtil : NSObject
 
++ (void)clearAllCookies;
+
 + (NSString *)currentTimestamp;
 
 + (NSString *)currentMilliTimestamp;

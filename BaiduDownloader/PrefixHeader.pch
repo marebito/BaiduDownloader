@@ -23,6 +23,8 @@
 #import "NSObject+DebugDescription.h"
 #import "HttpUtil.h"
 #import "StringUtil.h"
+#import "Config.h"
+#import "Alert.h"
 
 #define __TOSTR__(FORMAT, ...) [NSString stringWithFormat:FORMAT, ##__VA_ARGS__]
 

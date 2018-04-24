@@ -12,7 +12,6 @@
 
 - (NSRect)drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView
 {
-    
     NSSize titleSize =  [title size];
     
     //居中显示
@@ -23,7 +22,7 @@
     
     NSMutableAttributedString *titleStr =[[NSMutableAttributedString alloc]
                                           initWithAttributedString:title];
-    [titleStr addAttribute:NSForegroundColorAttributeName value:[NSColor colorWithRed:0.97 green:0.93 blue:0.84 alpha:1.00]
+    [titleStr addAttribute:NSForegroundColorAttributeName value:[NSColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.00]
                      range:NSMakeRange(0, titleStr.length)];
     [titleStr drawInRect:rectTitle];
     
