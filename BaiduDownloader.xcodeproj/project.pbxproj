@@ -67,7 +67,7 @@
 		549854602073B23500AB8942 /* NSDictionary+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5498545F2073B23400AB8942 /* NSDictionary+Unicode.m */; };
 		549854632073B4A000AB8942 /* NSArray+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 549854622073B4A000AB8942 /* NSArray+Unicode.m */; };
 		549FFE00206C499F001C9D2B /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 549FFDFC206C499F001C9D2B /* NSString+Hash.m */; };
-		549FFE01206C499F001C9D2B /* DownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 549FFDFF206C499F001C9D2B /* DownLoadManager.m */; };
+		549FFE01206C499F001C9D2B /* InternetDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 549FFDFF206C499F001C9D2B /* InternetDownloadManager.m */; };
 		54A25BA7206CEB8F00D3061A /* FileOutlineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A25BA6206CEB8F00D3061A /* FileOutlineVC.m */; };
 		54A25BAA206CF9E000D3061A /* CustomOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A25BA9206CF9E000D3061A /* CustomOutlineView.m */; };
 		54BBF01320674AB800C27FF8 /* folx.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF01120674AB800C27FF8 /* folx.png */; };
@@ -179,9 +179,9 @@
 		549854612073B4A000AB8942 /* NSArray+Unicode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Unicode.h"; sourceTree = "<group>"; };
 		549854622073B4A000AB8942 /* NSArray+Unicode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Unicode.m"; sourceTree = "<group>"; };
 		549FFDFC206C499F001C9D2B /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
-		549FFDFD206C499F001C9D2B /* DownLoadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadManager.h; sourceTree = "<group>"; };
+		549FFDFD206C499F001C9D2B /* InternetDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetDownloadManager.h; sourceTree = "<group>"; };
 		549FFDFE206C499F001C9D2B /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
-		549FFDFF206C499F001C9D2B /* DownLoadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadManager.m; sourceTree = "<group>"; };
+		549FFDFF206C499F001C9D2B /* InternetDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetDownloadManager.m; sourceTree = "<group>"; };
 		54A25BA5206CEB8F00D3061A /* FileOutlineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileOutlineVC.h; sourceTree = "<group>"; };
 		54A25BA6206CEB8F00D3061A /* FileOutlineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileOutlineVC.m; sourceTree = "<group>"; };
 		54A25BA8206CF9E000D3061A /* CustomOutlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomOutlineView.h; sourceTree = "<group>"; };
@@ -497,8 +497,8 @@
 		549FFDFB206C499F001C9D2B /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				549FFDFD206C499F001C9D2B /* DownLoadManager.h */,
-				549FFDFF206C499F001C9D2B /* DownLoadManager.m */,
+				549FFDFD206C499F001C9D2B /* InternetDownloadManager.h */,
+				549FFDFF206C499F001C9D2B /* InternetDownloadManager.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -733,7 +733,7 @@
 				54E48CAE206CCC400088B954 /* CustomOutlineRowView.m in Sources */,
 				54BBF04A206815D100C27FF8 /* SetDataModel.m in Sources */,
 				540D2C3F2086050900A5ED36 /* NSOutlineView+Additions.m in Sources */,
-				549FFE01206C499F001C9D2B /* DownLoadManager.m in Sources */,
+				549FFE01206C499F001C9D2B /* InternetDownloadManager.m in Sources */,
 				5446E96D2075B8080080DBCC /* ImageAndTextCell.m in Sources */,
 				54461D33205F8ABC00C2835B /* main.m in Sources */,
 				54A25BAA206CF9E000D3061A /* CustomOutlineView.m in Sources */,
