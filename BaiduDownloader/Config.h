@@ -9,7 +9,7 @@
 #ifndef Config_h
 #define Config_h
 
-#import "ShellUtil.h"
+#import "ShellObject.h"
 
 #define logid_js                                                                                                      \
 @"\tvar s = "                                                                                                     \
@@ -63,8 +63,14 @@
 
 #define BAIDU_REDIRECT_URL __UDGET__(@"Location")
 
-#define __SHELL_CMD__(cmd) [ShellUtil executeShell:cmd]
+#define __SHELL_CMD__(cmd, result) [ShellObject executeShell:cmd result:result]
 
 #define PASTE_BOARD_CONTENT @"echo $(pbpaste -prefer text)"
+
+#define CHECK_INSTALLED_CMD(cmd) __SHELL_CMD__(__TOSTR__(@"echo $(command -v %@)", cmd))
+
+#define INSTALL_BREW @"/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"" // 检测brew
+
+#define CHECK_GMP_INFO @"brew info gmp" // 检测是否安装了gmp
 
 #endif /* Config_h */

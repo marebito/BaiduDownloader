@@ -1,5 +1,5 @@
 //
-//  ShellUtil.h
+//  ShellObject.h
 //  BaiduDownloader
 //
 //  Created by zll on 2018/4/24.
@@ -10,8 +10,8 @@
 
 typedef void (^ShellOutput)(NSString *result);
 
-@interface ShellUtil : NSObject
+@interface ShellObject : NSObject
 
-+ (NSString *)executeShell:(NSString *)cmd;
++ (void)executeShell:(NSString *)cmd args:(NSArray *)args;
 
 @end

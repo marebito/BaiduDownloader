@@ -1,34 +1,123 @@
 //
-//  ShellUtil.m
+//  ShellObject.m
 //  BaiduDownloader
 //
 //  Created by zll on 2018/4/24.
 //  Copyright © 2018年 Godlike Studio. All rights reserved.
 //
 
-#import "ShellUtil.h"
+#import "ShellObject.h"
 
-@implementation ShellUtil
+@interface ShellObject ()
 
-+ (NSString *)executeShell:(NSString *)cmd
+@property (nonatomic, copy) ShellOutput output;
+
+@end
+
+@implementation ShellObject
+
+- (BOOL)runProcessAsAdministrator:(NSString *)scriptPath
+                    withArguments:(NSArray *)arguments
+                           output:(NSString **)output
+                 errorDescription:(NSString **)errorDescription
 {
-    // 初始化并设置shell路径
-    NSTask *task = [[NSTask alloc] init];
-    [task setLaunchPath: @"/bin/bash"];
-    // -c 用来执行string-commands（命令字符串），也就说不管后面的字符串里是什么都会被当做shellcode来执行
-    NSArray *arguments = [NSArray arrayWithObjects: @"-c", cmd, nil];
-    [task setArguments: arguments];
-    // 新建输出管道作为Task的输出
-    NSPipe *pipe = [NSPipe pipe];
-    [task setStandardOutput: pipe];
-    // 开始task
-    NSFileHandle *file = [pipe fileHandleForReading];
+    NSString *allArgs = [arguments componentsJoinedByString:@" "];
+    NSString *fullScript = [NSString stringWithFormat:@"%@ %@", scriptPath, allArgs];
+
+    NSDictionary *errorInfo = [NSDictionary new];
+    NSString *script = [NSString stringWithFormat:@"do shell script \"%@\" with administrator privileges", fullScript];
+
+    NSAppleScript *appleScript = [[NSAppleScript new] initWithSource:script];
+    NSAppleEventDescriptor *eventResult = [appleScript executeAndReturnError:&errorInfo];
+
+    // Check errorInfo
+    if (!eventResult)
+    {
+        // Describe common errors
+        *errorDescription = nil;
+        if ([errorInfo valueForKey:NSAppleScriptErrorNumber])
+        {
+            NSNumber *errorNumber = (NSNumber *)[errorInfo valueForKey:NSAppleScriptErrorNumber];
+            if ([errorNumber intValue] == -128)
+                *errorDescription = @"The administrator password is required to do this.";
+        }
+        // Set error message from provided message
+        if (*errorDescription == nil)
+        {
+            if ([errorInfo valueForKey:NSAppleScriptErrorMessage])
+                *errorDescription = (NSString *)[errorInfo valueForKey:NSAppleScriptErrorMessage];
+        }
+        return NO;
+    }
+    else
+    {
+        // Set output to the AppleScript's output
+        *output = [eventResult stringValue];
+        return YES;
+    }
+}
+
++ (void)executeShell:(NSString *)shellCmd
+{
+    NSArray *cmds = [shellCmd componentsSeparatedByString:@"|"];
+
+}
+
++ (void)executeShell:(NSString *)cmd args:(NSArray *)args
+{
+    // Commands are read from standard input:
+    NSFileHandle *input = [NSFileHandle fileHandleWithStandardInput];
+
+    NSPipe *inPipe = [NSPipe new]; // pipe for shell input
+    NSPipe *outPipe = [NSPipe new]; // pipe for shell output
+
+    NSTask *task = [NSTask new];
+    [task setLaunchPath:cmd];
+    [task setArguments:args];
+    [task setStandardInput:inPipe];
+    [task setStandardOutput:outPipe];
     [task launch];
 
-    // 获取运行结果
-    NSData *data = [file readDataToEndOfFile];
-    NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    return result;
+    // Wait for standard input ...
+    [input waitForDataInBackgroundAndNotify];
+    // ... and wait for shell output.
+    [[outPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
+
+    // Wait asynchronously for standard input.
+    // The block is executed as soon as some data is available on standard input.
+    [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification
+                                                      object:input queue:nil
+                                                  usingBlock:^(NSNotification *notif)
+     {
+         NSData *inData = [input availableData];
+         if ([inData length] == 0) {
+             // EOF on standard input.
+             [[inPipe fileHandleForWriting] closeFile];
+         } else {
+             // Read from standard input and write to shell input pipe.
+             [[inPipe fileHandleForWriting] writeData:inData];
+
+             // Continue waiting for standard input.
+             [input waitForDataInBackgroundAndNotify];
+         }
+     }];
+
+    // Wait asynchronously for shell output.
+    // The block is executed as soon as some data is available on the shell output pipe.
+    [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification
+                                                      object:[outPipe fileHandleForReading] queue:nil
+                                                  usingBlock:^(NSNotification *notif)
+     {
+         // Read from shell output
+         NSData *outData = [[outPipe fileHandleForReading] availableData];
+         NSString *outStr = [[NSString alloc] initWithData:outData encoding:NSUTF8StringEncoding];
+         NSLog(@"output: %@", outStr);
+
+         // Continue waiting for shell output.
+         [[outPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
+     }];
+
+    [task waitUntilExit];
 }
 
 @end

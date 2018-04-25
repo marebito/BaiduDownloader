@@ -7,6 +7,8 @@ target 'BaiduDownloader' do
 
   # Pods for BaiduDownloader
   pod 'AFNetworking'
+  pod 'PromiseKit', '~> 6.0'
+  pod 'OMGHTTPURLRQ', '~> 3.2.4'
   pod 'YYModel'
   pod 'Ono'
   pod 'SDWebImage'

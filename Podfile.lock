@@ -12,7 +12,21 @@ PODS:
   - AFNetworking/Reachability (3.2.0)
   - AFNetworking/Security (3.2.0)
   - AFNetworking/Serialization (3.2.0)
+  - OMGHTTPURLRQ (3.2.4):
+    - OMGHTTPURLRQ/RQ (= 3.2.4)
+  - OMGHTTPURLRQ/FormURLEncode (3.2.4)
+  - OMGHTTPURLRQ/RQ (3.2.4):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (3.2.4)
   - Ono (2.0.0)
+  - PromiseKit (6.2.3):
+    - PromiseKit/CorePromise (= 6.2.3)
+    - PromiseKit/Foundation (= 6.2.3)
+    - PromiseKit/UIKit (= 6.2.3)
+  - PromiseKit/CorePromise (6.2.3)
+  - PromiseKit/Foundation (6.2.3):
+    - PromiseKit/CorePromise
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
@@ -20,16 +34,20 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - OMGHTTPURLRQ (~> 3.2.4)
   - Ono
+  - PromiseKit (~> 6.0)
   - SDWebImage
   - YYModel
 
 SPEC CHECKSUMS:
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  OMGHTTPURLRQ: 9ac96bdf5c90a33f75836630729ea1adc312a9ed
   Ono: e6d825e80ec73325e6d872ae4f2304f7378acb0e
+  PromiseKit: 62f37bb4900a9b0b7550d017e41497171d93face
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 287b22471c738365bfdf005865cd4fd1fde7a3c4
+PODFILE CHECKSUM: 20bebf00c3076db2b810c431cd0fa1a71849f631
 
 COCOAPODS: 1.4.0

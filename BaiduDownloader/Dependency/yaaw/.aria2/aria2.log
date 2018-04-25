@@ -1,0 +1,20 @@
+2018-04-25 15:49:48.225404 [ERROR] [HttpListenCommand.cc:112] IPv4 RPC: failed to bind TCP port 6800
+Exception: [SocketCore.cc:312] errorCode=1 Failed to bind a socket, cause: Address already in use
+2018-04-25 15:49:48.225533 [ERROR] [MultiUrlRequestInfo.cc:297] Exception caught
+Exception: [DownloadEngineFactory.cc:219] errorCode=1 Failed to setup RPC server.
+2018-04-25 15:50:05.010143 [ERROR] [HttpListenCommand.cc:112] IPv4 RPC: failed to bind TCP port 6800
+Exception: [SocketCore.cc:312] errorCode=1 Failed to bind a socket, cause: Address already in use
+2018-04-25 15:50:05.010228 [ERROR] [MultiUrlRequestInfo.cc:297] Exception caught
+Exception: [DownloadEngineFactory.cc:219] errorCode=1 Failed to setup RPC server.
+2018-04-25 15:52:23.451163 [ERROR] [HttpListenCommand.cc:112] IPv4 RPC: failed to bind TCP port 6800
+Exception: [SocketCore.cc:312] errorCode=1 Failed to bind a socket, cause: Address already in use
+2018-04-25 15:52:23.451578 [ERROR] [MultiUrlRequestInfo.cc:297] Exception caught
+Exception: [DownloadEngineFactory.cc:219] errorCode=1 Failed to setup RPC server.
+2018-04-25 15:52:44.270148 [ERROR] [HttpListenCommand.cc:112] IPv4 RPC: failed to bind TCP port 6800
+Exception: [SocketCore.cc:312] errorCode=1 Failed to bind a socket, cause: Address already in use
+2018-04-25 15:52:44.270258 [ERROR] [MultiUrlRequestInfo.cc:297] Exception caught
+Exception: [DownloadEngineFactory.cc:219] errorCode=1 Failed to setup RPC server.
+2018-04-25 16:05:11.830321 [ERROR] [HttpListenCommand.cc:112] IPv4 RPC: failed to bind TCP port 6800
+Exception: [SocketCore.cc:312] errorCode=1 Failed to bind a socket, cause: Address already in use
+2018-04-25 16:05:11.833376 [ERROR] [MultiUrlRequestInfo.cc:297] Exception caught
+Exception: [DownloadEngineFactory.cc:219] errorCode=1 Failed to setup RPC server.

@@ -1,0 +1,8 @@
+https://d.pcs.baidu.com/file/9eec9ffed214ce40d916eba00f5bb17e?fid=2386164250-250528-508933448413783&dstime=1524642526&rt=sh&sign=FDtAERV-DCb740ccc5511e5e8fedcff06b081203-dKZa0rn9KtrXCNmlXPBo9k9VMtc%3D&expires=8h&chkv=1&chkbd=0&chkpc=&dp-logid=353419877692806962&dp-callid=0&r=171480351	
+ gid=d5036aee850ae40a
+ pause=true
+ dir=/Users/zll/Downloads
+ split=3
+ max-connection-per-server=2
+ min-split-size=1048576
+ user-agent=aria2/1.33.1

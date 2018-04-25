@@ -62,6 +62,9 @@
     //    链接: https://pan.baidu.com/s/1X97czU7FTBRJcc7NO8o4cg 密码: z96e
 
     [super viewDidLoad];
+
+    [self checkBrew];
+
     self.view.window.opaque = NO;
     self.view.window.backgroundColor = [NSColor clearColor];
 
@@ -1039,6 +1042,24 @@
          atomically:YES
            encoding:NSUTF8StringEncoding
               error:nil];
+}
+
+- (void)checkBrew
+{
+    NSString *cmd = __TOSTR__(@"$(command -v %@)", @"brew");
+    NSString *xxx = @"$(command -v brew)";
+    [ShellObject executeShell:@"/usr/bin/command" args:@[@"-v", @"brew"]];
+    NSLog(@"jskdfj");
+}
+
+- (void)checkAria2c
+{
+    
+}
+
+- (void)checkGMP
+{
+    
 }
 
 @end
