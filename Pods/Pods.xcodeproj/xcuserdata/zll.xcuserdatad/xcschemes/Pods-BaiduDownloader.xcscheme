@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B6332A3410891B2F4509489B9D56616C"
+               BlueprintIdentifier = "6CFCE9DFD8D51ACE8DB56B12E7A2DBCA"
                BuildableName = "Pods_BaiduDownloader.framework"
                BlueprintName = "Pods-BaiduDownloader"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B6332A3410891B2F4509489B9D56616C"
+            BlueprintIdentifier = "6CFCE9DFD8D51ACE8DB56B12E7A2DBCA"
             BuildableName = "Pods_BaiduDownloader.framework"
             BlueprintName = "Pods-BaiduDownloader"
             ReferencedContainer = "container:Pods.xcodeproj">
