@@ -1,20 +1,20 @@
 //
-//  ShellObject.m
+//  ShellUtil.m
 //  BaiduDownloader
 //
 //  Created by zll on 2018/4/24.
 //  Copyright © 2018年 Godlike Studio. All rights reserved.
 //
 
-#import "ShellObject.h"
+#import "ShellUtil.h"
 
-@interface ShellObject ()
+@interface ShellUtil ()
 
 @property (nonatomic, copy) ShellOutput output;
 
 @end
 
-@implementation ShellObject
+@implementation ShellUtil
 
 - (BOOL)runProcessAsAdministrator:(NSString *)scriptPath
                     withArguments:(NSArray *)arguments
@@ -60,7 +60,6 @@
 + (void)executeShell:(NSString *)shellCmd
 {
     NSArray *cmds = [shellCmd componentsSeparatedByString:@"|"];
-
 }
 
 + (void)executeShell:(NSString *)cmd args:(NSArray *)args

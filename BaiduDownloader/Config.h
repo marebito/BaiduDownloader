@@ -9,7 +9,7 @@
 #ifndef Config_h
 #define Config_h
 
-#import "ShellObject.h"
+#import "ShellUtil.h"
 
 #define logid_js                                                                                                      \
 @"\tvar s = "                                                                                                     \

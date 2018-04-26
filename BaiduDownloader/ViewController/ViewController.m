@@ -63,10 +63,10 @@
 
     [super viewDidLoad];
 
-    [self checkBrew];
-
     self.view.window.opaque = NO;
     self.view.window.backgroundColor = [NSColor clearColor];
+    
+    [self checkBrew];
 
     [self loadPasteBoardContentWithDelay:0.5];
 
@@ -1048,8 +1048,20 @@
 {
     NSString *cmd = __TOSTR__(@"$(command -v %@)", @"brew");
     NSString *xxx = @"$(command -v brew)";
-    [ShellObject executeShell:@"/usr/bin/command" args:@[@"-v", @"brew"]];
-    NSLog(@"jskdfj");
+    NSTask *task1 = [[NSTask alloc] init];
+    NSPipe *pipe1 = [NSPipe pipe];
+    [task1 waitUntilExit];
+    [task1 setLaunchPath: @"/bin/sh"];
+    [task1 setArguments: [NSArray arrayWithObjects:@"type aria2c >/dev/null 2>&1 || { echo >&2 \"I require aria2c but it's not installed.  Aborting.\"; exit 1;}", nil]];
+    [task1 setStandardOutput: pipe1];
+    [task1 launch];
+    
+    NSFileHandle *file = [pipe1 fileHandleForReading];
+    NSData * data = [file readDataToEndOfFile];
+    
+    NSString * string;
+    string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    NSLog(@"Result: %@", string);
 }
 
 - (void)checkAria2c
