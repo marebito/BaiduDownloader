@@ -30,6 +30,7 @@ PODS:
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
+  - WebViewJavascriptBridge (6.0.3)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - Ono
   - PromiseKit (~> 6.0)
   - SDWebImage
+  - WebViewJavascriptBridge (~> 6.0)
   - YYModel
 
 SPEC CHECKSUMS:
@@ -46,8 +48,9 @@ SPEC CHECKSUMS:
   Ono: e6d825e80ec73325e6d872ae4f2304f7378acb0e
   PromiseKit: 62f37bb4900a9b0b7550d017e41497171d93face
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 20bebf00c3076db2b810c431cd0fa1a71849f631
+PODFILE CHECKSUM: c45dd266a0068d1e63552b38927c1786c76393e4
 
 COCOAPODS: 1.4.0

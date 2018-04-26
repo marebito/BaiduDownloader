@@ -8,6 +8,7 @@
 
 #import "FileOutlineVC.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "Aria2WindowController.h"
 
 #define TREE_ROOT_NODE @"TREE_ROOT_NODE"      // 树根
 #define COLUMNID_FILE_NAME @"FileNameColumn"  // 文件名列
@@ -31,6 +32,7 @@
 @property(weak) IBOutlet NSImageView *previewImage;
 @property(weak) IBOutlet NSButton *cpLinkBtn;
 @property(nonatomic, copy) NSString *fileDlinkURL;
+@property(nonatomic, strong) Aria2WindowController *aria2Window;
 
 - (NSTreeNode *)treeNodeFromListModel:(ListModel *)listModel;
 - (IBAction)copyURL:(id)sender;
@@ -41,7 +43,10 @@
 
 @implementation FileOutlineVC
 
-- (void)viewDidLoad { [super viewDidLoad]; }
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
 - (void)setFileList:(NSArray *)fileList { _fileList = fileList; }
 - (void)setFileListCache:(MutableOrderedDictionary *)fileListCache
 {
@@ -368,32 +373,37 @@
 
 - (IBAction)download:(id)sender
 {
+    id nodeData = [[self.outlineView itemAtRow:self.outlineView.selectedRow] representedObject];
+    NSMutableArray *files = [[NSMutableArray alloc] init];
+    if ([nodeData isKindOfClass:[FileModel class]])
+    {
+        [files addObject:@{ @"link" : self.fileDlinkCache[((FileModel *)nodeData).fs_id] }];
+    }
+    else
+    {
+        files = [self filesInDir:nodeData];
+    }
+    NSMutableArray *links = [[NSMutableArray alloc] init];
+    for (NSDictionary *dic in files)
+    {
+        [links addObject:dic[@"link"]];
+    }
+    if (self.downloadStyle.indexOfSelectedItem < 1)
+    {
+        // 默认
+        if (!_aria2Window)
+        {
+            _aria2Window = [[Aria2WindowController alloc] init];
+            [_aria2Window showWindow:nil];
+        }
+        [_aria2Window downloadFiles:links];
+        return;
+    }
     @WeakObj(self)[self selectDownloadPath:^(NSModalResponse response, NSString *filePath) {
         @StrongObj(self) if (response == 0) return;
         NSString *downloadDir = filePath;
-        id nodeData = [[self.outlineView itemAtRow:self.outlineView.selectedRow] representedObject];
-        NSMutableArray *files = [[NSMutableArray alloc] init];
-        if ([nodeData isKindOfClass:[FileModel class]])
-        {
-            [files addObject:@{ @"link" : self.fileDlinkCache[((FileModel *)nodeData).fs_id] }];
-        }
-        else
-        {
-            files = [self filesInDir:nodeData];
-        }
-        NSMutableArray *links = [[NSMutableArray alloc] init];
-        for (NSDictionary *dic in files)
-        {
-            [links addObject:dic[@"link"]];
-        }
         switch (self.downloadStyle.indexOfSelectedItem)
         {
-            case -1:
-            case 0:
-            {
-                NSLog(@"默认");
-            }
-            break;
             case 1:
             {
                 NSLog(@"迅雷");

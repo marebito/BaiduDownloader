@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C8E964322D6E94027ADCC186D783098D"
-               BlueprintName = "PromiseKit"
+               BlueprintIdentifier = "C0F3CDF64DDF0DBCB7754877A5348FA7"
+               BlueprintName = "WebViewJavascriptBridge"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "PromiseKit.framework">
+               BuildableName = "WebViewJavascriptBridge.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

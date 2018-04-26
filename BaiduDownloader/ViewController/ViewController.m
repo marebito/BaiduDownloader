@@ -48,7 +48,7 @@
 @property(nonatomic, strong) MutableOrderedDictionary *fileListDic;
 @property(nonatomic, strong) MutableOrderedDictionary *fileDLinkDic;
 @property(nonatomic, strong) JMModalOverlay *modalOverlay;
-@property AboutWindowController *aboutWindowController;
+@property(nonatomic, strong) AboutWindowController *aboutWindowController;
 - (IBAction)showHelp:(id)sender;
 - (IBAction)fetch:(id)sender;
 - (IBAction)fetchVCode:(id)sender;
@@ -66,7 +66,7 @@
     self.view.window.opaque = NO;
     self.view.window.backgroundColor = [NSColor clearColor];
     
-    [self checkBrew];
+//    [self checkBrew];
 
     [self loadPasteBoardContentWithDelay:0.5];
 
@@ -1066,12 +1066,7 @@
 
 - (void)checkAria2c
 {
-    
-}
 
-- (void)checkGMP
-{
-    
 }
 
 @end

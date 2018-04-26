@@ -12,5 +12,6 @@ target 'BaiduDownloader' do
   pod 'YYModel'
   pod 'Ono'
   pod 'SDWebImage'
+  pod 'WebViewJavascriptBridge', '~> 6.0'
 
 end

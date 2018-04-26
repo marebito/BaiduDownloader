@@ -20,7 +20,7 @@
 
 #pragma mark - Class Methods
 
-+ (NSString *)nibName { return @"RegisterWindowController"; }
++ (NSString *)nibName { return @"RegisterWindow"; }
 #pragma mark - Overrides
 
 - (id)init { return [super initWithWindowNibName:[[self class] nibName]]; }
