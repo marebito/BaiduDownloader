@@ -48,4 +48,13 @@
          params:(NSDictionary *)params
      completion:(void (^)(NSURLResponse *response, id responseObject,  NSError * error))completion;
 
+/**
+ 根据URL获取文件信息
+
+ @param url 文件链接
+ @param fileInfo 文件信息
+ */
++ (void)getFileInfoWithURL:(NSString *)url
+                  fileInfo:(void (^)(NSDictionary *dic))fileInfo;
+
 @end

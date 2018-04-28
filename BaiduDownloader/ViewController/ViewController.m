@@ -61,6 +61,11 @@
 {
     //    链接: https://pan.baidu.com/s/1X97czU7FTBRJcc7NO8o4cg 密码: z96e
 
+//    NSString *url = @"https://d.pcs.baidu.com/file/9eec9ffed214ce40d916eba00f5bb17e?fid=2386164250-250528-508933448413783&dstime=1524904074&rt=sh&sign=FDtAERV-DCb740ccc5511e5e8fedcff06b081203-TgS08LhlaugDC7HjUragfC4kjZM%3D&expires=8h&chkv=1&chkbd=0&chkpc=&dp-logid=423628673051586712&dp-callid=0&r=218785198";
+//    [HttpUtil getFileInfoWithURL:url fileInfo:^(NSDictionary *dic) {
+//        NSLog(@"%@", dic);
+//    }];
+
     [super viewDidLoad];
 
     self.view.window.opaque = NO;

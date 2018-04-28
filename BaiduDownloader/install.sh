@@ -18,3 +18,10 @@ aria2c --conf-path="/Users/zll/.aria2/aria2.conf" -D
 aria2c
 #关闭aria2c服务
 ps -A|grep "aria2c"|awk '{print $1}'|xargs kill -9
+
+// 百度网盘搜索引擎
+http://www.pansoso.com/
+https://www.57fx.com/
+http://www.sobaidupan.com/
+https://www.zhihu.com/question/38323320
+
