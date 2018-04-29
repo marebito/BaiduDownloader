@@ -39,7 +39,6 @@
 		54538B0D208DAFCE008A4A0D /* RegisterWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54538B0B208DAFCE008A4A0D /* RegisterWindow.xib */; };
 		5455A9FB206C69430030D137 /* CustomTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FA206C69430030D137 /* CustomTableRowView.m */; };
 		5455A9FE206C697B0030D137 /* CustomTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455A9FD206C697B0030D137 /* CustomTableCellView.m */; };
-		5465FAB4206A927D0054F573 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5465FAB3206A927D0054F573 /* background.jpg */; };
 		5465FAC0206A94690054F573 /* JMOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FABA206A94690054F573 /* JMOverlayView.m */; };
 		5465FAC1206A94690054F573 /* JMModalOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FABB206A94690054F573 /* JMModalOverlay.m */; };
 		5465FAC2206A94690054F573 /* JMModalOverlay-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5465FABC206A94690054F573 /* JMModalOverlay-Info.plist */; };
@@ -47,6 +46,8 @@
 		5465FAC8206A9EBE0054F573 /* ColorTitleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465FAC7206A9EBE0054F573 /* ColorTitleButtonCell.m */; };
 		546607442063291800370966 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 546607432063291800370966 /* StringUtil.m */; };
 		5467E4872064FD2900F39920 /* ClickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467E4862064FD2900F39920 /* ClickableImageView.m */; };
+		54966D88209563D900BF58B2 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 54966D87209563D900BF58B2 /* background.png */; };
+		54966D8A20956AC500BF58B2 /* register_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 54966D8920956AC500BF58B2 /* register_bg.png */; };
 		549854512073280900AB8942 /* CustomTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 549854502073280900AB8942 /* CustomTextFieldCell.m */; };
 		549854552073AE7D00AB8942 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 549854542073AE7D00AB8942 /* JRSwizzle.m */; };
 		549854602073B23500AB8942 /* NSDictionary+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5498545F2073B23400AB8942 /* NSDictionary+Unicode.m */; };
@@ -125,7 +126,6 @@
 		5455A9FA206C69430030D137 /* CustomTableRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableRowView.m; sourceTree = "<group>"; };
 		5455A9FC206C697B0030D137 /* CustomTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableCellView.h; sourceTree = "<group>"; };
 		5455A9FD206C697B0030D137 /* CustomTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableCellView.m; sourceTree = "<group>"; };
-		5465FAB3206A927D0054F573 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		5465FAB8206A94690054F573 /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
 		5465FABA206A94690054F573 /* JMOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMOverlayView.m; sourceTree = "<group>"; };
 		5465FABB206A94690054F573 /* JMModalOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMModalOverlay.m; sourceTree = "<group>"; };
@@ -140,6 +140,8 @@
 		546607432063291800370966 /* StringUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		5467E4852064FD2900F39920 /* ClickableImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClickableImageView.h; sourceTree = "<group>"; };
 		5467E4862064FD2900F39920 /* ClickableImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClickableImageView.m; sourceTree = "<group>"; };
+		54966D87209563D900BF58B2 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		54966D8920956AC500BF58B2 /* register_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_bg.png; sourceTree = "<group>"; };
 		5498544F2073280900AB8942 /* CustomTextFieldCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTextFieldCell.h; sourceTree = "<group>"; };
 		549854502073280900AB8942 /* CustomTextFieldCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTextFieldCell.m; sourceTree = "<group>"; };
 		549854532073AE7D00AB8942 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
@@ -443,6 +445,8 @@
 		54BBF047206815B900C27FF8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				54966D8920956AC500BF58B2 /* register_bg.png */,
+				54966D87209563D900BF58B2 /* background.png */,
 				540CE4C0208F15FE00AE426D /* notfoundover.png */,
 				540CE4C2208F15FF00AE426D /* openinfinder.png */,
 				540CE4C1208F15FE00AE426D /* openinfinder64.png */,
@@ -452,7 +456,6 @@
 				540CE4B9208F156F00AE426D /* trashfull.png */,
 				540CE4B7208F156F00AE426D /* url.png */,
 				540D2C392085FD6700A5ED36 /* close.png */,
-				5465FAB3206A927D0054F573 /* background.jpg */,
 				54BBF0252067799B00C27FF8 /* checkcode.png */,
 				54BBF01B20676D6300C27FF8 /* download.png */,
 				54BBF01920676C7100C27FF8 /* arrows.png */,
@@ -558,6 +561,7 @@
 				54BBF01A20676C7100C27FF8 /* arrows.png in Resources */,
 				540CE4C3208F15FF00AE426D /* notfoundover.png in Resources */,
 				54F984542087206500C9E4D0 /* AboutWindow.xib in Resources */,
+				54966D88209563D900BF58B2 /* background.png in Resources */,
 				54F9844B2086EC9B00C9E4D0 /* EULA.rtf in Resources */,
 				540CE4C4208F15FF00AE426D /* openinfinder64.png in Resources */,
 				540CE4BB208F157000AE426D /* closebox.png in Resources */,
@@ -573,10 +577,10 @@
 				540D2C3A2085FD6700A5ED36 /* close.png in Resources */,
 				544F99622091E1F300F6FC7B /* install.sh in Resources */,
 				540CE4BF208F157000AE426D /* trashempty.png in Resources */,
-				5465FAB4206A927D0054F573 /* background.jpg in Resources */,
 				5465FAC2206A94690054F573 /* JMModalOverlay-Info.plist in Resources */,
 				54538B0D208DAFCE008A4A0D /* RegisterWindow.xib in Resources */,
 				54461D30205F8ABC00C2835B /* Main.storyboard in Resources */,
+				54966D8A20956AC500BF58B2 /* register_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -78,7 +78,7 @@
     self.vcodeIV.enabled = NO;
     self.vcodeTF.enabled = NO;
     self.aboutWindowController = [[AboutWindowController alloc] init];
-    [self.aboutWindowController setAppURL:[[NSURL alloc] initWithString:@"http://app.faramaz.com"]];
+    [self.aboutWindowController setAppURL:[[NSURL alloc] initWithString:@"https://github.com/marebito/BaiduDownloader"]];
     [self.aboutWindowController
         setAppCopyright:[[NSAttributedString alloc]
                             initWithString:@"软件未注册"
