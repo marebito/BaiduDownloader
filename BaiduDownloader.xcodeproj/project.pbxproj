@@ -47,7 +47,6 @@
 		546607442063291800370966 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 546607432063291800370966 /* StringUtil.m */; };
 		5467E4872064FD2900F39920 /* ClickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467E4862064FD2900F39920 /* ClickableImageView.m */; };
 		54966D88209563D900BF58B2 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 54966D87209563D900BF58B2 /* background.png */; };
-		54966D8A20956AC500BF58B2 /* register_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 54966D8920956AC500BF58B2 /* register_bg.png */; };
 		549854512073280900AB8942 /* CustomTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 549854502073280900AB8942 /* CustomTextFieldCell.m */; };
 		549854552073AE7D00AB8942 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 549854542073AE7D00AB8942 /* JRSwizzle.m */; };
 		549854602073B23500AB8942 /* NSDictionary+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5498545F2073B23400AB8942 /* NSDictionary+Unicode.m */; };
@@ -141,7 +140,6 @@
 		5467E4852064FD2900F39920 /* ClickableImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClickableImageView.h; sourceTree = "<group>"; };
 		5467E4862064FD2900F39920 /* ClickableImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClickableImageView.m; sourceTree = "<group>"; };
 		54966D87209563D900BF58B2 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		54966D8920956AC500BF58B2 /* register_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_bg.png; sourceTree = "<group>"; };
 		5498544F2073280900AB8942 /* CustomTextFieldCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTextFieldCell.h; sourceTree = "<group>"; };
 		549854502073280900AB8942 /* CustomTextFieldCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTextFieldCell.m; sourceTree = "<group>"; };
 		549854532073AE7D00AB8942 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
@@ -445,7 +443,6 @@
 		54BBF047206815B900C27FF8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				54966D8920956AC500BF58B2 /* register_bg.png */,
 				54966D87209563D900BF58B2 /* background.png */,
 				540CE4C0208F15FE00AE426D /* notfoundover.png */,
 				540CE4C2208F15FF00AE426D /* openinfinder.png */,
@@ -580,7 +577,6 @@
 				5465FAC2206A94690054F573 /* JMModalOverlay-Info.plist in Resources */,
 				54538B0D208DAFCE008A4A0D /* RegisterWindow.xib in Resources */,
 				54461D30205F8ABC00C2835B /* Main.storyboard in Resources */,
-				54966D8A20956AC500BF58B2 /* register_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
