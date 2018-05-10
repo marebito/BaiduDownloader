@@ -14,6 +14,8 @@
 #import "JMModalOverlay.h"
 #import "CustomWindowVC.h"
 #import "FileOutlineVC.h"
+#import <WebKit/WebKit.h>
+#import "ArtPhotoModel.h"
 
 #define __CTS__ [HttpUtil currentTimestamp]
 #define __CTSD__(d) [HttpUtil currentTimestampDelay:d]
@@ -40,6 +42,7 @@
 @property(weak) IBOutlet NSTextField *fetchPwdTF;
 @property(weak) IBOutlet NSImageView *vcodeIV;
 @property(weak) IBOutlet NSTextField *vcodeTF;
+@property(weak) IBOutlet NSTextField *searchContentTF;
 @property(weak) IBOutlet NSTextField *statusLbl;
 @property(nonatomic, copy) NSString *shareURL;     // 分享URL
 @property(nonatomic, copy) NSString *redirectURL;  // 重定向URL
@@ -49,10 +52,12 @@
 @property(nonatomic, strong) MutableOrderedDictionary *fileDLinkDic;
 @property(nonatomic, strong) JMModalOverlay *modalOverlay;
 @property(nonatomic, strong) AboutWindowController *aboutWindowController;
+@property(nonatomic, strong) WKWebView *webView;
 - (IBAction)showHelp:(id)sender;
 - (IBAction)fetch:(id)sender;
 - (IBAction)fetchVCode:(id)sender;
 - (IBAction)reset:(id)sender;
+- (IBAction)searchResource:(id)sender;
 @end
 
 @implementation ViewController
@@ -61,24 +66,26 @@
 {
     //    链接: https://pan.baidu.com/s/1X97czU7FTBRJcc7NO8o4cg 密码: z96e
 
-//    NSString *url = @"https://d.pcs.baidu.com/file/9eec9ffed214ce40d916eba00f5bb17e?fid=2386164250-250528-508933448413783&dstime=1524904074&rt=sh&sign=FDtAERV-DCb740ccc5511e5e8fedcff06b081203-TgS08LhlaugDC7HjUragfC4kjZM%3D&expires=8h&chkv=1&chkbd=0&chkpc=&dp-logid=423628673051586712&dp-callid=0&r=218785198";
-//    [HttpUtil getFileInfoWithURL:url fileInfo:^(NSDictionary *dic) {
-//        NSLog(@"%@", dic);
-//    }];
+    //    NSString *url =
+    //    @"https://d.pcs.baidu.com/file/9eec9ffed214ce40d916eba00f5bb17e?fid=2386164250-250528-508933448413783&dstime=1524904074&rt=sh&sign=FDtAERV-DCb740ccc5511e5e8fedcff06b081203-TgS08LhlaugDC7HjUragfC4kjZM%3D&expires=8h&chkv=1&chkbd=0&chkpc=&dp-logid=423628673051586712&dp-callid=0&r=218785198";
+    //    [HttpUtil getFileInfoWithURL:url fileInfo:^(NSDictionary *dic) {
+    //        NSLog(@"%@", dic);
+    //    }];
 
     [super viewDidLoad];
 
     self.view.window.opaque = NO;
     self.view.window.backgroundColor = [NSColor clearColor];
-    
-//    [self checkBrew];
+
+    //    [self checkBrew];
 
     [self loadPasteBoardContentWithDelay:0.5];
 
     self.vcodeIV.enabled = NO;
     self.vcodeTF.enabled = NO;
     self.aboutWindowController = [[AboutWindowController alloc] init];
-    [self.aboutWindowController setAppURL:[[NSURL alloc] initWithString:@"https://github.com/marebito/BaiduDownloader"]];
+    [self.aboutWindowController
+        setAppURL:[[NSURL alloc] initWithString:@"https://github.com/marebito/BaiduDownloader"]];
     [self.aboutWindowController
         setAppCopyright:[[NSAttributedString alloc]
                             initWithString:@"软件未注册"
@@ -101,6 +108,7 @@
                                  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
         NSString *link = nil;
         NSString *pswd = nil;
+
         if ([pasteBoardContent rangeOfString:@"链接: "].location != NSNotFound)
         {
             link = __VREGEX__(pasteBoardContent, @"链接: ", @" ");
@@ -982,7 +990,6 @@
 }
 
 - (IBAction)fetchVCode:(id)sender { [self requestCaptcha]; }
-
 - (IBAction)reset:(id)sender
 {
     self.downloadURL.stringValue = @"";
@@ -1000,6 +1007,7 @@
     }
     [userDefaults synchronize];
 }
+
 - (NSString *)executeJS:(NSString *)js func:(NSString *)func params:(NSArray *)params
 {
     self.context = [[JSContext alloc] init];
@@ -1056,22 +1064,65 @@
     NSTask *task1 = [[NSTask alloc] init];
     NSPipe *pipe1 = [NSPipe pipe];
     [task1 waitUntilExit];
-    [task1 setLaunchPath: @"/bin/sh"];
-    [task1 setArguments: [NSArray arrayWithObjects:@"type aria2c >/dev/null 2>&1 || { echo >&2 \"I require aria2c but it's not installed.  Aborting.\"; exit 1;}", nil]];
-    [task1 setStandardOutput: pipe1];
+    [task1 setLaunchPath:@"/bin/sh"];
+    [task1 setArguments:[NSArray arrayWithObjects:@"type aria2c >/dev/null 2>&1 || { echo >&2 \"I require aria2c but "
+                                                  @"it's not installed.  Aborting.\"; exit 1;}",
+                                                  nil]];
+    [task1 setStandardOutput:pipe1];
     [task1 launch];
-    
+
     NSFileHandle *file = [pipe1 fileHandleForReading];
-    NSData * data = [file readDataToEndOfFile];
-    
-    NSString * string;
-    string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    NSData *data = [file readDataToEndOfFile];
+
+    NSString *string;
+    string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"Result: %@", string);
 }
 
-- (void)checkAria2c
+- (void)checkAria2c {}
+- (void)executeJS:(NSString *)js
+           inHTML:(NSString *)html
+          baseURL:(NSURL *)baseURL
+completionHandler:(void (^)(id data, NSError *error))complete
 {
+    // 根据JS字符串初始化WKUserScript对象
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:js
+                                                  injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
+                                               forMainFrameOnly:YES];
+    // 根据生成的WKUserScript对象，初始化WKWebViewConfiguration
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    [config.userContentController addUserScript:script];
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
+    self.webView.hidden = YES;
+    [self.webView loadHTMLString:html
+                         baseURL:baseURL];
+    [self.view addSubview:_webView];
+    [self.webView evaluateJavaScript:js completionHandler:^(id data, NSError * error) {
+        [self.webView removeFromSuperview];
+        if (complete) {
+            complete(data, error);
+        }
+    }];
+}
 
+- (IBAction)searchResource:(id)sender
+{
+    NSString *url = __TOSTR__(@"%@%@", BAIDU_SEARCH_URL, [HttpUtil URLEncodedString:_searchContentTF.stringValue]);
+    url = BAIDU_SEARCH_BASE_URL;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [HttpUtil htmlForURL:url xPath:@"/html/body/div/div[2]/div[2]/div/ul[3]" completionHandler:^(ONOXMLElement *element, NSUInteger idx, BOOL * _Nonnull stop) {
+        ArtPhotoModel *model=[ArtPhotoModel modelWithElement:element];
+        if(model){
+            [array addObject:model];
+        }
+    }];
+    // 点击获取type_url
+//    [array enumerateObjectsUsingBlock:^(ArtPhotoModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [HttpUtil htmlForURL:model.typeURL xPath:@"/html/body/div/div[1]/div/ul" completionHandler:^(ONOXMLElement *element, NSUInteger idx, BOOL * _Nonnull stop) {
+//            
+//        }];
+//    }];
+    
 }
 
 @end

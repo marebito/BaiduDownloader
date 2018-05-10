@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class ONOXMLElement;
+
 #define __UD__ [NSUserDefaults standardUserDefaults]
 #define __UDGET__(o) [__UD__ objectForKey:o]
 #define __UDSET__(k,v) [__UD__ setObject:v forKey:k]
@@ -56,5 +58,9 @@
  */
 + (void)getFileInfoWithURL:(NSString *)url
                   fileInfo:(void (^)(NSDictionary *dic))fileInfo;
+
++ (void)htmlForURL:(NSString *)url
+             xPath:(NSString *)xPath
+ completionHandler:(void (^)(ONOXMLElement *element, NSUInteger idx, BOOL * _Nonnull stop))complete;
 
 @end

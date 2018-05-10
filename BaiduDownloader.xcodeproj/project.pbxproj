@@ -64,6 +64,7 @@
 		54BBF01C20676D6300C27FF8 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF01B20676D6300C27FF8 /* download.png */; };
 		54BBF0262067799C00C27FF8 /* checkcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BBF0252067799B00C27FF8 /* checkcode.png */; };
 		54BBF04A206815D100C27FF8 /* SetDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BBF049206815D100C27FF8 /* SetDataModel.m */; };
+		54C3E80F20A479330094BEAA /* ArtPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C3E80E20A479330094BEAA /* ArtPhotoModel.m */; };
 		54CFC67D206378B8004F0C25 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CFC67C206378B7004F0C25 /* JavaScriptCore.framework */; };
 		54E48CAE206CCC400088B954 /* CustomOutlineRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */; };
 		54E48CBA206CD2FE0088B954 /* CustomWindowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E48CB9206CD2FE0088B954 /* CustomWindowVC.m */; };
@@ -169,6 +170,8 @@
 		54BBF0272068097600C27FF8 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		54BBF048206815D100C27FF8 /* SetDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetDataModel.h; sourceTree = "<group>"; };
 		54BBF049206815D100C27FF8 /* SetDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetDataModel.m; sourceTree = "<group>"; };
+		54C3E80D20A479330094BEAA /* ArtPhotoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArtPhotoModel.h; sourceTree = "<group>"; };
+		54C3E80E20A479330094BEAA /* ArtPhotoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArtPhotoModel.m; sourceTree = "<group>"; };
 		54CFC67C206378B7004F0C25 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		54E48CAC206CCC400088B954 /* CustomOutlineRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomOutlineRowView.h; sourceTree = "<group>"; };
 		54E48CAD206CCC400088B954 /* CustomOutlineRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomOutlineRowView.m; sourceTree = "<group>"; };
@@ -355,6 +358,8 @@
 			children = (
 				54BBF048206815D100C27FF8 /* SetDataModel.h */,
 				54BBF049206815D100C27FF8 /* SetDataModel.m */,
+				54C3E80D20A479330094BEAA /* ArtPhotoModel.h */,
+				54C3E80E20A479330094BEAA /* ArtPhotoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 				540D2C3F2086050900A5ED36 /* NSOutlineView+Additions.m in Sources */,
 				549FFE01206C499F001C9D2B /* InternetDownloadManager.m in Sources */,
 				5446E96D2075B8080080DBCC /* ImageAndTextCell.m in Sources */,
+				54C3E80F20A479330094BEAA /* ArtPhotoModel.m in Sources */,
 				54B93C5E2090CE6400907D9C /* ShellUtil.m in Sources */,
 				54461D33205F8ABC00C2835B /* main.m in Sources */,
 				54A25BAA206CF9E000D3061A /* CustomOutlineView.m in Sources */,

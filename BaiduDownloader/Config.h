@@ -63,6 +63,10 @@
 
 #define BAIDU_REDIRECT_URL __UDGET__(@"Location")
 
+#define BAIDU_SEARCH_BASE_URL @"http://www.xiandoudou.com"
+
+#define BAIDU_SEARCH_URL  @"http://www.xiandoudou.com/query?wd="
+
 #define __SHELL_CMD__(cmd, result) [ShellObject executeShell:cmd result:result]
 
 #define PASTE_BOARD_CONTENT @"echo $(pbpaste -prefer text)"

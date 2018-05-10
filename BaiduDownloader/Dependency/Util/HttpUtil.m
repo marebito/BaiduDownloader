@@ -211,4 +211,20 @@
     [task resume];
 }
 
++ (void)htmlForURL:(NSString *)url
+             xPath:(NSString *)xPath
+ completionHandler:(void (^)(ONOXMLElement *element, NSUInteger idx, BOOL *_Nonnull stop))complete
+{
+    [HttpUtil request:url
+               method:@"GET"
+              headers:nil
+               params:nil
+           completion:^(NSURLResponse *response, id responseObject, NSError *error) {
+               NSError *onoError;
+               ONOXMLDocument *doc = [ONOXMLDocument HTMLDocumentWithData:responseObject error:&onoError];
+               ONOXMLElement *parentElement = [doc firstChildWithXPath:xPath];
+               [parentElement.children enumerateObjectsUsingBlock:complete];
+           }];
+}
+
 @end

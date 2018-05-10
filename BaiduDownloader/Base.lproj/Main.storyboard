@@ -704,7 +704,7 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="ogO-vh-EbS"/>
+                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="zVR-P3-FQX"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -728,6 +728,15 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="background" id="TC7-nc-gzU"/>
                                     </imageView>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9JN-QX-S45">
+                                        <rect key="frame" x="34" y="221" width="226" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="搜索百度云盘资源..." drawsBackground="YES" id="cVT-Fz-a8A" customClass="CustomTextFieldCell">
+                                            <font key="font" metaFont="system" size="12"/>
+                                            <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </textFieldCell>
+                                    </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VA7-25-T1L">
                                         <rect key="frame" x="32" y="414" width="82" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -832,6 +841,17 @@
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jq5-hl-BJV">
+                                        <rect key="frame" x="235" y="221" width="25" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="url" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="6y3-Wc-9xt">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="searchResource:" target="XfG-lQ-9wD" id="ozY-7R-6B3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </visualEffectView>
                         </subviews>
@@ -839,6 +859,7 @@
                     <connections>
                         <outlet property="downloadURL" destination="3nZ-wg-DjI" id="4a5-V9-3uC"/>
                         <outlet property="fetchPwdTF" destination="wKH-hT-div" id="TAy-1v-Ufy"/>
+                        <outlet property="searchContentTF" destination="9JN-QX-S45" id="nte-Do-bNG"/>
                         <outlet property="statusLbl" destination="FG0-P7-wPI" id="EFI-mp-DHK"/>
                         <outlet property="vcodeIV" destination="Amb-RX-hs3" id="dkd-ws-ZJv"/>
                         <outlet property="vcodeTF" destination="Xkq-op-ZyY" id="nmb-cJ-bFb"/>
@@ -846,7 +867,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="931"/>
+            <point key="canvasLocation" x="103" y="930.5"/>
         </scene>
         <!--File ListVC-->
         <scene sceneID="bJ6-WE-j6D">
@@ -1367,5 +1388,6 @@
         <image name="closebox_pressed" width="56" height="56"/>
         <image name="openinfinder64" width="128" height="128"/>
         <image name="trashempty" width="256" height="256"/>
+        <image name="url" width="256" height="256"/>
     </resources>
 </document>
